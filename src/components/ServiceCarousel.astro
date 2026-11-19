@@ -1,0 +1,37 @@
+---
+import { img } from '../data/content.js';
+const { id, eyebrow, line1, line2, description, items, cta } = Astro.props;
+---
+<oc-manual-carousel>
+<section class="section classes-section" id={id} aria-labelledby={`${id}-title`}>
+ <div class="classes-inner oc-carousel-container">
+  <div class="section-heading">
+    <div>
+        <h2 id={`${id}-title`} class="eyebrow oc-section-heading">{eyebrow}</h2>
+        <p class="oc-display-heading"><span class="oc-heading-white">{line1}</span><br /><span class="oc-heading-orange">{line2}</span></p>
+    </div>
+
+  </div>
+  <p class="section-intro">{description}</p>
+   <div class="slider-controls oc-carousel-controls" data-controls hidden>
+    <div class="slider-dots oc-carousel-dots" role="group" aria-label="Posiciones del carrusel">{items.map((_, index)=><button type="button" data-oc-dot={index} aria-label={`Ir a la posición ${index + 1}`}><span aria-hidden="true"></span></button>)}</div>
+    <button type="button" class="oc-carousel-arrow" data-oc-direction="-1" aria-label={`Anterior en ${eyebrow}`} aria-controls={`${id}-slider`}>←</button>
+    <button type="button" class="oc-carousel-arrow" data-oc-direction="1" aria-label={`Siguiente en ${eyebrow}`} aria-controls={`${id}-slider`}>→</button>
+   </div>
+  <div class="class-slider oc-carousel-track" data-oc-track id={`${id}-slider`} tabindex="0" role="region" aria-label={eyebrow}>
+   {items.map((item, index)=><article class="class-card">
+    <img src={img(item.image)} alt={item.title} width="800" height="750" loading="lazy"/>
+    <div class="class-info">
+        <span>
+            {String(index + 1).padStart(2, '0')}
+            {id !== 'servicios' && ' / CATÁLOGO TÉCNICO'}
+        </span>
+        <h3><a href="#reserva" data-service={id === 'servicios' ? item.title : undefined}>{item.title}<span class="sr-only">: consultar</span></a></h3><p>{item.description}</p></div>
+   </article>)}
+  </div>
+  <p class="sr-only" data-slider-status aria-live="polite"></p>
+  <div class="center"><a class="button" href="#reserva">{cta}<span aria-hidden="true">↗</span></a></div>
+ </div>
+</section>
+</oc-manual-carousel>
+<script src="../scripts/manual-carousel.js"></script>

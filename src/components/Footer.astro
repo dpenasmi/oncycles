@@ -1,0 +1,117 @@
+---
+import "../styles/footer.css";
+
+type LegalLink = {
+  label: string;
+  href?: string;
+};
+
+interface Props {
+  email?: string;
+  logoSrc?: string;
+  legalLinks?: LegalLink[];
+}
+
+const {
+  email = "info@oncycles.es",
+  logoSrc = `${import.meta.env.BASE_URL}images/oncycles-logo.png`,
+  legalLinks = [
+    { label: "Aviso legal" },
+    { label: "Privacidad" },
+    { label: "Cookies" },
+  ],
+} = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const sections = [
+  {
+    title: "El taller",
+    links: [
+      { label: "Conoce el taller", href: "#taller" },
+      { label: "Sobre On Cycles", href: "#oficio" },
+      { label: "Tu próxima visita", href: "#tu-visita" },
+    ],
+  },
+  {
+    title: "Servicios",
+    links: [
+      { label: "Todos los servicios", href: "#servicios" },
+      { label: "Suspensiones", href: "#suspensiones" },
+      { label: "Catálogo técnico", href: "#catalogo" },
+    ],
+  },
+  {
+    title: "Contacto",
+    links: [
+      { label: "Reserva tu cita", href: "#reserva" },
+      { label: "Resuelve tus dudas", href: "#preguntas" },
+      { label: email, href: `mailto:${email}` },
+    ],
+  },
+];
+---
+
+<footer class="oc-footer" aria-label="Pie de página de On Cycles">
+  <div class="oc-footer__top">
+    <a class="oc-footer__brand" href="#inicio" aria-label="On Cycles, volver al inicio">
+      <img
+        class="oc-footer__logo"
+        src={logoSrc}
+        alt=""
+        width="500"
+        height="500"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="oc-footer__caption">Barcelona · Desde 2006</span>
+    </a>
+
+    {sections.map((section) => (
+      <nav class="oc-footer__column" aria-label={section.title}>
+        <h3 class="oc-footer__heading">{section.title}</h3>
+        <ul class="oc-footer__links">
+          {section.links.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+
+    <div class="oc-footer__column">
+      <h3 class="oc-footer__heading">Barcelona</h3>
+      <p class="oc-footer__location">Tu bici.<br />Tu taller.<br />Desde 2006.</p>
+    </div>
+  </div>
+
+  <div class="oc-footer__signature">
+    <!-- Texto vectorial: conserva la nitidez y se ajusta al ancho sin JavaScript. -->
+    <svg
+      class="oc-footer__wordmark"
+      viewBox="0 60 1600 220"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <text x="0" y="285" textLength="1600" lengthAdjust="spacingAndGlyphs">ON CYCLES</text>
+    </svg>
+    <p class="oc-footer__claim">Siempre a punto<span>.</span></p>
+  </div>
+
+  <div class="oc-footer__bottom">
+    <p class="oc-footer__copyright">© {currentYear} ON CYCLES</p>
+
+    <ul class="oc-footer__legal" aria-label="Información legal">
+      {legalLinks.map((link) => (
+        <li>
+          {link.href ? <a href={link.href}>{link.label}</a> : <span>{link.label}</span>}
+        </li>
+      ))}
+    </ul>
+
+    <a class="oc-footer__back-top" href="#inicio" aria-label="Volver al inicio">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 20V4M5 11l7-7 7 7" />
+      </svg>
+    </a>
+  </div>
+</footer>

@@ -1,0 +1,166 @@
+---
+import "../styles/proxima-salida.css";
+
+interface Props {
+  backgroundSrc?: string;
+  reservationHref?: string;
+}
+
+const {
+  backgroundSrc = `${import.meta.env.BASE_URL}images/salida-fondo.png`,
+  reservationHref = "#reserva",
+} = Astro.props;
+---
+
+<section class="oc-visit" id="tu-visita" aria-labelledby="visita-title">
+  <img
+    class="oc-visit__background"
+    src={backgroundSrc}
+    alt=""
+    aria-hidden="true"
+    width="1536"
+    height="512"
+    loading="lazy"
+    decoding="async"
+  />
+
+  <div class="oc-visit__content">
+    <h2 id="visita-title" class="oc-visit__eyebrow oc-section-heading">
+      Nos ocupamos de tu bici
+    </h2>
+
+    <p class="oc-visit__title">
+      <span class="oc-heading-white">Tu próxima salida</span>
+      <span class="oc-heading-orange">empieza en el taller.</span>
+    </p>
+
+    <p class="oc-visit__intro">
+      Cuéntanos cómo utilizas tu bicicleta y qué te gustaría mejorar.
+      Te orientamos para encontrar el servicio adecuado.
+    </p>
+
+    <ol class="oc-visit__steps">
+      <li class="oc-visit__step">
+        <span class="oc-visit__number" aria-hidden="true">01</span>
+        <div>
+          <p class="oc-visit__step-heading">Cuéntanos qué necesitas</p>
+          <p class="oc-visit__step-description">
+            Tu bici, tu uso y lo que te gustaría mejorar.
+          </p>
+        </div>
+      </li>
+
+      <li class="oc-visit__step">
+        <span class="oc-visit__number" aria-hidden="true">02</span>
+        <div>
+          <p class="oc-visit__step-heading">Revisamos tu bici</p>
+          <p class="oc-visit__step-description">
+            Valoramos su estado y te orientamos sobre el servicio.
+          </p>
+        </div>
+      </li>
+
+      <li class="oc-visit__step">
+        <span class="oc-visit__number" aria-hidden="true">03</span>
+        <div>
+          <p class="oc-visit__step-heading">Vuelve a disfrutar</p>
+          <p class="oc-visit__step-description">
+            Más confianza para tu próxima salida.
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <a class="button oc-visit__cta" href={reservationHref}>
+      Reserva tu cita <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Tipografía de la sección. Las variables siguen el sistema global;
+     los valores alternativos permiten usar el componente por separado. */
+  #tu-visita .oc-visit__eyebrow {
+    font-family: var(--oc-font-heading, Arial, sans-serif);
+    font-size: var(--oc-font-h2, 14px);
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  /* Mensaje visual: primera línea blanca y continuación naranja. */
+  #tu-visita .oc-visit__title {
+    font-family: var(--oc-font-display, "Archivo Black", Arial, sans-serif);
+    font-weight: 400;
+    color: var(--orange, #ff5a1f);
+  }
+
+  #tu-visita .oc-visit__title > .oc-heading-white {
+    color: #ffffff;
+  }
+
+  #tu-visita .oc-visit__title > .oc-heading-orange {
+    color: var(--orange, #ff5a1f);
+  }
+
+  #tu-visita .oc-visit__intro,
+  #tu-visita .oc-visit__step-description {
+    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
+    font-size: var(--oc-font-body, 18px);
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  /* Párrafos destacados de los pasos: independientes de los H3 globales. */
+  #tu-visita.oc-visit p.oc-visit__step-heading {
+    margin: 0;
+    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+  }
+
+  #tu-visita .oc-visit__cta {
+    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
+    font-size: var(--oc-font-cta, 12px);
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+
+  /* Tablet */
+  @media (min-width: 701px) and (max-width: 1024px) {
+    #tu-visita .oc-visit__intro,
+    #tu-visita .oc-visit__step-description {
+      font-size: var(--oc-font-body, 17px);
+    }
+
+    #tu-visita.oc-visit p.oc-visit__step-heading {
+      font-size: 22px;
+    }
+  }
+
+  /* Móvil */
+  @media (max-width: 700px) {
+    #tu-visita .oc-visit__eyebrow {
+      letter-spacing: 0.08em;
+    }
+
+    #tu-visita .oc-visit__intro,
+    #tu-visita .oc-visit__step-description {
+      font-size: var(--oc-font-body, 16px);
+    }
+
+    #tu-visita.oc-visit p.oc-visit__step-heading {
+      font-size: 20px;
+    }
+  }
+</style>

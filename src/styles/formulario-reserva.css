@@ -1,0 +1,194 @@
+/* ==================================================
+   ON CYCLES · FORMULARIO DE RESERVA
+   HTML estático y estilos independientes.
+================================================== */
+
+#reserva.oc-booking {
+  --oc-booking-body-size: 18px;
+  padding-block: 55px 45px;
+  background-color: var(--orange, #ff5a1f);
+  color: #050505;
+  color-scheme: light;
+}
+
+#reserva .oc-booking__eyebrow {
+  margin: 0 0 20px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+#reserva #reserva-title.oc-booking__title {
+  margin: 0 0 32px;
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: 52px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+#reserva .oc-booking__title > span {
+  color: #ffffff;
+}
+
+#reserva .oc-booking__fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+#reserva .oc-booking__label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: #050505;
+}
+
+#reserva .oc-booking__field {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid #343434;
+  border-radius: 0;
+  background-color: #ffffff;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #050505;
+}
+
+#reserva .oc-booking__field::placeholder {
+  color: #555555;
+  opacity: 1;
+}
+
+#reserva .oc-booking__field:focus-visible {
+  outline: 3px solid #050505;
+  outline-offset: 3px;
+}
+
+#reserva .oc-booking__field option {
+  background-color: #ffffff;
+  color: #050505;
+}
+
+#reserva .oc-booking__bottom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+#reserva .oc-booking__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-height: 50px;
+  max-width: 100%;
+  padding: 18px 25px;
+  border: 0;
+  background-color: #050505;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#reserva .oc-booking__note,
+#reserva #form-status,
+#reserva #mail-fallback {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: var(--oc-booking-body-size);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #050505;
+}
+
+#reserva #form-status,
+#reserva #mail-fallback {
+  margin-top: 16px;
+}
+
+#reserva [hidden] {
+  display: none;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #reserva.oc-booking {
+    --oc-booking-body-size: 17px;
+  }
+
+  #reserva #reserva-title.oc-booking__title {
+    font-size: 44px;
+  }
+
+  #reserva .oc-booking__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #reserva .oc-booking__service {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #reserva.oc-booking {
+    --oc-booking-body-size: 16px;
+    padding-block: 40px;
+  }
+
+  #reserva .oc-booking__eyebrow {
+    letter-spacing: 0.08em;
+  }
+
+  #reserva #reserva-title.oc-booking__title {
+    font-size: clamp(30px, 8.5vw, 40px);
+    margin-bottom: 26px;
+  }
+
+  #reserva .oc-booking__fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  #reserva .oc-booking__bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  #reserva .oc-booking__submit {
+    width: 100%;
+  }
+}

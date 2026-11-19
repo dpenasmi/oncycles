@@ -1,0 +1,363 @@
+---
+import "../styles/global.css";
+import "../styles/brand.css";
+import Footer from "../components/Footer.astro";
+import ServiceCarousel from "../components/ServiceCarousel.astro";
+import ProximaSalida from "../components/ProximaSalida.astro";
+import SobreOnCycles from '../components/SobreOnCycles.astro';
+import FormularioReserva from "../components/FormularioReserva.astro";
+import Marcas from "../components/Marcas.astro";
+import ResenasGoogle from "../components/ResenasGoogle.astro";
+import {
+  services,
+  catalog,
+  workshop,
+  faqs,
+  email,
+  img,
+  heroSlides,
+} from "../data/content.js";
+const seoTitle = "On Cycles · Taller de bicicletas en Barcelona";
+const seoDescription =
+  "Tu bici, en manos expertas. Revisiones, suspensiones, frenos, transmisión, ruedas y E-Bike en Barcelona. Precisión, tecnología y oficio desde 2006.";
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="es">
+  <!-- Metadatos y recursos -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
+    <meta name="theme-color" content="#050505" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="On Cycles" />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl.href} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl.href} />}
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">
+      Saltar al contenido
+    </a>
+    <!-- Cabecera y navegación -->
+    <header class="header">
+      <div class="header-inner">
+        <a class="header-logo oncycles-brand" href="#inicio" aria-label="On Cycles, inicio">
+          <img
+            class="oncycles-brand__symbol"
+            src={`${import.meta.env.BASE_URL}images/oncycles-logo.png`}
+            alt=""
+            aria-hidden="true"
+            width="500"
+            height="500"
+          />
+          <span class="oncycles-wordmark">
+            ON
+            <br />
+            CYCLES<span class="oncycles-wordmark__caption">BARCELONA · DESDE 2006</span>
+          </span>
+        </a>
+        <nav id="main-nav" aria-label="Navegación principal">
+          <a href="#servicios">Servicios</a>
+          <a href="#taller">El taller</a>
+          <a href="#catalogo">Catálogo técnico</a>
+        </nav>
+        <a class="button header-cta" href="#reserva">
+          Reserva tu cita <span aria-hidden="true">↗</span>
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <main id="contenido">
+      <!-- Hero: fondo automático en bucle, sin controles visibles -->
+      <section
+        class="hero hero--carousel"
+        id="inicio"
+        data-hero-carousel
+        data-interval="6000"
+        aria-labelledby="hero-heading"
+      >
+        <div class="hero-backgrounds" aria-hidden="true">
+          {heroSlides.map((slide, index) => (
+            <img
+              class:list={["hero-image", { "is-active": index === 0 }]}
+              src={img(slide.image)}
+              alt=""
+              width="1536"
+              height="1024"
+              loading="eager"
+              fetchpriority={index === 0 ? "high" : "low"}
+              style={`--hero-position:${slide.position ?? "center"};--hero-mobile-position:${slide.mobilePosition ?? "center"}`}
+            />
+          ))}
+        </div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content container">
+          <h1 id="hero-heading" class="eyebrow oc-section-heading oc-section-heading--main">
+            <span aria-hidden="true"></span>TU TALLER DE BICIS EN BARCELONA.
+          </h1>
+          <p id="hero-title" class="p-74px">
+            <span class="oc-heading-white">Tu bici.</span>
+            <br />
+            <span class="oc-heading-white">En manos</span>
+            <br />
+            <span class="oc-heading-orange">expertas.</span>
+          </p>
+          <p class="hero-promise">
+            <span class="oc-heading-white">Precisión, tecnología.</span>
+            <br />
+            <span class="oc-heading-orange">Y mucho oficio.</span>
+          </p>
+          <p class="hero-subtitle">
+            Revisiones, suspensiones y mecánica especializada. Cuidamos cada detalle de tu
+            bicicleta para que disfrutes de cada salida.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#reserva">
+              Reserva cita en el taller <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button button-white" href="#servicios">
+              Descubre los servicios <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-bottom container">
+          <span>OFICIO · PRECISIÓN · CONFIANZA</span>
+          <a href="#servicios" aria-label="Descubre los servicios">
+            BAJA Y DESCÚBRELO <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+      <!-- Franja de mensajes animados -->
+      <section
+        class="rhythm-banner"
+        aria-label="Más precisión. Mejores sensaciones. Tu próxima salida empieza en el taller."
+      >
+        <div class="rhythm-banner__inner">
+          <div class="rhythm-banner__messages" aria-hidden="true">
+            <p class="rhythm-banner__message is-active">
+              <span class="rhythm-banner__line">MÁS PRECISIÓN.</span>
+              <span class="rhythm-banner__line">MEJORES SENSACIONES.</span>
+            </p>
+            <p class="rhythm-banner__message">
+              <span class="rhythm-banner__line">TU PRÓXIMA SALIDA</span>
+              <span class="rhythm-banner__line">EMPIEZA EN EL TALLER.</span>
+            </p>
+          </div>
+          <span class="rhythm-banner__arrow" aria-hidden="true">
+            ↗
+          </span>
+          <button class="rhythm-banner__pause" type="button" aria-pressed="false" hidden>
+            Pausar animación
+          </button>
+        </div>
+      </section>
+
+      <!-- Especialistas en suspensiones -->
+      <section
+        class="section suspension-section"
+        id="suspensiones"
+        aria-labelledby="suspensiones-title"
+      >
+        <!-- Fondo de toda la sección -->
+        <div class="suspension-background" aria-hidden="true">
+          <img
+            src={img("suspensiones-fondo")}
+            alt=""
+            width="1672"
+            height="941"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Contenido sobre el fondo -->
+        <div class="suspension-content">
+          <h2 id="suspensiones-title" class="eyebrow oc-section-heading">
+            ESPECIALISTAS EN SUSPENSIONES
+          </h2>
+
+          <p class="oc-display-heading suspension-display-title">
+            <span class="oc-heading-white">El control</span>
+            <br />
+            <span class="oc-heading-orange">empieza aquí.</span>
+          </p>
+
+          <p class="suspension-description">
+            Revisión, mantenimiento y ajuste de horquillas y amortiguadores. Precisión
+            técnica para adaptar tu suspensión a tu forma de rodar.
+          </p>
+
+          <p class="suspension-specialties">
+            Horquillas · Amortiguadores · Puesta a punto
+          </p>
+
+          <a class="button" href="#reserva" data-service="Suspensiones">
+            Servicio de suspensiones
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Carrusel de servicios -->
+        <ServiceCarousel
+          id="servicios"
+          eyebrow="Servicios de taller"
+          line1="Un servicio para"
+          line2="cada detalle."
+          description="Mantenimiento, diagnóstico y soluciones especializadas para que tu bici rinda al máximo. Encuentra el servicio que necesita tu próxima salida."
+          items={services}
+          cta="Consulta tu servicio"
+        />
+
+      <!-- Sobre On Cycles -->
+      
+      <SobreOnCycles />
+
+      <!-- Bloque Marcas -->
+
+      <Marcas />
+
+      <!-- Galería del taller -->
+      <oc-manual-carousel>
+      <section class="section oc-carousel-container" id="taller" aria-labelledby="taller-title">
+        <div class="section-heading">
+          <h2 id="taller-title" class="eyebrow oc-section-heading">
+            Conoce el taller
+          </h2>
+          <p>Un espacio para tu próxima salida.</p>
+        </div>
+        <p class="oc-display-heading">
+            <span class="oc-heading-white">Un espacio diseñado</span>
+            <br />
+            <span class="oc-heading-orange">para cada servicio.</span>
+          </p>
+        
+        <p class="section-intro">
+          Un espacio técnico en Barcelona donde las herramientas, la experiencia y el
+          cuidado de cada detalle trabajan juntos. Descubre dónde ponemos a punto tu bici.
+        </p>
+        <div
+          class="spaces-controls oc-carousel-controls"
+          aria-label="Controles del taller"
+          data-controls
+          hidden
+        >
+          <div class="spaces-dots oc-carousel-dots" role="group" aria-label="Posiciones del carrusel del taller">
+            {workshop.map((_, index) => (
+              <button type="button" data-oc-dot={index} aria-label={`Ir a la posición ${index + 1}`}><span aria-hidden="true"></span></button>
+            ))}
+          </div>
+          <button
+            type="button"
+            class="oc-carousel-arrow" data-oc-direction="-1"
+            aria-label="Ver espacio anterior"
+            aria-controls="spaces-slider"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            class="oc-carousel-arrow" data-oc-direction="1"
+            aria-label="Ver espacio siguiente"
+            aria-controls="spaces-slider"
+          >
+            →
+          </button>
+        </div>
+        <div
+          class="spaces-slider oc-carousel-track"
+          data-oc-track
+          id="spaces-slider"
+          tabindex="0"
+          role="region"
+          aria-label="Espacios del taller"
+        >
+          {workshop.map((item) => (
+            <figure>
+              <img
+                src={img(item.image)}
+                alt={item.description}
+                width="900"
+                height="550"
+                loading="lazy"
+              />
+              <figcaption>{item.title}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="sr-only" data-slider-status aria-live="polite"></p>
+      </section>
+      </oc-manual-carousel>
+      
+      <!-- Carrusel del catálogo técnico -->
+
+      <ResenasGoogle />
+
+      <!-- Carrusel del catálogo técnico -->
+      <ServiceCarousel
+        id="catalogo"
+        eyebrow="Catálogo técnico"
+        line1="Cada detalle"
+        line2="cuenta."
+        description="Componentes y soluciones para llevar tu bicicleta más lejos. Explora las categorías y consulta compatibilidad y disponibilidad en el taller."
+        items={catalog}
+        cta="Consulta disponibilidad"
+      />
+      <!-- Pasos de la visita al taller -->
+      
+      <ProximaSalida />
+
+
+      <!-- Preguntas frecuentes -->
+      <section
+        class="section faq-section"
+        id="preguntas"
+        aria-labelledby="preguntas-title"
+      >
+        <h2 id="preguntas-title">
+          <span class="oc-heading-white">Resolvemos</span>
+          <br />
+          <span class="oc-heading-orange">tus dudas.</span>
+        </h2>
+        <div class="faq-list">
+          {faqs.map(([question, answer]) => (
+            <details>
+              <summary>
+                {question}
+                <span aria-hidden="true">+</span>
+              </summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+      <!-- Solicitud de cita por correo -->
+      <FormularioReserva email={email} />
+    </main>
+    <!-- Pie de página -->
+    <Footer email={email} />
+    <!-- Interacciones: menú, carruseles, franja y formulario -->
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/manual-carousel.js"></script>
+  </body>
+</html>

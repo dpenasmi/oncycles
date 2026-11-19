@@ -1,0 +1,3253 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* ON CYCLES · CSS GLOBAL REVISADO · 19/11/2026
+   Variables, componentes y adaptaciones responsive.
+   Tipografía centralizada al final; variables en :root.
+   Se conserva el orden de las reglas de diseño. */
+
+:root {
+  --orange: #ff5a1f;
+  --black: #050505;
+  --muted: #a3a3a3;
+  --line: #343434;
+  color-scheme: dark;
+  font-family: Inter, Arial, sans-serif;
+  font-synthesis: none;
+  --oc-side-padding: clamp(24px, 4vw, 80px);
+  --oc-font-text: "Inter", Arial, sans-serif;
+  --oc-font-heading: Arial, sans-serif;
+  --oc-font-display: "Archivo Black", Arial, sans-serif;
+  --oc-font-h1: 16px;
+  --oc-font-h2: 14px;
+  --oc-font-h3: 32px;
+  --oc-font-body: 18px;
+  --oc-font-cta: 12px;
+  --oc-font-card-label: 14px;
+  --oc-font-specialties: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: white;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+.oc-display-heading,
+.statement p {
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.oc-display-heading {
+  font-size: clamp(30px, 3.8vw, 54px);
+  line-height: 1.03;
+  color: var(--orange);
+}
+
+h3 {
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+}
+
+.container {
+  width: min(1280px, calc(100% - 96px));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: 76px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.section-heading > p {
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+
+/* Botones y accesibilidad */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 18px 25px;
+  background: var(--orange);
+  color: #000;
+  text-transform: uppercase;
+  transition: background 0.2s,
+    transform 0.2s;
+  min-height: 50px;
+}
+
+.button:hover {
+  background: #ff8050;
+  transform: translateY(-2px);
+}
+
+.button-white {
+  background: white;
+}
+
+.button-white:hover {
+  background: #e1e1e1;
+}
+
+.button-black {
+  background: #050505;
+  color: white;
+}
+
+.button-black:hover {
+  background: #292929;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.class-slider:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 5px;
+}
+
+.booking-section :focus-visible {
+  outline-color: black;
+}
+
+.skip-link {
+  position: fixed;
+  top: -70px;
+  left: 20px;
+  padding: 15px;
+  background: var(--orange);
+  color: black;
+  z-index: 50;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Cabecera y navegación */
+
+.header {
+  background: transparent;
+  position: absolute;
+  z-index: 20;
+  border-bottom: none;
+  inset: 0 0 auto;
+  width: 100%;
+}
+
+.header-logo {
+  display: block;
+  flex-shrink: 0;
+  width: 155px;
+}
+
+.header-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.header-inner {
+  height: 90px;
+  width: min(1360px, calc(100% - 80px));
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.wordmark {
+  font-family: "Archivo Black", Arial, sans-serif;
+  display: block;
+  font-size: 26px;
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+  flex-shrink: 0;
+}
+
+.brand-dot {
+  color: var(--orange);
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-left: auto;
+  margin-right: 35px;
+}
+
+.header nav a {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding-block: 15px;
+}
+
+.header nav a:hover {
+  color: var(--orange);
+}
+
+.header-cta {
+  padding: 16px 22px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* Hero */
+
+.hero {
+  position: relative;
+  height: min(870px, 100svh);
+  min-height: 650px;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-position: center;
+  z-index: -3;
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.6) 33%,
+    rgba(0, 0, 0, 0.08) 72%
+  ),
+    linear-gradient(
+    0deg,
+    #050505 0%,
+    transparent 28%,
+    transparent 85%,
+    rgba(0, 0, 0, 0.15)
+  );
+  z-index: -2;
+}
+
+.hero-content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.hero .eyebrow {
+  color: #ddd;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero .eyebrow span {
+  height: 6px;
+  width: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+h1,
+h2 {
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 800px;
+  color: var(--orange);
+}
+
+.hero-subtitle {
+  margin-top: 25px;
+  letter-spacing: -0.025em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.hero-bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #aaa;
+}
+
+.hero-bottom a {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-bottom a span {
+  font-size: 24px;
+  color: var(--orange);
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* Frase principal */
+
+.statement {
+  background: var(--orange);
+  color: black;
+  padding: 40px 0 45px;
+}
+
+.statement .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statement p {
+  font-size: clamp(42px, 7.2vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.statement-arrow {
+  font-size: 140px;
+  line-height: 1;
+  font-weight: 400;
+  transform: translateY(-5px);
+}
+
+/* Tarjetas de la plantilla original */
+
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.training-card img {
+  aspect-ratio: 0.76;
+  transition: transform 0.5s;
+}
+
+.training-card:hover img {
+  transform: scale(1.04);
+}
+
+.card-number {
+  position: absolute;
+  top: 16px;
+  left: 15px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 5px black;
+}
+
+.card-arrow {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 26px;
+  color: var(--orange);
+  opacity: 0;
+  transform: translate(-5px, 5px);
+  transition: 0.2s;
+}
+
+.training-card:hover .card-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+.training-card h3 {
+  margin-top: 16px;
+}
+
+.training-card p {
+  color: var(--muted);
+  margin-top: 9px;
+  max-width: 240px;
+}
+
+/* Carruseles de servicios y catálogo técnico */
+
+.classes-section {
+  padding-top: 30px;
+}
+
+.class-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  margin-bottom: 32px;
+}
+
+.class-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.class-card {
+  position: relative;
+  flex: 0 0 38%;
+  min-width: 0;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.class-card > img {
+  aspect-ratio: 0.98;
+  transition: transform 0.5s;
+}
+
+.class-card:hover > img {
+  transform: scale(1.035);
+}
+
+.class-card:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.92), transparent 72%);
+}
+
+.class-info {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 20px;
+  z-index: 1;
+}
+
+.class-info > span {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.class-info h3 {
+  margin-top: 9px;
+}
+
+.class-info p {
+  color: #ddd;
+  margin-top: 10px;
+  max-width: 270px;
+}
+
+.center {
+  text-align: center;
+}
+
+.center .button {
+  min-width: 190px;
+}
+
+/* Spot audiovisual */
+
+.spot-section {
+  height: 450px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.spot-section > img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 65%;
+  height: 100%;
+  object-position: center 60%;
+  z-index: -3;
+}
+
+.spot-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(
+    90deg,
+    #050505 18%,
+    rgba(0, 0, 0, 0.7) 40%,
+    transparent 80%
+  );
+}
+
+.spot-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.spot-content .eyebrow {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.play-link {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: white;
+  background: transparent;
+  text-transform: uppercase;
+  margin-top: 28px;
+  padding: 0;
+}
+
+.play-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  font-size: 21px;
+  padding-left: 4px;
+}
+
+.play-link:hover .play-circle {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: black;
+}
+
+/* Galería del taller */
+
+.spaces-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.spaces-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.spaces-slider figure {
+  position: relative;
+  flex: 0 0 calc((100% - 24px) / 2);
+  min-width: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.spaces-slider img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  transition: transform 0.5s;
+}
+
+.spaces-slider figure:hover img {
+  transform: scale(1.03);
+}
+
+.spaces-slider figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 24px 22px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  text-transform: uppercase;
+  font-size: 23px;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+}
+
+.spaces-slider figcaption span {
+  color: var(--orange);
+}
+
+/* Bloque de oficio y experiencia */
+
+.community-section {
+  padding-top: 20px;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.community-grid img {
+  aspect-ratio: 1;
+  filter: saturate(0.88);
+}
+
+.community-caption {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.community-caption span {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* Pasos del servicio */
+
+.first-session {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.first-session .eyebrow {
+  color: var(--muted);
+  font-size: 9px;
+  margin-bottom: 14px;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+}
+
+.steps li {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid #656565;
+  padding: 20px 0;
+}
+
+.steps li > span {
+  font-family: "Archivo Black";
+  font-size: 23px;
+  min-width: 40px;
+  line-height: 1.2;
+}
+
+.steps p {
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+.first-session > img {
+  height: 100%;
+  max-height: 490px;
+  object-position: center;
+}
+
+/* Preguntas frecuentes */
+
+.faq-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding-top: 25px;
+  padding-bottom: 90px;
+}
+
+.faq-list details {
+  border-bottom: 1px solid #666;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 19px 0;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary span {
+  font-size: 26px;
+  line-height: 16px;
+  color: var(--orange);
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+.faq-list details[open] summary span {
+  transform: rotate(45deg);
+}
+
+.faq-list details p {
+  color: #bbb;
+  padding: 0 25px 22px 0;
+}
+
+/* Formulario de reserva */
+
+.booking-section {
+  background: var(--orange);
+  color: #050505;
+  padding: 55px 0 45px;
+  color-scheme: light;
+}
+
+.booking-section h2 {
+  color: black;
+  letter-spacing: -0.055em;
+  margin: 15px 0 32px;
+}
+
+.booking-section h2 span {
+  color: white;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.form-grid label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.form-grid input,
+.form-grid select {
+  display: block;
+  width: 100%;
+  border: 1px solid #333;
+  border-radius: 0;
+  background: transparent;
+  color: black;
+  padding: 15px 14px;
+  margin-top: 8px;
+  height: 50px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form-grid input::placeholder {
+  color: #343434;
+  opacity: 1;
+}
+
+.form-grid select option {
+  background: var(--orange);
+}
+
+.form-bottom {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-top: 22px;
+}
+
+.form-bottom .button {
+  min-width: 245px;
+}
+
+#form-status {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid black;
+  max-width: 750px;
+}
+
+/* Pie de página */
+
+.footer {
+  padding-top: 55px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1.4fr 1.2fr 0.8fr;
+  gap: 30px;
+}
+
+.footer .wordmark {
+  color: var(--orange);
+  font-size: 31px;
+}
+
+.footer-main h3 {
+  color: var(--orange);
+  margin-bottom: 18px;
+  letter-spacing: 0.025em;
+}
+
+.footer-main div > a {
+  display: block;
+  font-size: 11px;
+  line-height: 2.1;
+  color: #ccc;
+}
+
+.footer-main div > a:hover {
+  color: var(--orange);
+}
+
+.footer-main div > p {
+  color: #aaa;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #666;
+  margin-top: 45px;
+  padding: 20px 0;
+  font-size: 9px;
+  color: #aaa;
+  gap: 20px;
+}
+
+.footer-bottom > a {
+  font-size: 24px;
+  color: var(--orange);
+}
+
+/* Ventanas modales */
+
+.modal {
+  border: 1px solid #555;
+  background: #0c0c0c;
+  color: white;
+  width: min(760px, calc(100% - 32px));
+  padding: 45px;
+  max-height: 90svh;
+  overflow: auto;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  color: white;
+  background: transparent;
+  font-size: 32px;
+}
+
+.modal > .eyebrow {
+  color: #aaa;
+  margin-bottom: 14px;
+}
+
+.modal h2 {
+  max-width: 90%;
+}
+
+.modal-note {
+  color: #aaa;
+  margin-top: 12px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: 25px 0;
+}
+
+.modal table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+
+.modal th {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.modal th,
+.modal td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #444;
+  white-space: nowrap;
+}
+
+.video-frame {
+  margin-top: 25px;
+  background: #141414;
+  aspect-ratio: 16/9;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.video-frame p {
+  margin-top: 15px;
+}
+
+.video-frame video {
+  width: 100%;
+  max-height: 60svh;
+}
+
+.video-frame [hidden] {
+  display: none;
+}
+
+::selection {
+  background: var(--orange);
+  color: black;
+}
+
+/* Pantallas grandes */
+
+/* Tabletas */
+
+@media (max-width: 1050px) {
+  .container {
+    width: calc(100% - 64px);
+  }
+
+  .header-inner {
+    width: calc(100% - 48px);
+  }
+
+  .header nav {
+    gap: 23px;
+    margin-right: 8px;
+  }
+
+  .header-cta {
+    padding: 15px;
+  }
+
+  .hero {
+    min-height: 570px;
+  }
+
+  .hero-content {
+    padding-bottom: 20px;
+  }
+
+  .statement-arrow {
+    font-size: 110px;
+  }
+
+  .training-grid {
+    gap: 16px;
+  }
+
+  .class-info {
+    left: 18px;
+    bottom: 20px;
+  }
+
+  .class-info p {
+    display: none;
+  }
+
+  .first-session,
+  .faq-section {
+    gap: 40px;
+  }
+
+  .footer-main {
+    gap: 20px;
+  }
+
+  .footer-main div > a {
+    font-size: 10px;
+  }
+}
+
+/* Móviles */
+
+@media (max-width: 700px) {
+  .header-logo {
+    width: 110px;
+  }
+
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .header-inner {
+    height: 74px;
+    width: calc(100% - 36px);
+    gap: 14px;
+  }
+
+  .wordmark {
+    font-size: 23px;
+  }
+
+  .header-cta {
+    margin-left: auto;
+    padding: 12px;
+    min-height: 40px;
+    gap: 12px;
+  }
+
+  .header-cta span {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+    width: 28px;
+    height: 35px;
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 3px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 22px;
+    background: white;
+  }
+
+  .header nav {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    right: 0;
+    background: #050505;
+    padding: 20px;
+    margin: 0;
+    border-bottom: 1px solid #444;
+  }
+
+  .header nav.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .header nav a {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .hero {
+    height: 760px;
+    min-height: 0;
+    max-height: 100svh;
+  }
+
+  .hero-image {
+    object-position: 64% center;
+  }
+
+  .hero-shade {
+    background: linear-gradient(
+      0deg,
+      #050505 2%,
+      rgba(0, 0, 0, 0.82) 23%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.08)
+    ),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent);
+  }
+
+  .hero-content {
+    justify-content: flex-end;
+    padding-bottom: 70px;
+    padding-top: 90px;
+  }
+
+  .hero .eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    letter-spacing: -0.055em;
+  }
+
+  .hero-subtitle {
+    margin-top: 19px;
+  }
+
+  .hero-actions {
+    gap: 10px;
+    margin-top: 25px;
+    width: 100%;
+  }
+
+  .hero-actions .button {
+    padding: 16px 15px;
+    gap: 13px;
+    min-height: 48px;
+  }
+
+  .hero-bottom {
+    bottom: 18px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .hero-bottom a {
+    gap: 8px;
+  }
+
+  .hero-bottom a span {
+    font-size: 20px;
+  }
+
+  .statement {
+    padding: 30px 0;
+  }
+
+  .statement p {
+    font-size: clamp(35px, 9.4vw, 65px);
+  }
+
+  .statement-arrow {
+    font-size: 60px;
+  }
+
+  .section {
+    padding-block: 45px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+    gap: 20px;
+  }
+
+  .section-heading > p {
+    display: none;
+  }
+
+  .training-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 14px;
+  }
+
+  .training-card img {
+    aspect-ratio: 0.8;
+  }
+
+  .training-card h3 {
+    margin-top: 12px;
+  }
+
+  .training-card p {
+    margin-top: 7px;
+  }
+
+  .card-arrow {
+    opacity: 1;
+    transform: none;
+    font-size: 22px;
+    bottom: 10px;
+    right: 12px;
+  }
+
+  .card-number {
+    font-size: 8px;
+    top: 12px;
+    left: 12px;
+  }
+
+  .classes-section {
+    padding-top: 15px;
+  }
+
+  .classes-section .oc-display-heading {
+    font-size: 29px;
+    max-width: 200px;
+  }
+
+  .section-heading .eyebrow {
+    font-size: 8px;
+    margin-bottom: 12px;
+    max-width: 220px;
+  }
+
+  .class-slider {
+    gap: 14px;
+    margin-right: -20px;
+    padding-right: 20px;
+  }
+
+  .class-card {
+    flex-basis: 82%;
+  }
+
+  .class-card > img {
+    aspect-ratio: 1;
+  }
+
+  .class-info {
+    left: 20px;
+  }
+
+  .class-info p {
+    display: block;
+  }
+
+  .center .button {
+    min-height: 45px;
+    padding: 15px 20px;
+  }
+
+  .spot-section {
+    height: 340px;
+    margin-top: 0;
+  }
+
+  .spot-section > img {
+    width: 100%;
+    object-position: 75% center;
+  }
+
+  .spot-gradient {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.1));
+  }
+
+  .spot-content .eyebrow {
+    font-size: 8px;
+    max-width: 200px;
+  }
+
+  .play-link {
+    gap: 14px;
+    margin-top: 23px;
+  }
+
+  .play-circle {
+    width: 49px;
+    height: 49px;
+    font-size: 18px;
+  }
+
+  .spaces-slider {
+    gap: 16px;
+  }
+
+  .spaces-slider figure {
+    flex-basis: 88%;
+  }
+
+  .spaces-slider img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .spaces-slider figcaption {
+    font-size: 20px;
+    padding: 35px 18px 18px;
+  }
+
+  .community-section {
+    padding-top: 10px;
+  }
+
+  .community-grid {
+    gap: 7px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .community-caption {
+    font-size: 16px;
+    display: block;
+    line-height: 1.4;
+    margin-top: 20px;
+  }
+
+  .community-caption span {
+    display: block;
+    font-size: 11px;
+    margin-top: 8px;
+  }
+
+  .first-session {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-top: 15px;
+  }
+
+  .first-session .eyebrow {
+    font-size: 8px;
+  }
+
+  .steps {
+    margin-top: 20px;
+  }
+
+  .steps li {
+    gap: 22px;
+    padding: 18px 0;
+  }
+
+  .first-session > img {
+    aspect-ratio: 1.15;
+    width: 100%;
+    height: auto;
+  }
+
+  .faq-section {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 15px;
+    padding-bottom: 45px;
+  }
+
+  .faq-list summary {
+    font-size: 12px;
+    padding: 20px 0;
+  }
+
+  .booking-section {
+    padding: 35px 0;
+  }
+
+  .booking-section .eyebrow {
+    font-size: 8px;
+  }
+
+  .booking-section h2 {
+    margin: 14px 0 25px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-grid input,
+  .form-grid select {
+    font-size: 13px;
+  }
+
+  .form-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .form-bottom .button {
+    width: 100%;
+  }
+
+  .footer {
+    padding-top: 35px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 20px;
+  }
+
+  .footer-main > .wordmark {
+    grid-column: 1/-1;
+    font-size: 29px;
+  }
+
+  .footer-main h3 {
+    margin-bottom: 12px;
+  }
+
+  .footer-main div > a {
+    font-size: 11px;
+  }
+
+  .footer-bottom {
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 18px 0;
+    gap: 12px;
+    font-size: 8px;
+  }
+
+  .footer-bottom > span:nth-child(2) {
+    order: 3;
+    width: 100%;
+  }
+
+  .modal {
+    padding: 40px 20px 25px;
+  }
+
+  .modal table {
+    font-size: 11px;
+  }
+
+  .modal td,
+  .modal th {
+    padding: 13px 7px;
+  }
+
+  .video-frame {
+    padding: 15px;
+  }
+}
+
+/* Accesibilidad: movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.spot-modal .video-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+
+.spot-modal .video-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.spot-modal .video-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Franja de frases animadas */
+
+.rhythm-banner {
+  --banner-background: var(--orange);
+  --banner-color: #000;
+  overflow: hidden;
+  padding: 44px 0;
+  color: var(--banner-color);
+  background: var(--banner-background);
+}
+
+.rhythm-banner.is-dark {
+  --banner-background: #000;
+  --banner-color: var(--orange);
+}
+
+.rhythm-banner__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 20px;
+}
+
+/* Las dos frases ocupan la misma celda.
+   La más alta reserva el espacio durante toda la animación. */
+
+.rhythm-banner__messages {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.rhythm-banner__message {
+  grid-area: 1 / 1;
+  visibility: hidden;
+  margin: 0;
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: clamp(28px, 4.1vw, 82px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+.rhythm-banner__message.is-active {
+  visibility: visible;
+}
+
+.rhythm-banner__line {
+  display: block;
+}
+
+.rhythm-banner__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rhythm-banner__letter {
+  display: inline-block;
+}
+
+/* Cada letra aparece de golpe, con un pequeño retraso respecto a la anterior. */
+
+.rhythm-banner.is-animating .is-active .rhythm-banner__letter {
+  animation: rhythm-letter-appear 1ms both;
+  animation-delay: var(--letter-delay);
+}
+
+.rhythm-banner__arrow {
+  flex-shrink: 0;
+  font-size: clamp(70px, 8vw, 130px);
+  line-height: 1;
+}
+
+.rhythm-banner__pause {
+  position: absolute;
+  right: 0;
+  padding: 4px 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.rhythm-banner__pause:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@keyframes rhythm-letter-appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .rhythm-banner {
+    padding: 32px 0;
+  }
+
+  .rhythm-banner__inner {
+    gap: 0;
+  }
+
+  .rhythm-banner__arrow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rhythm-banner__letter {
+    animation: none !important;
+  }
+
+  .rhythm-banner__pause {
+    display: none;
+  }
+}
+
+/* Contenido de la franja a ancho completo */
+
+.rhythm-banner__inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 clamp(24px, 4vw, 80px) 24px;
+}
+
+/* Más presencia para la tipografía */
+
+.rhythm-banner__message {
+  font-size: clamp(36px, 5.5vw, 110px);
+}
+
+/* Mantiene el control dentro del margen lateral */
+
+.rhythm-banner__pause {
+  right: clamp(24px, 4vw, 80px);
+  bottom: -12px;
+}
+
+@media (max-width: 700px) {
+  .rhythm-banner__inner {
+    padding: 0 20px 24px;
+  }
+
+  .rhythm-banner__message {
+    font-size: clamp(24px, 6.4vw, 44px);
+  }
+
+  .rhythm-banner__pause {
+    right: 20px;
+  }
+}
+
+@media (min-width: 701px) {
+  .rhythm-banner__message {
+    font-size: clamp(24px, 3.3vw, 70px);
+  }
+
+  .rhythm-banner__line {
+    white-space: nowrap;
+  }
+
+  .rhythm-banner__arrow {
+    font-size: clamp(48px, 6vw, 110px);
+  }
+}
+
+/* Márgenes comunes para HERO, cabecera y frases */
+
+.hero .hero-content,
+.hero .hero-bottom,
+.header .header-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+.rhythm-banner__inner {
+  padding-inline: var(--oc-side-padding);
+}
+
+.rhythm-banner__pause {
+  right: var(--oc-side-padding);
+}
+
+@media (max-width: 700px) {
+  :root {
+    --oc-side-padding: 20px;
+  }
+}
+
+/* Textos descriptivos y jerarquía del HERO */
+
+.hero h1 {
+  max-width: 740px;
+}
+
+.hero-promise {
+  max-width: 660px;
+  margin-top: 16px;
+  color: var(--orange);
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: clamp(25px, 2.9vw, 43px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.hero-subtitle {
+  max-width: 570px;
+  margin-top: 22px;
+  text-wrap: pretty;
+}
+
+.section-intro {
+  max-width: 760px;
+  margin: -10px 0 30px;
+  color: #bdbdbd;
+  text-wrap: pretty;
+}
+
+#entrenamientos h2 {
+  max-width: 900px;
+}
+
+.classes-section .section-heading > div:first-child {
+  min-width: 0;
+}
+
+.classes-section .oc-display-heading {
+  font-size: clamp(29px, 3.4vw, 48px);
+}
+
+.spot-description {
+  max-width: 380px;
+  margin-top: 20px;
+  color: #ddd;
+}
+
+.first-session-intro {
+  margin: 22px 0 0;
+}
+
+@media (max-width: 1050px) {
+  .classes-section .section-heading {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    height: auto;
+    min-height: max(760px, 100svh);
+    max-height: none;
+  }
+
+  .hero-content {
+    min-height: max(760px, 100svh);
+    height: auto;
+    padding-top: 120px;
+    padding-bottom: 95px;
+  }
+
+  .hero-promise {
+    font-size: clamp(23px, 6vw, 36px);
+    margin-top: 14px;
+  }
+
+  .hero-subtitle {
+    max-width: 420px;
+    margin-top: 18px;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .section-intro {
+    margin: -4px 0 24px;
+  }
+
+  .first-session-intro {
+    margin: 18px 0 0;
+  }
+
+  .classes-section .oc-display-heading {
+    max-width: none;
+  }
+
+  .classes-section .section-heading {
+    align-items: flex-end;
+  }
+
+  .spot-description {
+    max-width: 290px;
+    margin-top: 16px;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 701px) {
+  .hero {
+    height: auto;
+    min-height: 720px;
+  }
+
+  .hero-content {
+    min-height: 720px;
+  }
+}
+
+/* Contenido del spot a ancho completo */
+
+.spot-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+/* Entrenamientos alineados con el HERO y la franja */
+
+#entrenamientos {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+/* Carruseles alineados con el resto de secciones */
+
+.classes-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+/* Encuadre de la imagen de principiantes */
+
+.spot-section > img {
+  object-fit: cover;
+  object-position: right top;
+}
+
+@media (max-width: 700px) {
+  .spot-section > img {
+    object-position: 85% top;
+  }
+}
+
+/* Taller alineado con el resto de secciones */
+
+#taller {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+/* Controles del carrusel del taller */
+
+.spaces-slider:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 5px;
+}
+
+/* Principiantes + promoción completa */
+
+#spot {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  align-items: center;
+  height: auto;
+  min-height: 450px;
+  overflow: hidden;
+  background: var(--black);
+}
+
+#spot > img {
+  grid-column: 2;
+  grid-row: 1;
+  position: static;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+#spot .spot-gradient {
+  display: none;
+}
+
+#spot .spot-content {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 40px 28px 40px var(--oc-side-padding);
+}
+
+#spot .spot-content h2 {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 700px) {
+  #spot {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  #spot .spot-content {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 35px var(--oc-side-padding);
+  }
+
+  #spot > img {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+/* Oficio alineado con el resto de secciones */
+
+#oficio {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+.first-session {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 4vw, 80px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .first-session {
+    padding-inline: 20px;
+  }
+}
+
+.faq-section {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 4vw, 80px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .faq-section {
+    padding-inline: 20px;
+  }
+}
+
+.footer {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 4vw, 80px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding-inline: 20px;
+  }
+}
+
+.footer-logo {
+  display: block;
+  width: 160px;
+  max-width: 100%;
+  align-self: start;
+}
+
+.footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-logo:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 6px;
+}
+
+/* Imagen promocional enlazada al formulario */
+
+.spot-section > .spot-promo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.spot-promo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right center;
+}
+
+.spot-gradient {
+  pointer-events: none;
+}
+
+/* El contenido no bloquea el enlace de la imagen */
+
+.spot-content {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.spot-content a,
+.spot-content button {
+  pointer-events: auto;
+}
+
+.spot-promo:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -3px;
+}
+
+@media (max-width: 700px) {
+  /* Cabecera negra mientras el menú está abierto */
+
+  .header:has(.menu-toggle[aria-expanded="true"]) {
+    background-color: #050505;
+  }
+
+  .header nav.open {
+    background-color: #050505;
+  }
+}
+
+@media (max-width: 700px) {
+  .spot-section {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    padding: 40px 20px;
+    gap: 28px;
+  }
+
+  .spot-section > .spot-content {
+    position: relative;
+    order: 1;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    pointer-events: auto;
+  }
+
+  .spot-content .spot-description {
+    max-width: none;
+  }
+
+  .spot-section > .spot-promo {
+    position: relative;
+    inset: auto;
+    order: 2;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    z-index: auto;
+  }
+
+  .spot-section > .spot-promo img {
+    position: static;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .spot-section > .spot-gradient {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   ON CYCLES · ADAPTACIONES SOBRE LA BASE ORIGINAL GYM
+   ========================================================== */
+
+[hidden] {
+  display: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.oncycles-wordmark {
+  display: block;
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: 33px;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  color: #fff;
+}
+
+.oncycles-wordmark__caption {
+  display: block;
+  margin-top: 11px;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+}
+
+#servicios {
+  padding-top: 76px;
+}
+
+.class-card > img {
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.class-card {
+  min-height: 420px;
+}
+
+.class-info h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.class-info h3 a:hover {
+  color: var(--orange);
+}
+
+.class-info h3 {
+  overflow-wrap: break-word;
+}
+
+.class-info {
+  min-width: 0;
+}
+
+.suspension-cta {
+  margin-top: 28px;
+}
+
+.suspension-section > img {
+  aspect-ratio: 4/3;
+  min-height: 380px;
+}
+
+.certifications {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 25px;
+  gap: 20px;
+}
+
+.certifications > div + div {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+
+.certifications p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.certifications strong {
+  display: inline-block;
+  font-size: clamp(20px, 2vw, 31px);
+  line-height: 1;
+}
+
+.ohlins {
+  padding: 4px 6px;
+  background: #117fb5;
+  color: #ffdc43;
+  font-style: italic;
+  letter-spacing: -0.07em;
+}
+
+.bosch {
+  color: #f32930;
+  white-space: nowrap;
+}
+
+#mail-fallback {
+  display: inline-block;
+  margin-top: 16px;
+  text-decoration: underline;
+}
+
+.class-slider {
+  overscroll-behavior-x: contain;
+}
+
+.spaces-slider {
+  overscroll-behavior-x: contain;
+}
+
+/* El formulario mantiene los mismos márgenes que el resto de la Home. */
+
+.booking-section > .container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-inline: var(--oc-side-padding);
+}
+
+@media (max-width: 1050px) {
+  .header nav {
+    gap: 20px;
+  }
+
+  .header nav a {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 700px) {
+  .oncycles-wordmark {
+    font-size: 26px;
+  }
+
+  .oncycles-wordmark__caption {
+    font-size: 6px;
+    margin-top: 8px;
+  }
+
+  #servicios {
+    padding-top: 45px;
+  }
+
+  .class-card,
+  .class-card > img {
+    min-height: 390px;
+  }
+
+  .suspension-section > img {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+
+  .about-section > img {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+
+  .header nav a {
+    font-size: 15px;
+  }
+}
+
+@media (hover: none) {
+  .class-card:hover > img,
+  .spaces-slider figure:hover img {
+    transform: none;
+  }
+}
+
+/* ON CYCLES · V3.1 · Fondo automático en bucle, sin controles */
+
+.hero-backgrounds {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.hero--carousel .hero-image {
+  z-index: auto;
+  opacity: 0;
+  object-position: var(--hero-position, center);
+  transition: opacity 1100ms ease-in-out;
+}
+
+.hero--carousel .hero-image.is-active {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .hero--carousel .hero-image {
+    object-position: var(--hero-mobile-position, center);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--carousel .hero-image {
+    transition: none;
+  }
+}
+
+/* ==================================================
+   ON CYCLES · SUSPENSIONES · FONDO COMPLETO
+   ================================================== */
+
+#suspensiones.suspension-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  /* Proporción cercana a la imagen de la propuesta */
+  min-height: 640px;
+  aspect-ratio: 16 / 9;
+  padding: 70px var(--oc-side-padding);
+  background: #050505;
+}
+
+/* Imagen extendida sobre toda la sección */
+
+#suspensiones .suspension-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#suspensiones .suspension-background img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  /* Muestra la horquilla completa */
+  object-fit: contain;
+  object-position: right center;
+}
+
+/* Texto situado en la zona negra de la imagen */
+
+#suspensiones .suspension-content {
+  width: 45%;
+  max-width: 640px;
+}
+
+#suspensiones .eyebrow {
+  margin-bottom: 22px;
+  color: #bdbdbd;
+}
+
+#suspensiones .suspension-display-title {
+  margin: 0;
+}
+
+#suspensiones .suspension-description {
+  max-width: 520px;
+  margin-top: 26px;
+  color: #c8c8c8;
+}
+
+#suspensiones .suspension-specialties {
+  margin-top: 28px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bdbdbd;
+}
+
+#suspensiones .button {
+  margin-top: 30px;
+}
+
+/* Móvil: texto arriba y fotografía debajo */
+
+@media (max-width: 700px) {
+  #suspensiones.suspension-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    aspect-ratio: auto;
+    padding: 45px 20px 0;
+  }
+
+  #suspensiones .suspension-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  #suspensiones .suspension-background {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    height: 420px;
+    margin: 30px -20px 0;
+    overflow: hidden;
+  }
+
+  #suspensiones .suspension-background img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* Recorta el espacio negro y conserva la horquilla */
+    width: 200%;
+    max-width: none;
+    height: 100%;
+    object-fit: contain;
+    object-position: right center;
+  }
+}
+
+/* ==================================================
+   SUSPENSIONES · PROPORCIONES DE LA PROPUESTA
+   ================================================== */
+
+@media (min-width: 701px) {
+  #suspensiones.suspension-section {
+    aspect-ratio: auto;
+    min-height: 680px;
+    height: clamp(680px, 46vw, 860px);
+    padding: 60px 6%;
+    background: #050505;
+  }
+
+  /* Fondo integrado con el negro de la sección */
+
+  #suspensiones .suspension-background {
+    inset: 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 35%, #000 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 35%, #000 100%);
+  }
+
+  #suspensiones .suspension-background img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: right center;
+  }
+
+  /* Bloque de texto más parecido a la propuesta */
+
+  #suspensiones .suspension-content {
+    width: 46%;
+    max-width: 720px;
+  }
+
+  #suspensiones .eyebrow {
+    margin-bottom: 30px;
+    letter-spacing: 0.12em;
+  }
+
+  #suspensiones .suspension-display-title {
+    letter-spacing: -0.055em;
+  }
+
+  #suspensiones .suspension-description {
+    max-width: 620px;
+    margin-top: 32px;
+  }
+
+  #suspensiones .suspension-specialties {
+    margin-top: 34px;
+    letter-spacing: 0.06em;
+  }
+
+  #suspensiones .button {
+    margin-top: 38px;
+    padding: 20px 26px;
+    gap: 28px;
+  }
+}
+
+/* Fusión inferior de la fotografía con la sección */
+
+#suspensiones .suspension-background::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(80px, 8vw, 140px);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 5, 0) 0%,
+    rgba(5, 5, 5, 0.3) 40%,
+    rgba(5, 5, 5, 0.8) 75%,
+    #050505 100%
+  );
+}
+
+/* ==================================================
+   SERVICIOS · SECCIÓN MÁS COMPACTA
+   Escritorio y tablet
+   ================================================== */
+
+@media (min-width: 701px) {
+  #servicios {
+    padding-block: clamp(28px, 4svh, 44px);
+  }
+
+  #servicios .section-heading {
+    margin-bottom: 24px;
+  }
+
+  #servicios .section-intro {
+    margin-bottom: 24px;
+  }
+
+  #servicios .class-slider {
+    margin-bottom: 24px;
+  }
+
+  /* Altura independiente del ancho de la tarjeta */
+
+  #servicios .class-card {
+    height: clamp(280px, 48svh, 460px);
+    min-height: 0;
+  }
+
+  /* La fotografía se adapta a la nueva altura */
+
+  #servicios .class-card > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* SOBRE ON CYCLES · Ilustración completa */
+
+#oficio > img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  max-height: 560px;
+  margin-inline: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 700px) {
+  #oficio > img {
+    max-width: 340px;
+    max-height: 420px;
+  }
+}
+
+/* Certificaciones · Logos originales */
+
+.certifications .certification-logo {
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: 80px;
+  /* Recorta los márgenes transparentes de estos PNG */
+  object-fit: cover;
+  object-position: center;
+}
+
+.certifications .certification-logo--bosch {
+  width: 200px;
+}
+
+@media (max-width: 700px) {
+  .certifications .certification-logo {
+    width: 140px;
+    height: 64px;
+  }
+
+  .certifications .certification-logo--bosch {
+    width: 150px;
+  }
+}
+
+/* ==================================================
+   CATÁLOGO TÉCNICO · SECCIÓN MÁS COMPACTA
+   Escritorio y tablet
+   ================================================== */
+
+@media (min-width: 701px) {
+  #catalogo {
+    padding-block: clamp(28px, 4svh, 44px);
+  }
+
+  #catalogo .section-heading {
+    margin-bottom: 24px;
+  }
+
+  #catalogo .section-intro {
+    margin-bottom: 24px;
+  }
+
+  #catalogo .class-slider {
+    margin-bottom: 24px;
+  }
+
+  #catalogo .class-card {
+    height: clamp(280px, 48svh, 460px);
+    min-height: 0;
+  }
+
+  #catalogo .class-card > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+/* ==================================================
+   ON CYCLES · TITULARES BLANCO / NARANJA
+   ================================================== */
+
+.oc-heading-white {
+  color: #ffffff;
+}
+
+.oc-heading-orange {
+  color: #ff5a1f;
+}
+
+/* ==================================================
+   ON CYCLES · TIPOGRAFÍA CENTRALIZADA
+   Modificar aquí los tamaños comunes y sus breakpoints.
+   Los titulares visuales son independientes de H1/H2/H3.
+   ================================================== */
+
+/* Encabezados semánticos */
+
+h1 {
+  font-family: var(--oc-font-text);
+  font-size: var(--oc-font-h1);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+h2 {
+  font-family: var(--oc-font-heading);
+  font-size: var(--oc-font-h2);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+h3 {
+  font-family: var(--oc-font-heading);
+  font-size: var(--oc-font-h3);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+/* Párrafos de lectura: excluye mensajes visuales y etiquetas. */
+
+p:not(:where(
+  .p-54px,
+  .p-74px,
+  .oc-display-heading,
+  .suspension-display-title,
+  .hero-promise,
+  .oc-about__title,
+  .oc-visit__title,
+  .rhythm-banner__message,
+  .statement p,
+  .eyebrow,
+  .oc-section-heading,
+  .suspension-specialties
+)) {
+  font-family: var(--oc-font-text);
+  font-size: var(--oc-font-body);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Encabezados de sección: especificidad para las reglas heredadas. */
+
+:is(#inicio, #suspensiones, #servicios, #oficio, #taller, #catalogo, #tu-visita) .oc-section-heading {
+  font-family: var(--oc-font-heading);
+  font-size: var(--oc-font-h2);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+#inicio h1.oc-section-heading {
+  font-family: var(--oc-font-text);
+  font-size: var(--oc-font-h1);
+}
+
+/* CTA: no modifica flechas ni otros iconos anidados. */
+
+.button,
+.header-cta,
+.play-link {
+  font-family: var(--oc-font-text);
+  font-size: var(--oc-font-cta);
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+/* Compatibilidad con ambos nombres usados en el Hero. */
+
+#inicio p:is(.p-54px, .p-74px) {
+  margin: 0;
+  font-family: var(--oc-font-display);
+  font-size: 74px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+#suspensiones .suspension-display-title {
+  font-family: var(--oc-font-display);
+  font-size: 74px;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+#suspensiones .suspension-specialties {
+  font-family: var(--oc-font-text);
+  font-size: var(--oc-font-specialties);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+/* Numeración independiente de los párrafos de las cards. */
+
+#servicios .class-info > span {
+  font-size: var(--oc-font-card-label);
+  line-height: 1.5;
+}
+
+#servicios .class-info > p {
+  width: 100%;
+  max-width: none;
+}
+
+/* Tablet */
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  :root {
+    --oc-font-h3: 28px;
+    --oc-font-body: 17px;
+    --oc-font-specialties: 14px;
+  }
+
+  #inicio p:is(.p-54px, .p-74px) {
+    font-size: 46px;
+  }
+
+  #suspensiones .suspension-display-title {
+    font-size: 42px;
+  }
+}
+
+/* Móvil */
+
+@media (max-width: 700px) {
+  :root {
+    --oc-font-h1: 14px;
+    --oc-font-h3: 24px;
+    --oc-font-body: 16px;
+    --oc-font-card-label: 12px;
+    --oc-font-specialties: 14px;
+  }
+
+  :is(#inicio, #suspensiones, #servicios, #oficio, #taller, #catalogo, #tu-visita) .oc-section-heading {
+    letter-spacing: 0.08em;
+  }
+
+  #inicio p:is(.p-54px, .p-74px) {
+    font-size: clamp(32px, 9vw, 42px);
+  }
+
+  #suspensiones .suspension-display-title {
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.1;
+  }
+
+  #suspensiones .suspension-specialties {
+    letter-spacing: 0.02em;
+  }
+}
+
+/* Móvil horizontal con poca altura */
+
+@media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
+  #inicio p:is(.p-54px, .p-74px), #suspensiones .suspension-display-title {
+    font-size: 34px;
+  }
+
+  #suspensiones .suspension-description {
+    font-size: 16px;
+  }
+}
+
+/* Catálogo · Descripciones a todo el ancho */
+#catalogo .class-info > p {
+  width: 100%;
+  max-width: none;
+}
+
+/* Sobre On Cycles · Descripción */
+#oficio .oc-about__description {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #oficio .oc-about__description {
+    font-size: 17px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #oficio .oc-about__description {
+    font-size: 16px;
+  }
+}
+
+/* H2 de sección · Punto naranja */
+h2.oc-section-heading {
+  position: relative;
+  padding-left: 16px;
+}
+
+h2.oc-section-heading::before {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: 0;
+
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+
+  background-color: var(--orange, #ff5a1f);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Conoce el taller · Titular visual */
+#taller .oc-display-heading {
+  margin: 0 0 24px;
+  font-size: 48px;
+  line-height: 1.05;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #taller .oc-display-heading {
+    font-size: 42px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #taller .oc-display-heading {
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.1;
+  }
+}
+
+/* Próxima salida · Párrafos destacados de los pasos */
+#tu-visita.oc-visit p.oc-visit__step-title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #tu-visita.oc-visit p.oc-visit__step-title {
+    font-size: 22px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #tu-visita.oc-visit p.oc-visit__step-title {
+    font-size: 20px;
+  }
+}
+
+/* Títulos de los pasos */
+#tu-visita.oc-visit p.oc-visit__step-heading {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #tu-visita.oc-visit p.oc-visit__step-heading {
+    font-size: 22px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #tu-visita.oc-visit p.oc-visit__step-heading {
+    font-size: 20px;
+  }
+}
+
+/* FAQs · Titular visual */
+#preguntas #preguntas-title {
+  font-family: "Archivo Black", Arial, sans-serif;
+  font-size: 74px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #preguntas #preguntas-title {
+    font-size: 46px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #preguntas #preguntas-title {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.1;
+  }
+}
+
+/* Móvil horizontal con poca altura */
+@media (orientation: landscape)
+  and (max-width: 1024px)
+  and (max-height: 500px) {
+  #preguntas #preguntas-title {
+    font-size: 34px;
+  }
+}
+
+/* FAQs · Preguntas */
+#preguntas .faq-list summary {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* FAQs · Respuestas */
+#preguntas .faq-list details p {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #preguntas .faq-list summary {
+    font-size: 16px;
+  }
+
+  #preguntas .faq-list details p {
+    font-size: 16px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  #preguntas .faq-list summary {
+    font-size: 16px;
+  }
+
+  #preguntas .faq-list details p {
+    font-size: 16px;
+  }
+}
+
+/* Footer · Opciones y texto de Barcelona */
+.oc-footer .oc-footer__links a,
+.oc-footer .oc-footer__location {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .oc-footer .oc-footer__links a,
+  .oc-footer .oc-footer__location {
+    font-size: 17px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
+  .oc-footer .oc-footer__links a,
+  .oc-footer .oc-footer__location {
+    font-size: 16px;
+  }
+}
+
+/* Entrada y salida suave de los logos */
+.oc-marcas-loop__ventana {
+  position: relative;
+}
+
+.oc-marcas-loop__ventana::before,
+.oc-marcas-loop__ventana::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(24px, 6vw, 110px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.oc-marcas-loop__ventana::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #050505 0%,
+    rgb(5 5 5 / 80%) 25%,
+    transparent 100%
+  );
+}
+
+.oc-marcas-loop__ventana::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #050505 0%,
+    rgb(5 5 5 / 80%) 25%,
+    transparent 100%
+  );
+}
+
+/* ==========================================================
+   CARRUSELES MANUALES · Diseño único basado en ResenasGoogle
+   Servicios, Taller, Reseñas y Catálogo.
+========================================================== */
+oc-manual-carousel { display: block; min-width: 0; }
+
+.classes-inner.oc-carousel-container,
+#taller.oc-carousel-container,
+.oc-resenas__container.oc-carousel-container {
+  box-sizing: border-box;
+  width: 92%;
+  max-width: 1760px;
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+:is(#servicios, #catalogo) .section-heading {
+  display: block;
+  margin-bottom: 24px;
+}
+:is(#servicios, #catalogo, #taller) .section-intro { margin: 0 0 32px; }
+
+/* Desktop: grupo a la derecha. Móvil: barras a la izquierda. */
+.oc-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  margin: 0 0 16px;
+  padding: 0;
+}
+.oc-carousel-controls[hidden],
+.oc-carousel-dots button[hidden] { display: none; }
+.oc-carousel-dots {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex: 0 1 auto;
+  gap: 4px;
+  min-width: 0;
+  margin: 0 12px 0 0;
+  padding: 0;
+}
+.oc-carousel-controls button {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.oc-carousel-dots button { flex: 0 1 28px; width: 28px; min-width: 4px; }
+.oc-carousel-dots button span { display: block; width: 100%; height: 3px; background: #555; }
+.oc-carousel-dots button[aria-current="true"] span { background: #ff5a1f; }
+.oc-carousel-controls .oc-carousel-arrow { flex: 0 0 44px; width: 44px; font: 400 32px/1 Arial, sans-serif; }
+.oc-carousel-arrow:disabled { opacity: 0.3; cursor: default; }
+.oc-carousel-arrow:not(:disabled):hover { color: #ff5a1f; }
+.oc-carousel-controls button:focus-visible,
+.oc-carousel-track:focus-visible { outline: 2px solid #ff5a1f; outline-offset: 3px; }
+
+/* Misma distancia de la navegación a la primera tarjeta. */
+.class-slider.oc-carousel-track,
+.spaces-slider.oc-carousel-track,
+.oc-resenas .oc-resenas__carrusel-pista.oc-carousel-track {
+  padding-top: 4px;
+  scrollbar-width: none;
+}
+.oc-carousel-track::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+@media (max-width: 600px) {
+  .classes-inner.oc-carousel-container,
+  #taller.oc-carousel-container,
+  .oc-resenas__container.oc-carousel-container { width: calc(100% - 40px); }
+  .oc-carousel-controls { gap: 8px; }
+  .oc-carousel-dots { gap: 3px; margin-right: auto; }
+  .oc-carousel-dots button { flex-basis: 20px; width: 20px; }
+  .class-slider.oc-carousel-track { margin-right: 0; padding-right: 0; }
+}

@@ -1,0 +1,103 @@
+---
+import "../styles/formulario-reserva.css";
+
+interface Props {
+  email: string;
+}
+
+const { email } = Astro.props;
+---
+
+<section
+  class="booking-section oc-booking"
+  id="reserva"
+  aria-labelledby="reserva-heading"
+>
+  <div class="container">
+    <h2 id="reserva-heading" class="eyebrow oc-booking__eyebrow">
+      Tu siguiente salida empieza aquí
+    </h2>
+
+    <p id="reserva-title" class="oc-booking__title">
+      Prepara tu<br />próxima salida<span>.</span>
+    </p>
+
+    <form
+      id="booking-form"
+      data-email={email}
+      action={`mailto:${email}`}
+      method="get"
+    >
+      <div class="form-grid oc-booking__fields">
+        <label class="oc-booking__label" for="booking-name">
+          Nombre
+          <input
+            class="oc-booking__field"
+            id="booking-name"
+            name="nombre"
+            type="text"
+            placeholder="¿Cómo te llamas?"
+            autocomplete="given-name"
+            required
+            maxlength="80"
+          />
+        </label>
+
+        <label class="oc-booking__label" for="booking-email">
+          Email
+          <input
+            class="oc-booking__field"
+            id="booking-email"
+            name="email"
+            type="email"
+            placeholder="Tu correo electrónico"
+            autocomplete="email"
+            required
+            maxlength="150"
+          />
+        </label>
+
+        <label class="oc-booking__label oc-booking__service" for="booking-service">
+          Servicio
+          <select
+            class="oc-booking__field"
+            id="booking-service"
+            name="servicio"
+            required
+          >
+            <option value="">¿Qué necesita tu bici?</option>
+            <option value="Revisiones">Revisiones</option>
+            <option value="Suspensiones">Suspensiones</option>
+            <option value="Frenos">Frenos</option>
+            <option value="Transmisión">Transmisión</option>
+            <option value="Ruedas">Ruedas</option>
+            <option value="Tijas telescópicas">Tijas telescópicas</option>
+            <option value="Rodamientos y dirección">Rodamientos y dirección</option>
+            <option value="E-Bike">E-Bike</option>
+            <option value="Setup y ajustes">Setup y ajustes</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="form-bottom oc-booking__bottom">
+        <button class="button button-black oc-booking__submit" type="submit">
+          Preparar solicitud <span aria-hidden="true">↗</span>
+        </button>
+        <p class="oc-booking__note">
+          Se abrirá tu aplicación de correo para enviarla.<br />
+          La cita requiere confirmación del taller.
+        </p>
+      </div>
+
+      <p id="form-status" role="status" hidden></p>
+      <a id="mail-fallback" hidden>Enviar solicitud por correo ↗</a>
+    </form>
+
+    <noscript>
+      <p class="oc-booking__note">
+        Para solicitar cita escribe a <a href={`mailto:${email}`}>{email}</a>
+        indicando el servicio.
+      </p>
+    </noscript>
+  </div>
+</section>

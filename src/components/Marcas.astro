@@ -1,0 +1,172 @@
+<section class="oc-marcas-loop" aria-labelledby="oc-marcas-loop-titulo">
+  <div class="oc-marcas-loop__container">
+    <div class="oc-marcas-loop__cabecera">
+      <h2 id="oc-marcas-loop-titulo">Trabajamos con estas marcas</h2>
+    </div>
+    <div class="oc-marcas-loop__ventana" tabindex="0" aria-label="Marcas con las que trabajamos">
+      <div class="oc-marcas-loop__pista">
+        <ul class="oc-marcas-loop__grupo" role="list">
+      <li><img class="oc-marcas__logo-blanco" src="/images/marcas/ohlins-monocromo.png" alt="Öhlins" width="2144" height="736" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/rockshox.webp" alt="RockShox" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/fox.webp" alt="FOX" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/andreani-mhs.webp" alt="Andreani MHS" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/cane-creek.webp" alt="Cane Creek" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/lefty.webp" alt="Cannondale Lefty" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/shimano.webp" alt="Shimano" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/sram.webp" alt="SRAM" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/magura.webp" alt="Magura" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/dt-swiss.webp" alt="DT Swiss" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/cannondale.webp" alt="Cannondale" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src="/images/marcas/park-tool.webp" alt="Park Tool" width="500" height="500" loading="lazy" decoding="async" /></li>
+        </ul>
+        <!-- Copia visual para cerrar el bucle; no se anuncia dos veces. -->
+        <ul class="oc-marcas-loop__grupo oc-marcas-loop__copia" role="list" aria-hidden="true">
+      <li><img class="oc-marcas__logo-blanco" src="/images/marcas/ohlins-monocromo.png" alt="Öhlins" width="2144" height="736" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/rockshox.webp" alt="RockShox" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/fox.webp" alt="FOX" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/andreani-mhs.webp" alt="Andreani MHS" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/cane-creek.webp" alt="Cane Creek" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/lefty.webp" alt="Cannondale Lefty" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/shimano.webp" alt="Shimano" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/sram.webp" alt="SRAM" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/magura.webp" alt="Magura" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/dt-swiss.webp" alt="DT Swiss" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/cannondale.webp" alt="Cannondale" width="500" height="500" loading="eager" decoding="async" /></li>
+      <li><img src="/images/marcas/park-tool.webp" alt="Park Tool" width="500" height="500" loading="eager" decoding="async" /></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .oc-marcas-loop {
+    --visibles: 6;
+    --duracion: 60s;
+    background: #050505;
+    color: #fff;
+    padding-block: clamp(32px, 4vw, 64px);
+  }
+
+  .oc-marcas-loop__container {
+    position: relative;
+    width: 92%;
+    max-width: 1760px;
+    margin-inline: auto;
+    padding-block: clamp(24px, 3vw, 48px);
+    border-block: 1px solid #333;
+  }
+
+  .oc-marcas-loop__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__cabecera h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font: 800 14px/1.5 Arial, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__cabecera h2::before {
+    content: "";
+    position: static;
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff5a1f;
+    transform: none;
+  }
+
+  .oc-marcas-loop__ventana:focus-visible {
+    outline: 2px solid #ff5a1f;
+    outline-offset: 4px;
+  }
+
+  .oc-marcas-loop__ventana {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__pista {
+    display: flex;
+    flex-wrap: nowrap;
+    /* 24 posiciones: doce originales y doce copias. */
+    width: calc(2400% / var(--visibles));
+    animation: oc-marcas-izquierda var(--duracion) linear infinite;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__grupo {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 0 0 50%;
+    width: 50%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__grupo li {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 calc(100% / 12);
+    min-width: 0;
+    height: 140px;
+    padding-inline: 12px;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__grupo img {
+    display: block;
+    width: min(100%, 170px);
+    height: 140px;
+    max-width: 100%;
+    object-fit: contain;
+    filter: grayscale(1) invert(1) brightness(1.35);
+    mix-blend-mode: screen;
+  }
+
+  .oc-marcas-loop .oc-marcas-loop__grupo .oc-marcas__logo-blanco {
+    width: min(100%, 150px);
+    height: 90px;
+    filter: none;
+  }
+
+  /* La segunda mitad reemplaza a la primera en el mismo punto visual. */
+  @keyframes oc-marcas-izquierda {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 1024px) {
+    .oc-marcas-loop { --visibles: 4; }
+  }
+
+  @media (max-width: 600px) {
+    .oc-marcas-loop { --visibles: 2; }
+    .oc-marcas-loop__container { width: calc(100% - 40px); }
+    .oc-marcas-loop .oc-marcas-loop__cabecera h2 { letter-spacing: 0.04em; }
+    .oc-marcas-loop .oc-marcas-loop__grupo li { height: 112px; padding-inline: 8px; }
+    .oc-marcas-loop .oc-marcas-loop__grupo img { width: min(100%, 145px); height: 112px; }
+    .oc-marcas-loop .oc-marcas-loop__grupo .oc-marcas__logo-blanco { width: min(100%, 125px); height: 76px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .oc-marcas-loop .oc-marcas-loop__pista { animation: none; transform: none; }
+    .oc-marcas-loop__ventana { overflow-x: auto; }
+    .oc-marcas-loop .oc-marcas-loop__copia { display: none; }
+  }
+</style>
