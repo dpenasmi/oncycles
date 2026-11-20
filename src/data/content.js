@@ -67,9 +67,9 @@ export const workshop = [
 // Usamos un array de arrays:
 // cada fila contiene una pregunta y su respuesta.
 export const faqs = [
- ['¿Qué mantenimiento necesita mi bici?','Depende del uso, el terreno y el estado de los componentes. Cuéntanos cómo utilizas tu bici y revisaremos contigo qué necesita.'],
- ['¿Trabajáis con suspensiones de distintas marcas?','Consúltanos tu marca y modelo para confirmar el servicio adecuado y la disponibilidad de recambios.'],
- ['¿Puedo traer mi E-Bike?','Sí. Indícanos la marca, el sistema y el problema que has detectado para orientar la revisión.'],
+ ['¿Qué mantenimiento necesita mi bici?','Depende del uso, el terreno y el estado de los componentes. Cuéntame cómo utilizas tu bici y revisaré contigo qué necesita.'],
+ ['¿Trabajas con suspensiones de distintas marcas?','Consúltame tu marca y modelo para confirmar el servicio adecuado y la disponibilidad de recambios.'],
+ ['¿Puedo traer mi E-Bike?','Sí. Indícame la marca, el sistema y el problema que has detectado para orientar la revisión.'],
  ['¿Cómo puedo solicitar cita?','Selecciona el servicio en el formulario. Podrás preparar tu solicitud y enviarla con tu aplicación de correo. La cita queda pendiente de confirmación del taller.']
 ];
 

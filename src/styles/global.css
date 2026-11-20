@@ -3317,3 +3317,15 @@ oc-manual-carousel { display: block; min-width: 0; }
 .oc-carousel-arrow[data-oc-direction="1"]::before {
   transform: rotate(180deg);
 }
+
+/* Reseñas: bloque de autoridad alineado a la derecha */
+@media (min-width: 1025px) {
+  .oc-resenas__intro {
+    justify-self: end;
+    text-align: right;
+  }
+
+  .oc-resenas__enlace {
+    margin-inline-start: auto;
+  }
+}
