@@ -3251,3 +3251,69 @@ oc-manual-carousel { display: block; min-width: 0; }
   .oc-carousel-dots button { flex-basis: 20px; width: 20px; }
   .class-slider.oc-carousel-track { margin-right: 0; padding-right: 0; }
 }
+
+/* Certificados · Corrección para móvil */
+@media (max-width: 760px) {
+  #oficio .oc-about__content {
+    min-width: 0;
+  }
+
+  #oficio .oc-about__brands {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #oficio .oc-about__brand {
+    position: relative;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 76px !important;
+  }
+
+  #oficio .oc-about__brand img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100% !important;
+    max-width: 220px !important;
+    height: auto !important;
+    aspect-ratio: 1;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
+  }
+
+  #oficio .oc-about__brand--bosch img {
+    width: calc(100% - 16px) !important;
+    left: calc(50% + 8px);
+  }
+}
+
+/* Flechas idénticas en todos los dispositivos */
+.oc-carousel-controls .oc-carousel-arrow {
+  font-size: 0;
+}
+
+.oc-carousel-controls .oc-carousel-arrow > span {
+  display: none;
+}
+
+.oc-carousel-controls .oc-carousel-arrow::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 12H4m7-7-7 7 7 7' fill='none' stroke='black' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 12H4m7-7-7 7 7 7' fill='none' stroke='black' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.oc-carousel-controls
+.oc-carousel-arrow[data-oc-direction="1"]::before {
+  transform: rotate(180deg);
+}

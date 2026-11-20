@@ -4,7 +4,7 @@ interface Props {
   workshopHref?: string;
 }
 
-const base = import.meta.env.BASE_URL;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const {
   image = `${base}images/oficio.png`,
   workshopHref = '#taller',
@@ -237,7 +237,41 @@ const {
     .oc-about__illustration { height: clamp(300px, 90vw, 430px); margin-top: 14px; }
     .oc-about__caption { font-size: 11px; gap: 12px; }
     .oc-about__caption::before, .oc-about__caption::after { width: 24px; }
-    .oc-about__eyebrow {
-    margin: 0 0 22px;
+    .oc-about__eyebrow { margin: 0 0 22px; }
+    .oc-about__content { min-width: 0; }
+
+    /* Dos certificados en la misma fila, sin anchos mínimos fijos. */
+    .oc-about__brands {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .oc-about__brand,
+    .oc-about__brand--ohlins,
+    .oc-about__brand--bosch {
+      width: 100%;
+      min-width: 0;
+      height: clamp(64px, 20vw, 92px);
+    }
+
+    /* Conserva el recorte de los márgenes transparentes del PNG,
+       pero limita el ancho del logo a su columna. */
+    .oc-about__brand img {
+      width: min(100%, 230px);
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+
+    .oc-about__brand--bosch img {
+      width: min(calc(100% - 16px), 260px);
+      left: calc(50% + 8px);
+      height: auto;
+    }
   }
 </style>
