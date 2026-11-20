@@ -1,0 +1,195 @@
+/* ON CYCLES · SERVICIOS
+   Importar después de global.css y brand.css.
+   Sólo actúa dentro de .oc-services-page; no modifica la HOME. */
+.oc-services-page {
+  --services-accent: var(--orange, #ff5a1f);
+  --services-background: var(--black, #050505);
+  --services-line: #343434;
+  --services-text: #dedede;
+  --services-gutter: clamp(20px, 4vw, 80px);
+  background: var(--services-background);
+  color: #fff;
+  font-family: var(--oc-font-text, 'Inter', Arial, sans-serif);
+}
+.oc-services-page *, .oc-services-page *::before, .oc-services-page *::after { box-sizing: border-box; }
+.oc-services-page [hidden] { display: none !important; }
+.oc-services-page :is(a, button, summary):focus-visible { outline: 2px solid var(--services-accent); outline-offset: 5px; }
+.oc-services-page section { scroll-margin-top: 100px; }
+.oc-services-container { width: 100%; max-width: 1920px; margin-inline: auto; padding-inline: var(--services-gutter); }
+.oc-services-page .oc-services-section { padding-block: clamp(56px, 6vw, 112px); }
+.oc-services-page .oc-services-eyebrow {
+  position: relative; margin: 0 0 24px; padding: 0 0 0 16px;
+  font: 800 14px/1.5 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #fff;
+}
+.oc-services-eyebrow::before { content: ''; position: absolute; width: 6px; height: 6px; left: 0; top: .75em; border-radius: 50%; background: var(--services-accent); transform: translateY(-50%); }
+.oc-services-page .oc-services-display {
+  margin: 0; font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif);
+  font-size: 48px; font-weight: 400; line-height: 1.05; letter-spacing: -.035em; text-transform: uppercase; color: #fff;
+}
+.oc-services-display > span { color: var(--services-accent); }
+.oc-services-page .oc-services-lead { max-width: 760px; margin: 24px 0 32px; font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
+
+/* Cabecera propia: mismo lenguaje visual que la HOME. */
+.oc-services-header { position: absolute; z-index: 20; inset: 0 0 auto; background: linear-gradient(#050505b3, transparent); }
+.oc-services-header__inner { display: flex; align-items: center; gap: 28px; min-height: 110px; padding-block: 16px; }
+.oc-services-page .oc-services-header .oncycles-wordmark { font-size: 33px; }
+.oc-services-page .oc-services-header .oncycles-wordmark__caption { font-size: 9px; }
+.oc-services-nav { display: flex; align-items: center; gap: clamp(18px, 2.3vw, 40px); margin-left: auto; }
+.oc-services-nav a { font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.oc-services-nav a[aria-current='page'], .oc-services-nav a:hover { color: var(--services-accent); }
+.oc-services-page .oc-services-header__cta { flex-shrink: 0; margin: 0; }
+.oc-services-menu { display: none; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; padding: 10px; background: transparent; color: #fff; }
+.oc-services-menu span { display: block; width: 24px; height: 2px; background: currentColor; }
+.oc-services-menu[aria-expanded='true'] span:first-child { transform: translateY(4px) rotate(45deg); }
+.oc-services-menu[aria-expanded='true'] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+/* Hero al 100% del viewport. min-height evita recortar texto si crece. */
+.oc-services-hero { position: relative; isolation: isolate; display: flex; min-height: 100vh; min-height: 100svh; }
+.oc-services-page .oc-services-hero__image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; }
+.oc-services-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #050505f2 0%, #050505c9 31%, #0505054d 62%, #0505050d 100%), linear-gradient(0deg, #050505, transparent 24%, transparent 75%, #05050580); }
+.oc-services-hero__content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-block: 160px 70px; }
+.oc-services-page .oc-services-hero h1 { max-width: 760px; font-family: var(--oc-font-text, 'Inter', Arial, sans-serif); font-size: var(--oc-font-h1, 16px); }
+.oc-services-page .oc-services-hero__title { max-width: 1000px; margin: 0; font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif); font-size: 74px; font-weight: 400; line-height: 1.05; letter-spacing: -.035em; text-transform: uppercase; color: #fff; }
+.oc-services-hero__title > span { color: var(--services-accent); }
+.oc-services-page .oc-services-hero__intro { max-width: 570px; margin-top: 24px; font-size: var(--oc-font-body, 18px); line-height: 1.65; color: #fff; }
+.oc-services-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.oc-services-page .oc-services-hero__signature { margin-top: 64px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #bdbdbd; }
+
+/* Franja de credenciales: logos completos y sin desbordamiento. */
+.oc-services-trust { border-block: 1px solid var(--services-line); }
+.oc-services-trust__inner { display: grid; grid-template-columns: 1.25fr .7fr 1.25fr 1.2fr; align-items: center; gap: 24px; padding-block: 22px; }
+.oc-services-page .oc-services-trust p { margin: 0; font-size: 12px; font-weight: 800; line-height: 1.5; text-transform: uppercase; }
+.oc-services-trust__inner > * + * { border-left: 1px solid var(--services-line); padding-left: 24px; }
+.oc-services-trust__logos { display: flex; gap: 16px; min-width: 0; }
+.oc-services-trust__logo { flex: 1; min-width: 0; position: relative; height: 48px; overflow: hidden; }
+.oc-services-page .oc-services-trust__logo img { position: absolute; top: 50%; left: 50%; width: min(100%, 180px); height: auto; aspect-ratio: 1; object-fit: contain; transform: translate(-50%, -50%); }
+
+/* Tres niveles de revisión. */
+.oc-revision-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.oc-revision-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid var(--services-line); background: #101010; }
+.oc-services-page .oc-revision-card > img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+.oc-revision-card__content { flex: 1; display: flex; flex-direction: column; padding: 26px; }
+.oc-services-page .oc-revision-card h3 { margin: 0; font: 800 24px/1.2 Arial, sans-serif; letter-spacing: -.025em; text-transform: uppercase; color: #fff; }
+.oc-revision-card h3 > span { color: var(--services-accent); }
+.oc-revision-card ul { margin: 22px 0 28px; padding-left: 20px; font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
+.oc-revision-card__content > a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; margin-top: auto; padding-top: 16px; border-top: 1px solid #555; color: var(--services-accent); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.oc-revision-card__content > a:hover { color: #fff; }
+
+/* Directorio: orden semántico 1-4 izquierda / 5-8 derecha en escritorio. */
+.oc-specialist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; grid-template-rows: repeat(4, auto); column-gap: 56px; margin: 0; padding: 0; list-style: none; }
+.oc-specialist-grid li { min-width: 0; border-bottom: 1px solid var(--services-line); }
+.oc-specialist-grid li > a { display: grid; grid-template-columns: minmax(100px, 28%) minmax(0, 1fr) 24px; align-items: center; gap: 22px; min-height: 140px; padding-block: 18px; }
+.oc-services-page .oc-specialist-grid img { width: 100%; height: 100px; object-fit: cover; }
+.oc-services-page .oc-specialist-grid h3 { margin: 0; font: 800 24px/1.2 Arial, sans-serif; letter-spacing: -.025em; color: #fff; text-transform: uppercase; overflow-wrap: anywhere; }
+.oc-services-page .oc-specialist-grid p { margin: 8px 0 0; font-size: var(--oc-font-body, 18px); line-height: 1.5; color: var(--services-text); }
+.oc-services-arrow { color: var(--services-accent); font: 400 28px/1 Arial, sans-serif; }
+.oc-specialist-grid a:hover h3 { color: var(--services-accent); }
+
+/* Proceso de trabajo, sin animaciones que oculten información. */
+.oc-services-page .oc-workflow { border-top: 1px solid var(--services-line); }
+.oc-workflow__steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; margin: 48px 0 0; padding: 0; list-style: none; }
+.oc-workflow__steps li { position: relative; min-width: 0; }
+.oc-workflow__steps li:not(:last-child)::after { content: ''; position: absolute; top: 20px; right: 0; width: calc(100% - 104px); height: 1px; background: #555; }
+.oc-workflow__number { display: inline-block; margin-right: 18px; font: 400 32px/1 var(--oc-font-display, 'Archivo Black', Arial, sans-serif); color: var(--services-accent); }
+.oc-workflow__steps svg { width: 36px; height: 36px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+.oc-services-page .oc-workflow h3 { margin: 26px 0 12px; font: 800 24px/1.25 Arial, sans-serif; text-transform: uppercase; letter-spacing: -.025em; }
+.oc-services-page .oc-workflow p { font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
+
+/* FAQ nativo: apertura y teclado funcionan sin JavaScript. */
+.oc-services-faq { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 64px; }
+.oc-services-faq__list { min-width: 0; }
+.oc-services-faq details { border-bottom: 1px solid #555; }
+.oc-services-faq details:first-child { border-top: 1px solid #555; }
+.oc-services-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px; font-size: 18px; font-weight: 800; line-height: 1.3; list-style: none; cursor: pointer; }
+.oc-services-faq summary::-webkit-details-marker { display: none; }
+.oc-services-faq summary > span { flex-shrink: 0; color: var(--services-accent); font-size: 26px; font-weight: 400; }
+.oc-services-faq details[open] summary > span { transform: rotate(45deg); }
+.oc-services-page .oc-services-faq details p { margin: 0 0 24px; font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .oc-services-header__inner { gap: 16px; }
+  .oc-services-page .oc-services-header .oncycles-wordmark { font-size: 26px; }
+  .oc-services-header .oncycles-brand__symbol { width: 48px; height: 48px; }
+  .oc-services-nav { gap: 14px; }
+  .oc-services-nav a { font-size: 11px; }
+}
+@media (min-width: 701px) and (max-width: 1024px) {
+  .oc-services-page .oc-services-display { font-size: 42px; }
+  .oc-services-page .oc-services-hero__title { font-size: 46px; }
+  .oc-services-trust__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .oc-services-trust__inner > * + * { border: 0; padding-left: 0; }
+  .oc-revision-grid { gap: 16px; }
+  .oc-revision-card__content { padding: 20px; }
+  .oc-services-page .oc-revision-card h3 { font-size: 22px; }
+  .oc-specialist-grid { column-gap: 28px; }
+  .oc-specialist-grid li > a { gap: 14px; grid-template-columns: 90px minmax(0, 1fr) 20px; }
+  .oc-services-page .oc-specialist-grid h3 { font-size: 22px; }
+  .oc-workflow__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+  .oc-workflow__steps li::after { display: none; }
+  .oc-services-page .oc-workflow h3 { font-size: 22px; }
+  .oc-services-faq { grid-template-columns: .8fr 1.2fr; gap: 32px; }
+  .oc-services-faq summary { font-size: 16px; }
+}
+@media (max-width: 900px) {
+  .oc-services-header__inner { flex-wrap: wrap; min-height: 90px; gap: 12px; }
+  .oc-services-header__cta { margin-left: auto !important; }
+  .oc-services-menu:not([hidden]) { display: flex; }
+  .oc-services-nav { width: 100%; order: 4; flex-wrap: wrap; margin: 0; padding-block: 12px; background: #050505; }
+  .oc-services-page[data-menu-enhanced] .oc-services-nav { display: none; }
+  .oc-services-page[data-menu-enhanced] .oc-services-nav.is-open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .oc-services-nav a { padding: 14px; }
+}
+@media (max-width: 700px) {
+  .oc-services-page { --services-gutter: 20px; }
+  .oc-services-page .oc-services-section { padding-block: 52px; }
+  .oc-services-page .oc-services-eyebrow { letter-spacing: .08em; margin-bottom: 20px; }
+  .oc-services-page .oc-services-display { font-size: clamp(28px, 8vw, 38px); line-height: 1.1; }
+  .oc-services-page .oc-services-header .oncycles-wordmark { font-size: 24px; }
+  .oc-services-page .oc-services-header .oncycles-wordmark__caption { font-size: 6px; margin-top: 7px; }
+  .oc-services-header .oncycles-brand { gap: 8px; }
+  .oc-services-header .oncycles-brand__symbol { width: 38px; height: 38px; }
+  .oc-services-page .oc-services-header__cta { padding: 12px; font-size: 10px; min-width: 0; gap: 10px; }
+  .oc-services-hero__content { padding-block: 180px 44px; }
+  .oc-services-page[data-menu-enhanced] .oc-services-hero__content { padding-top: 130px; }
+  .oc-services-page .oc-services-hero__image { object-position: 66% center; }
+  .oc-services-hero::before { background: linear-gradient(90deg, #050505d9, #05050559), linear-gradient(0deg, #050505, transparent 38%); }
+  .oc-services-page .oc-services-hero__title { font-size: clamp(32px, 9vw, 42px); }
+  .oc-services-actions { gap: 12px; }
+  .oc-services-actions .button { min-width: 0; }
+  .oc-services-page .oc-services-hero__signature { margin-top: 44px; font-size: 10px; }
+  .oc-services-trust__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .oc-services-trust__inner > * + * { border: 0; padding-left: 0; }
+  .oc-services-page .oc-services-trust p { font-size: 11px; }
+  .oc-services-trust__logos { gap: 10px; }
+  .oc-services-trust__logo { height: 40px; }
+  .oc-revision-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .oc-revision-card__content { padding: 24px; }
+  .oc-services-page .oc-revision-card h3 { font-size: 24px; }
+  .oc-specialist-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-flow: row; }
+  .oc-specialist-grid li > a { grid-template-columns: 95px minmax(0, 1fr) 20px; gap: 14px; min-height: 126px; }
+  .oc-services-page .oc-specialist-grid img { height: 88px; }
+  .oc-services-page .oc-specialist-grid h3 { font-size: 20px; }
+  .oc-workflow__steps { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 32px; }
+  .oc-workflow__steps li { border-bottom: 1px solid var(--services-line); padding-bottom: 24px; }
+  .oc-workflow__steps li:last-child { border-bottom: 0; }
+  .oc-workflow__steps li::after { display: none; }
+  .oc-services-page .oc-workflow h3 { font-size: 20px; margin-top: 18px; }
+  .oc-services-faq { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .oc-services-faq summary { font-size: 16px; padding-block: 20px; }
+}
+@media (max-width: 380px) {
+  .oc-services-header__inner { gap: 8px; }
+  .oc-services-page .oc-services-header .oncycles-wordmark { font-size: 21px; }
+  .oc-services-header .oncycles-brand__symbol { width: 30px; height: 30px; }
+  .oc-services-page .oc-services-header__cta { font-size: 9px; padding-inline: 10px; }
+  .oc-services-menu { width: 38px; padding-inline: 7px; }
+}
+@media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
+  .oc-services-hero__content { padding-block: 125px 36px; }
+  .oc-services-page .oc-services-hero__title { font-size: 34px; }
+  .oc-services-page .oc-services-hero__signature { margin-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.oc-services-page) { scroll-behavior: auto; }
+  .oc-services-page *, .oc-services-page *::before, .oc-services-page *::after { transition: none !important; }
+}

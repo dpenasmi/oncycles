@@ -1,4 +1,5 @@
 ---
+import Cabecera from "../components/Cabecera.astro";
 import "../styles/global.css";
 import "../styles/brand.css";
 import Footer from "../components/Footer.astro";
@@ -51,43 +52,7 @@ const currentYear = new Date().getFullYear();
       Saltar al contenido
     </a>
     <!-- Cabecera y navegación -->
-    <header class="header">
-      <div class="header-inner">
-        <a class="header-logo oncycles-brand" href="#inicio" aria-label="On Cycles, inicio">
-          <img
-            class="oncycles-brand__symbol"
-            src="/oncycles/images/oncycles-logo.png"
-            alt=""
-            aria-hidden="true"
-            width="500"
-            height="500"
-          />
-          <span class="oncycles-wordmark">
-            ON
-            <br />
-            CYCLES<span class="oncycles-wordmark__caption">BARCELONA · DESDE 2006</span>
-          </span>
-        </a>
-        <nav id="main-nav" aria-label="Navegación principal">
-          <a href="#servicios">Servicios</a>
-          <a href="#taller">El taller</a>
-          <a href="#catalogo">Catálogo técnico</a>
-        </nav>
-        <a class="button header-cta" href="#reserva">
-          Reserva tu cita <span aria-hidden="true">↗</span>
-        </a>
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-          aria-controls="main-nav"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </button>
-      </div>
-    </header>
+    <Cabecera />
     <main id="contenido">
       <!-- Hero: fondo automático en bucle, sin controles visibles -->
       <section

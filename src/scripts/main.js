@@ -2,21 +2,7 @@
 import './banner.js';
 import './hero-carousel.js';
 
-const menu = document.querySelector('.menu-toggle');
-const nav = document.querySelector('#main-nav');
-function setMenu(open) {
-  menu?.setAttribute('aria-expanded', String(open));
-  menu?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  nav?.classList.toggle('open', open);
-}
-menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
-nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') {
-    setMenu(false); menu.focus();
-  }
-});
-window.matchMedia('(max-width:700px)').addEventListener('change', () => setMenu(false));
+// El menú compartido se gestiona desde Cabecera.astro / cabecera.js.
 
 // Mismo movimiento y composición de GYM, con instancias independientes.
 // Los controles se sincronizan también al desplazar con el dedo o trackpad.
