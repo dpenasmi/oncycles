@@ -64,3 +64,87 @@
   .oc-suspension-page .oc-suspension-brand { height: 90px; }
   .oc-suspension-page .oc-suspension-brand--white { height: 55px; }
 }
+
+/* Credenciales centradas: ajuste acordado para esta página. */
+.oc-suspension-page .oc-services-trust__inner > p {
+  text-align: center;
+  justify-content: center;
+}
+
+/* Marcas · filas centradas sin huecos al final ni separadores incompletos. */
+@media (max-width: 1024px) {
+  .oc-suspension-page .oc-suspension-brands__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 0;
+    margin-top: 28px;
+  }
+  .oc-suspension-page .oc-suspension-brands__list > li {
+    flex: 0 0 calc(100% / 3);
+    box-sizing: border-box;
+    min-height: 108px;
+    padding: 8px 16px;
+    border: 0;
+  }
+  .oc-suspension-page .oc-suspension-brands__list .oc-suspension-brand {
+    width: min(100%, 180px);
+    height: 108px;
+  }
+  .oc-suspension-page .oc-suspension-brands__list .oc-suspension-brand--white {
+    width: min(100%, 140px);
+    height: 60px;
+  }
+}
+@media (max-width: 700px) {
+  .oc-suspension-page .oc-suspension-brands__list { gap: 4px 0; }
+  .oc-suspension-page .oc-suspension-brands__list > li {
+    flex-basis: 50%;
+    min-height: 104px;
+    padding: 4px 12px;
+  }
+  .oc-suspension-page .oc-suspension-brands__list .oc-suspension-brand {
+    width: min(100%, 170px);
+    height: 108px;
+  }
+  .oc-suspension-page .oc-suspension-brands__list .oc-suspension-brand--white {
+    width: min(100%, 130px);
+    height: 56px;
+  }
+}
+
+/* Cards · zoom contenido y luz suave, sin alterar la estructura HTML. */
+.oc-suspension-page .oc-suspension-card {
+  overflow: hidden;
+  isolation: isolate;
+}
+.oc-suspension-page .oc-suspension-card > img {
+  position: relative;
+  z-index: 0;
+  transform: scale(1);
+  transform-origin: center;
+  filter: brightness(1);
+  transition: transform 800ms cubic-bezier(.22, 1, .36, 1),
+              filter 800ms cubic-bezier(.22, 1, .36, 1);
+}
+/* Cubre el pequeño exceso del zoom bajo la fotografía para mantener
+   la separación exacta entre imagen y texto, sin añadir un wrapper. */
+.oc-suspension-page .oc-suspension-card__body {
+  position: relative;
+  z-index: 1;
+  background: #101010;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .oc-suspension-page .oc-suspension-card:hover > img,
+  .oc-suspension-page .oc-suspension-card:focus-within > img {
+    transform: scale(1.035);
+    filter: brightness(1.06);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oc-suspension-page .oc-suspension-card > img {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+}

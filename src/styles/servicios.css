@@ -248,3 +248,9 @@
   }
   .oc-services-trust__logo { height: 56px; }
 }
+
+/* Centrar los textos de la franja de credenciales */
+.oc-services-page .oc-services-trust__inner > p {
+  text-align: center;
+  justify-content: center;
+}
