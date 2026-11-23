@@ -7,6 +7,7 @@ import FormularioReserva from '../components/FormularioReserva.astro';
 import Footer from '../components/Footer.astro';
 import { email } from '../data/content.js';
 import '../styles/servicios.css';
+import '../styles/asi-trabajo.css';
 
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const home = base;
@@ -15,7 +16,7 @@ const title = 'Reparación de bicicletas en Barcelona · On Cycles';
 const description = 'Servicio técnico especializado para bicicletas de alta gama en Barcelona. Revisiones, suspensiones, frenos, transmisión y E-Bike con atención personal de Alfredo.';
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 // Fotografía del taller ya utilizada en la HOME. Cambia sólo esta ruta si deseas otra.
-const heroSrc = asset('images/lavado.webp');
+const heroSrc = asset('images/SERVICIO-TECNICO-ONCYLES.webp');
 ---
 <!doctype html>
 <html lang="es">
@@ -147,5 +148,6 @@ const heroSrc = asset('images/lavado.webp');
     </main>
     <Footer email={email} homeHref={home} />
     <script src="../scripts/servicios.js"></script>
+    <script> import '../scripts/asi-trabajo.js'; </script>
   </body>
 </html>

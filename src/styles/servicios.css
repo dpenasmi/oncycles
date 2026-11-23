@@ -46,7 +46,19 @@
 /* Hero al 100% del viewport. min-height evita recortar texto si crece. */
 .oc-services-hero { position: relative; isolation: isolate; display: flex; min-height: 100vh; min-height: 100svh; }
 .oc-services-page .oc-services-hero__image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; }
-.oc-services-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #050505f2 0%, #050505c9 31%, #0505054d 62%, #0505050d 100%), linear-gradient(0deg, #050505, transparent 24%, transparent 75%, #05050580); }
+.oc-services-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.6) 33%,
+    rgba(0, 0, 0, 0.08) 72%
+  ),
+    linear-gradient(
+    0deg,
+    #050505 0%,
+    transparent 28%,
+    transparent 85%,
+    rgba(0, 0, 0, 0.15)
+  ); }
 .oc-services-hero__content { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-block: 160px 70px; }
 .oc-services-page .oc-services-hero h1 { max-width: 760px; font-family: var(--oc-font-text, 'Inter', Arial, sans-serif); font-size: var(--oc-font-h1, 16px); }
 .oc-services-page .oc-services-hero__title { max-width: 1000px; margin: 0; font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif); font-size: 74px; font-weight: 400; line-height: 1.05; letter-spacing: -.035em; text-transform: uppercase; color: #fff; }
@@ -60,9 +72,13 @@
 .oc-services-trust__inner { display: grid; grid-template-columns: 1.25fr .7fr 1.25fr 1.2fr; align-items: center; gap: 24px; padding-block: 22px; }
 .oc-services-page .oc-services-trust p { margin: 0; font-size: 12px; font-weight: 800; line-height: 1.5; text-transform: uppercase; }
 .oc-services-trust__inner > * + * { border-left: 1px solid var(--services-line); padding-left: 24px; }
-.oc-services-trust__logos { display: flex; gap: 16px; min-width: 0; }
-.oc-services-trust__logo { flex: 1; min-width: 0; position: relative; height: 48px; overflow: hidden; }
-.oc-services-page .oc-services-trust__logo img { position: absolute; top: 50%; left: 50%; width: min(100%, 180px); height: auto; aspect-ratio: 1; object-fit: contain; transform: translate(-50%, -50%); }
+.oc-services-trust__logos { display: flex; align-items: center; gap: 20px; min-width: 0; }
+.oc-services-trust__logo { flex: 1 1 0; min-width: 0; position: relative; height: 56px; overflow: hidden; }
+/* Los PNG tienen márgenes transparentes: se reduce su escala, no se estiran.
+   Öhlins necesita más altura que Bosch para mostrar el distintivo completo. */
+.oc-services-page .oc-services-trust__logo img { position: absolute; top: 50%; left: 50%; width: min(100%, 132px); max-width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; transform: translate(-50%, -50%); }
+.oc-services-page .oc-services-trust__logo:first-child img { top: calc(50% + 4px); }
+.oc-services-page .oc-services-trust__logo:last-child img { width: min(100%, 156px); }
 
 /* Tres niveles de revisión. */
 .oc-revision-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -93,7 +109,7 @@
 .oc-workflow__number { display: inline-block; margin-right: 18px; font: 400 32px/1 var(--oc-font-display, 'Archivo Black', Arial, sans-serif); color: var(--services-accent); }
 .oc-workflow__steps svg { width: 36px; height: 36px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
 .oc-services-page .oc-workflow h3 { margin: 26px 0 12px; font: 800 24px/1.25 Arial, sans-serif; text-transform: uppercase; letter-spacing: -.025em; }
-.oc-services-page .oc-workflow p { font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
+.oc-services-page .oc-workflow__steps p { font-size: var(--oc-font-body, 18px); line-height: 1.65; color: var(--services-text); }
 
 /* FAQ nativo: apertura y teclado funcionan sin JavaScript. */
 .oc-services-faq { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 64px; }
@@ -152,7 +168,14 @@
   .oc-services-hero__content { padding-block: 180px 44px; }
   .oc-services-page[data-menu-enhanced] .oc-services-hero__content { padding-top: 130px; }
   .oc-services-page .oc-services-hero__image { object-position: 66% center; }
-  .oc-services-hero::before { background: linear-gradient(90deg, #050505d9, #05050559), linear-gradient(0deg, #050505, transparent 38%); }
+  .oc-services-hero::before { background: linear-gradient(
+      0deg,
+      #050505 2%,
+      rgba(0, 0, 0, 0.82) 23%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.08)
+    ),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent); }
   .oc-services-page .oc-services-hero__title { font-size: clamp(32px, 9vw, 42px); }
   .oc-services-actions { gap: 12px; }
   .oc-services-actions .button { min-width: 0; }
@@ -161,7 +184,9 @@
   .oc-services-trust__inner > * + * { border: 0; padding-left: 0; }
   .oc-services-page .oc-services-trust p { font-size: 11px; }
   .oc-services-trust__logos { gap: 10px; }
-  .oc-services-trust__logo { height: 40px; }
+  .oc-services-trust__logo { height: 48px; }
+  .oc-services-page .oc-services-trust__logo:first-child img { width: min(100%, 112px); }
+  .oc-services-page .oc-services-trust__logo:last-child img { width: min(100%, 140px); }
   .oc-revision-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .oc-revision-card__content { padding: 24px; }
   .oc-services-page .oc-revision-card h3 { font-size: 24px; }

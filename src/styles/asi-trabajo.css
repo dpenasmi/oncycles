@@ -1,0 +1,29 @@
+/* ON CYCLES · ASÍ TRABAJO
+   Importar después de servicios.css. La estructura original sigue siendo válida.
+   Sin JavaScript o con movimiento reducido, todas las cards son visibles. */
+.oc-services-page .oc-workflow[data-workflow-motion] .oc-workflow__steps > li {
+  opacity: var(--workflow-opacity, 1);
+  transform: translate3d(var(--workflow-x, 0px), 0, 0);
+}
+
+@media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
+  .oc-services-page .oc-workflow[data-workflow-motion="pinned"] {
+    position: relative;
+    padding-block: 0;
+    height: var(--workflow-height);
+    /* No overflow:hidden: impediría el comportamiento sticky. */
+  }
+  .oc-workflow[data-workflow-motion="pinned"] .oc-workflow__panel {
+    position: sticky;
+    top: var(--workflow-top, 24px);
+    padding-block: var(--workflow-padding, 80px);
+  }
+}
+
+/* Protección inmediata si cambia la preferencia antes de actualizar el JS. */
+@media (prefers-reduced-motion: reduce) {
+  .oc-services-page .oc-workflow[data-workflow-motion] .oc-workflow__steps > li {
+    opacity: 1;
+    transform: none;
+  }
+}
