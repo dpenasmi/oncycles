@@ -9,7 +9,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const servicesHref = `${base}reparacion-bicicletas-barcelona/`;
 const path = Astro.url.pathname.replace(/\/+$/, '');
 const isHome = path === base.replace(/\/+$/, '');
-const isServices = path === servicesHref.replace(/\/+$/, '');
+const isServices = [servicesHref, `${base}suspension-bicicleta/`].some((href) => path === href.replace(/\/+$/, ''));
 const homeSection = (id: string) => isHome ? `#${id}` : `${base}#${id}`;
 ---
 <header class="header oc-site-header" data-oc-header>
