@@ -4,14 +4,17 @@ import "../styles/proxima-salida.css";
 interface Props {
   backgroundSrc?: string;
   reservationHref?: string;
+  framesDirectory?: string;
 }
 
 const {
   backgroundSrc = `${import.meta.env.BASE_URL}images/salida-fondo.png`,
   reservationHref = "#reserva",
+  framesDirectory = `${import.meta.env.BASE_URL}images/proxima-salida/`,
 } = Astro.props;
 ---
 
+<div class="oc-visit-scroll" data-visit-scroll data-frames-directory={framesDirectory}>
 <section class="oc-visit" id="tu-visita" aria-labelledby="visita-title">
   <img
     class="oc-visit__background"
@@ -23,6 +26,8 @@ const {
     loading="lazy"
     decoding="async"
   />
+
+  <canvas class="oc-visit__canvas" aria-hidden="true"></canvas>
 
   <div class="oc-visit__content">
     <h2 id="visita-title" class="oc-visit__eyebrow oc-section-heading">
@@ -76,91 +81,6 @@ const {
     </a>
   </div>
 </section>
+</div>
+<script src="../scripts/proxima-salida.js"></script>
 
-<style>
-  /* Tipografía de la sección. Las variables siguen el sistema global;
-     los valores alternativos permiten usar el componente por separado. */
-  #tu-visita .oc-visit__eyebrow {
-    font-family: var(--oc-font-heading, Arial, sans-serif);
-    font-size: var(--oc-font-h2, 14px);
-    font-weight: 800;
-    line-height: 1.5;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #ffffff;
-  }
-
-  /* Mensaje visual: primera línea blanca y continuación naranja. */
-  #tu-visita .oc-visit__title {
-    font-family: var(--oc-font-display, "Archivo Black", Arial, sans-serif);
-    font-weight: 400;
-    color: var(--orange, #ff5a1f);
-  }
-
-  #tu-visita .oc-visit__title > .oc-heading-white {
-    color: #ffffff;
-  }
-
-  #tu-visita .oc-visit__title > .oc-heading-orange {
-    color: var(--orange, #ff5a1f);
-  }
-
-  #tu-visita .oc-visit__intro,
-  #tu-visita .oc-visit__step-description {
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: var(--oc-font-body, 18px);
-    font-weight: 400;
-    line-height: 1.65;
-    letter-spacing: normal;
-    text-transform: none;
-  }
-
-  /* Párrafos destacados de los pasos: independientes de los H3 globales. */
-  #tu-visita.oc-visit p.oc-visit__step-heading {
-    margin: 0;
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: 24px;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-    overflow-wrap: break-word;
-  }
-
-  #tu-visita .oc-visit__cta {
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: var(--oc-font-cta, 12px);
-    font-weight: 800;
-    line-height: 1.4;
-    letter-spacing: normal;
-  }
-
-  /* Tablet */
-  @media (min-width: 701px) and (max-width: 1024px) {
-    #tu-visita .oc-visit__intro,
-    #tu-visita .oc-visit__step-description {
-      font-size: var(--oc-font-body, 17px);
-    }
-
-    #tu-visita.oc-visit p.oc-visit__step-heading {
-      font-size: 22px;
-    }
-  }
-
-  /* Móvil */
-  @media (max-width: 700px) {
-    #tu-visita .oc-visit__eyebrow {
-      letter-spacing: 0.08em;
-    }
-
-    #tu-visita .oc-visit__intro,
-    #tu-visita .oc-visit__step-description {
-      font-size: var(--oc-font-body, 16px);
-    }
-
-    #tu-visita.oc-visit p.oc-visit__step-heading {
-      font-size: 20px;
-    }
-  }
-</style>
