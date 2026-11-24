@@ -1,12 +1,12 @@
 // Contenido editable. Las imágenes están en public/images.
 
 // Escribimos los datos como un array de arrays:
-// cada fila contiene título, imagen y descripción.
+// cada fila contiene título, imagen, descripción y una ruta opcional.
 // Con .map() convertimos cada fila en un objeto.
 // Resultado final: un array de objetos.
 export const services = [
  ['Revisiones','revisiones','Mantenimiento para que todo vuelva a ir fino.'],
- ['Suspensiones','suspensiones','Revisión, mantenimiento y configuraciones.'],
+ ['Suspensiones','suspensiones','Revisión, mantenimiento y configuraciones.','suspension-bicicleta/'],
  ['Frenos','frenos','Control y seguridad en cada salida.'],
  ['Transmisión','transmision','Precisión y rendimiento en cada cambio.'],
  ['Ruedas','ruedas','Fiabilidad, centrado y resistencia.'],
@@ -14,14 +14,15 @@ export const services = [
  ['Rodamientos y dirección','rodamientos','Suavidad y control, sin holguras.'],
  ['E-Bike','ebike','Diagnóstico y mantenimiento especializado.'],
  ['Setup y ajustes','setup','Tu bici, a tu medida.']
-].map(([title,image,description])=>({title,image,description})); 
+].map(([title, image, description, href]) => ({ title, image, description, href })); 
 
 
 /*
- * [title, image, description] extrae los tres valores de cada fila.
+ * [title, image, description, href] extrae los valores de cada fila.
+ * href es opcional: permite enlazar a una página de servicio.
  * Se llama desestructuración.
  *
- * ({ title, image, description }) crea y devuelve un objeto
+ * ({ title, image, description, href }) crea y devuelve un objeto
  * con esos valores.
  *
  * .map() genera un nuevo array con los resultados.
