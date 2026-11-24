@@ -5,15 +5,15 @@
 // Con .map() convertimos cada fila en un objeto.
 // Resultado final: un array de objetos.
 export const services = [
- ['Revisiones','servicio-revisiones','Mantenimiento para que todo vuelva a ir fino.'],
- ['Suspensiones','servicio-suspensiones','Revisión, mantenimiento y configuraciones.'],
- ['Frenos','servicio-frenos','Control y seguridad en cada salida.'],
- ['Transmisión','servicio-transmision','Precisión y rendimiento en cada cambio.'],
- ['Ruedas','servicio-ruedas','Fiabilidad, centrado y resistencia.'],
- ['Tijas telescópicas','servicio-tijas','Servicio y optimización del funcionamiento.'],
- ['Rodamientos y dirección','servicio-rodamientos','Suavidad y control, sin holguras.'],
- ['E-Bike','servicio-ebike','Diagnóstico y mantenimiento especializado.'],
- ['Setup y ajustes','servicio-setup','Tu bici, a tu medida.']
+ ['Revisiones','revisiones','Mantenimiento para que todo vuelva a ir fino.'],
+ ['Suspensiones','suspensiones','Revisión, mantenimiento y configuraciones.'],
+ ['Frenos','frenos','Control y seguridad en cada salida.'],
+ ['Transmisión','transmision','Precisión y rendimiento en cada cambio.'],
+ ['Ruedas','ruedas','Fiabilidad, centrado y resistencia.'],
+ ['Tijas telescópicas','tijas','Servicio y optimización del funcionamiento.'],
+ ['Rodamientos y dirección','rodamientos','Suavidad y control, sin holguras.'],
+ ['E-Bike','ebike','Diagnóstico y mantenimiento especializado.'],
+ ['Setup y ajustes','setup','Tu bici, a tu medida.']
 ].map(([title,image,description])=>({title,image,description})); 
 
 
