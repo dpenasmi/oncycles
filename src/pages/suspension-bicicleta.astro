@@ -1,7 +1,8 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import { base, withBase } from '../lib/paths.js';
-import { image } from '../data/images.js';
+import { image, photo } from '../data/images';
+import { Image } from 'astro:assets';
 import Workflow from '../components/Workflow.astro';
 import {
   suspensionPage,
@@ -10,8 +11,8 @@ import {
   brands,
   faqs,
   workflowSteps,
-} from '../data/suspension.js';
-import { siteImages } from '../data/images.js';
+} from '../data/suspension.ts';
+import { siteImages } from '../data/images.ts';
 import '../styles/suspension-bicicleta.css';
 ---
 
@@ -78,11 +79,13 @@ import '../styles/suspension-bicicleta.css';
     <div class="oc-suspension-grid">
       {specialties.map((item, index) => (
         <article class="oc-suspension-card">
-          <img
-            src={image(item.image)}
+          <Image
+            src={photo(item.image)}
             alt={item.alt}
-            width="800"
-            height="450"
+            widths={[480, 800, 1200]}
+            sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 560px"
+            format="webp"
+            quality={90}
             loading="lazy"
             decoding="async"
           />

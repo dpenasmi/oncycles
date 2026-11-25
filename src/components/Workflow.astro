@@ -1,9 +1,10 @@
 ---
 import '../styles/asi-trabajo.css';
+import type { WorkflowStep } from '../types/content';
 interface Props {
   headingId: string;
   line1: string;
-  steps: string[][];
+  steps: WorkflowStep[];
   displayHeading?: boolean;
   sectionClass?: string;
 }
@@ -38,7 +39,7 @@ const {
     </p>
   )}
   <ol class="oc-workflow__steps">
-    {steps.map(([title, description], index) => (
+    {steps.map(({ title, description }, index) => (
       <li>
         <span class="oc-workflow__number" aria-hidden="true">
           {String(index + 1).padStart(2, '0')}

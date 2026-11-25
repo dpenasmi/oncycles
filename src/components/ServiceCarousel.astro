@@ -1,5 +1,16 @@
 ---
-import { img } from '../data/content.js';
+import { photo } from '../data/images';
+import { Image } from 'astro:assets';
+import type { ContentCard } from '../types/content';
+interface Props {
+  id: string;
+  eyebrow: string;
+  line1: string;
+  line2: string;
+  description: string;
+  items: ContentCard[];
+  cta: string;
+}
 const { id, eyebrow, line1, line2, description, items, cta } = Astro.props;
 ---
 
@@ -56,11 +67,19 @@ const { id, eyebrow, line1, line2, description, items, cta } = Astro.props;
       >
         {items.map((item, index) => (
           <article class="class-card">
-            <img src={img(item.image)} alt={item.title} width="800" height="750" loading="lazy" />
+            <Image
+              src={photo(`${item.image}.webp`)}
+              alt={item.title}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 700px) 88vw, (max-width: 1024px) 64vw, 666px"
+              format="webp"
+              quality={90}
+              loading="lazy"
+            />
             <div class="class-info">
               <span>
                 {String(index + 1).padStart(2, '0')}
-                {id !== 'servicios' && ' / CATÁLOGO TÉCNICO'}
+                {id !== 'servicios' && <span class="catalog-label"> / CATÁLOGO TÉCNICO</span>}
               </span>
               <h3>
                 <a

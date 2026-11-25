@@ -1,32 +1,29 @@
 ---
+import { Image } from 'astro:assets';
+import type { ServiceHeroData } from '../types/content';
 export interface Props {
   headingId: string;
-  hero: {
-    image: string;
-    alt: string;
-    width: number;
-    height: number;
-    eyebrow: string;
-    line1: string;
-    line2: string;
-    intro: string;
-    service?: string;
-    exploreHref: string;
-    exploreLabel: string;
-    exploreIcon: string;
-    signature: string;
-  };
+  hero: ServiceHeroData;
 }
 const { headingId, hero } = Astro.props;
+const imageSource =
+  typeof hero.image === 'string'
+    ? { src: hero.image, width: hero.width, height: hero.height }
+    : { src: hero.image };
+const responsiveWidths = [768, 1280, 1672].filter(
+  (width) => typeof hero.image === 'string' || width <= hero.image.width,
+);
 ---
 
 <section class="oc-services-hero" id="inicio" aria-labelledby={headingId}>
-  <img
+  <Image
     class="oc-services-hero__image"
-    src={hero.image}
+    {...imageSource}
     alt={hero.alt}
-    width={hero.width}
-    height={hero.height}
+    widths={responsiveWidths}
+    sizes="100vw"
+    format="webp"
+    quality={90}
     loading="eager"
     fetchpriority="high"
   />

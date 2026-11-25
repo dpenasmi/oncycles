@@ -1,4 +1,5 @@
-export const brands = [
+import type { Brand } from '../types/content';
+export const brands: Required<Brand>[] = [
   {
     image: 'marcas/ohlins-monocromo.png',
     name: 'Öhlins',

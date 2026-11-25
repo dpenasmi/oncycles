@@ -24,7 +24,7 @@ jobs:
       - name: Compilar y comprobar el proyecto
         uses: withastro/action@v6
         with:
-          node-version: "24"
+          node-version: '24'
           package-manager: npm
           build-cmd: npm run verify
 

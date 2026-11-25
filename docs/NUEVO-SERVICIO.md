@@ -1,18 +1,60 @@
-# Crear otra página de servicio
+# Añadir otra página de servicio · Patrón v2
 
-Usa Suspensiones como ejemplo real ya compilado. `ServiceLayout` controla el contenido común y no impone las secciones particulares de cada servicio.
+La estructura común no obliga a que todas las páginas tengan las mismas secciones. Usa Suspensiones como referencia y adapta solo el contenido particular.
 
-1. Crea `src/data/ebike.js` con metadatos, datos de hero, proceso y preguntas propias.
-2. Registra las fotografías nuevas en `src/data/images.js` y copia sus archivos en `public/images/`.
-3. Crea `src/pages/ebike-barcelona.astro` con esta composición:
+## 1. Registrar recursos
+
+Copia una fotografía en `src/assets/images/`. Registra su import y su clave en `src/data/images.ts`, siguiendo las otras entradas de `photoFiles` y `imageFiles`. Para una imagen estática que no deba procesarse, utiliza `public/images/` y el registro de URLs.
+
+## 2. Crear datos con tipos
+
+Ejemplo de `src/data/ebike.ts`. El texto es de muestra: debe revisarse antes de publicar.
+
+```ts
+import { photo } from './images';
+import type { PageMetadata, ServiceHeroData, FaqItem, WorkflowStep } from '../types/content';
+
+export const page: PageMetadata = {
+  title: 'Servicio E-Bike en Barcelona | On Cycles',
+  description: 'Diagnóstico y mantenimiento de tu e-bike.',
+};
+const photograph = photo('ebike.webp');
+export const hero: ServiceHeroData = {
+  image: photograph,
+  alt: 'Servicio E-Bike On Cycles',
+  width: photograph.width,
+  height: photograph.height,
+  eyebrow: 'Servicio E-Bike en Barcelona',
+  line1: 'Tu e-bike.',
+  line2: 'Siempre a punto.',
+  intro: 'Reviso tu bicicleta y te explico qué necesita.',
+  service: 'E-Bike',
+  exploreHref: '#ebike-servicios',
+  exploreLabel: 'Explora el servicio',
+  exploreIcon: '↓',
+  signature: 'Diagnóstico · Mantenimiento · Confianza',
+};
+export const faqs: FaqItem[] = [
+  { question: '¿Atiendes mi sistema?', answer: 'Consulta marca, modelo y servicio.' },
+];
+export const workflowSteps: WorkflowStep[] = [
+  { title: 'Diagnóstico', description: 'Identifico el sistema y los síntomas.' },
+  { title: 'Propuesta', description: 'Te explico el trabajo y su presupuesto.' },
+  { title: 'Intervención', description: 'Realizo el trabajo acordado.' },
+  { title: 'Comprobación', description: 'Verifico el funcionamiento final.' },
+];
+```
+
+## 3. Componer la página
+
+Archivo `src/pages/ebike-barcelona.astro`:
 
 ```astro
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import Workflow from '../components/Workflow.astro';
-import { page, hero, faqs, workflowSteps } from '../data/ebike.js';
-import { siteImages } from '../data/images.js';
-import '../styles/ebike.css';
+import { page, hero, faqs, workflowSteps } from '../data/ebike';
+import { siteImages } from '../data/images';
 ---
 
 <ServiceLayout
@@ -25,13 +67,35 @@ import '../styles/ebike.css';
   faqHeadingId="ebike-faq-title"
   defaultService="E-Bike"
 >
-  <!-- Breadcrumb, introducción, cards y marcas específicos de E-Bike. -->
+  <section
+    id="ebike-servicios"
+    class="oc-services-container oc-services-section oc-ebike-intro"
+    aria-labelledby="ebike-services-title"
+  >
+    <h2 id="ebike-services-title">Servicios para tu e-bike</h2>
+    <p>Contenido específico pendiente de revisión.</p>
+  </section>
   <Workflow headingId="ebike-workflow-title" line1="Un proceso técnico." steps={workflowSteps} />
 </ServiceLayout>
+
+<style>
+  /* Este selector queda encapsulado en la página. */
+  .oc-ebike-intro {
+    border-block-start: 1px solid var(--line);
+  }
+</style>
 ```
 
-`page` contiene `title` y `description`. Los campos de `hero` están documentados por la interfaz Props de `ServiceHero.astro` y tienen un ejemplo completo en `data/services.js`. Las preguntas y los pasos son parejas `[título, texto]`.
+No copies cabecera, pie, formulario, FAQ ni Próxima salida: ya los proporciona el layout. Conserva `oc-services-page` y añade una clase propia para ajustes de página. No añadas otro H1: lo genera `ServiceHero`.
 
-Los estilos de E-Bike deben limitarse a `.oc-ebike-page` o a clases propias. Conserva las clases compartidas si deseas heredar el diseño del hero y del formulario. El componente de próxima salida, la cabecera y el footer no se copian dentro de la página.
+Si un estilo debe controlar un componente hijo, no confíes en que el `<style>` encapsulado del padre alcance su HTML: utiliza sus props o un selector global explícito con alcance controlado. Los certificados se pasan como datos y deben corresponder al servicio real.
 
-Al terminar, añade `ebike-barcelona/` al campo `href` de la card E-Bike y actualiza la lista `routes` en `scripts/verify-build.mjs` para incluir la página nueva en las comprobaciones.
+## 4. Conectar y validar
+
+- Añade `href: 'ebike-barcelona/'` al elemento E-Bike de `service-catalog.ts`. No dupliques la lista en `home.ts` ni en el formulario.
+- `defaultService` y `hero.service` deben coincidir con el título de una opción del catálogo común.
+- Revisa menú, enlaces y metadatos.
+- `verify-build.mjs` descubre la nueva página automáticamente; ya no hay una lista `routes` que editar.
+- Ejecuta `npm run verify` y `npm run format:check`. Revisa PC, tablet y móvil antes del commit.
+
+La versión actual todavía no incluye la página E-Bike del ejemplo.

@@ -1,113 +1,115 @@
-# On Cycles · Proyecto Astro reorganizado
+# On Cycles · Astro · Estructura común v2
 
-Proyecto estático con las tres páginas existentes y una estructura común para ampliar los servicios. Conserva los recursos originales, el diseño, los puntos responsive y la animación de 190 fotogramas de «Próxima salida».
+Proyecto estático con Home, Servicio Técnico y Suspensiones. Esta actualización aplica las mejoras sobre `CODIGO (2).7z`, conservando sus textos, rutas, colores, encuadres y secuencia de scroll. No añade una página E-Bike provisional.
 
-## Instalación
+## Desarrollo
 
-Trabaja primero con esta copia en una carpeta nueva, conservando tu proyecto anterior.
-
-Requisitos: **Node.js 22.23.4 o superior**; se recomienda Node.js 24 LTS. npm 9.6.5 o superior. `.nvmrc` selecciona Node 24 si utilizas nvm.
+Node 24 (`.nvmrc`) y npm. Detén el servidor de desarrollo antes de reinstalar dependencias en Windows.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-No reutilices el `node_modules` del proyecto anterior: Astro se ha actualizado de la rama 5 a **7.4.13** para corregir las incidencias detectadas en la auditoría de dependencias.
+La URL por defecto es `http://localhost:4321/oncycles/`; utiliza el puerto real que muestre la terminal.
 
 ```bash
+npm run check
 npm run verify
 npm run format:check
 npm run preview
 ```
 
-`verify` compila las tres páginas, comprueba recursos, anclas, IDs y los 190 fotogramas, y ejecuta los tests de preparación de reservas. El servidor de desarrollo escucha en localhost por defecto. Para probar desde otro dispositivo de tu red:
+- `check`: diagnósticos y tipos con `astro check`.
+- `verify`: tipos, compilación, verificación del HTML generado y tests.
+- `format:check`: comprueba el formato sin modificar archivos.
+- `format`: aplica Prettier. Revisar el diff después.
+- `preview`: sirve la última compilación; ejecutar `build` antes si se ha cambiado código.
+
+## Mapa de responsabilidades
+
+| Ubicación                             | Responsabilidad / consumidores                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `src/pages/`                          | Rutas existentes y secciones particulares de cada página.                                   |
+| `src/layouts/BaseLayout.astro`        | HTML, metadatos, cabecera, main y footer.                                                   |
+| `src/layouts/ServiceLayout.astro`     | Hero, credenciales, contenido particular, Próxima salida, FAQ y reserva.                    |
+| `src/components/`                     | Bloques compartidos. Las props describen las variaciones de contenido.                      |
+| `src/data/service-catalog.ts`         | Lista común de servicios, IDs y enlaces. La usan la Home y el formulario.                   |
+| `src/data/home.ts`                    | Catálogo técnico, espacios, FAQs y carrusel principal de Home.                              |
+| `src/data/services.ts`                | Metadatos, hero, FAQs y proceso de Servicio Técnico.                                        |
+| `src/data/suspension.ts`              | Metadatos, hero, especialidades, marcas, FAQs y proceso de Suspensiones.                    |
+| `src/data/brands.ts`                  | Logos del carrusel general de marcas.                                                       |
+| `src/data/site.ts`                    | Correo del taller e identidad / metadatos comunes.                                          |
+| `src/data/images.ts`                  | Registro único de fotografías importadas, rutas estáticas y secuencia.                      |
+| `src/data/content.js`                 | Reexportaciones de compatibilidad. No añadir copias de los datos.                           |
+| `src/types/content.ts`                | Contratos de datos y props compartidos.                                                     |
+| `src/assets/images/`                  | 31 fotografías procesadas por Astro.                                                        |
+| `public/images/`                      | Recursos estáticos que conservan URL o no necesitan procesamiento.                          |
+| `public/images/proxima-salida/`       | 190 JPG originales de la animación.                                                         |
+| `src/styles/tokens.css`               | Variables base de colores, fuentes y medidas.                                               |
+| `src/styles/global.css` / `brand.css` | Base y estilos heredados compartidos; se conserva su cascada.                               |
+| `src/styles/servicios.css`            | Diseño compartido de los servicios.                                                         |
+| `src/styles/suspension-bicicleta.css` | Diseño particular de Suspensiones.                                                          |
+| `src/scripts/`                        | Interacciones de los componentes. `booking.js` es el único controlador de reserva.          |
+| `src/lib/paths.js`                    | `base` y `withBase()`, compatibles con subcarpeta o dominio raíz.                           |
+| `scripts/verify-build.mjs`            | Descubre el HTML compilado y comprueba recursos, srcset, enlaces, anclas, IDs, H1 y frames. |
+| `tests/`                              | Preparación del correo y consistencia del catálogo común de servicios.                      |
+
+## CSS y componentes
+
+Marcas, SobreOnCycles y ResenasGoogle usan ahora `<style>` encapsulado por Astro dentro de su componente. Se han retirado los atributos artificiales `data-oc-marcas`, `data-oc-sobre-oncycles` y `data-oc-resenas-google`, y sus antiguos CSS externos.
+
+Los estilos externos no quedan encapsulados por importarlos desde un componente. Para bloques nuevos, utiliza `<style>` nativo si el estilo pertenece solo al bloque. Mantén colores, tipografía y utilidades en CSS común. Si un estilo debe afectar a un hijo o al contenido de un slot, hazlo explícitamente y comprueba su alcance.
+
+`global.css` conserva las reglas heredadas y sus breakpoints para evitar cambios de cascada. No se ha dividido arbitrariamente en docenas de archivos. Los ajustes responsive de las variables siguen allí; sus valores base están en `tokens.css`.
+
+La etiqueta del catálogo conserva el ajuste de esta entrega: 14 px, número naranja y texto blanco.
+
+## Imágenes: dos usos distintos
+
+Todo se registra en `src/data/images.ts`, pero no todos los archivos se procesan igual:
+
+- `photo('catalogo-suspensiones.webp')` devuelve `ImageMetadata` de una foto en `src/assets/images/`, para `<Image>` de `astro:assets`.
+- `image('oncycles-logo.png')` devuelve una URL con base. También resuelve fotografías importadas si un consumidor necesita una URL.
+- `img('nombre')` mantiene compatibilidad con claves antiguas sin extensión.
+- `siteImages` agrupa recursos comunes; `nextRideSequence` describe los frames.
+
+Para sustituir una fotografía procesada, modifica su import en `images.ts` y conserva la clave de `photoFiles`. Si cambias el nombre físico asociado, actualiza la entrada de `imageFiles` en ese mismo archivo. Los datos y componentes siguen usando la clave estable. No repitas imports físicos por todas las páginas.
+
+Las fotografías de Home, las tarjetas de catálogo / servicios, los heroes de servicio y las especialidades de Suspensiones usan `<Image>` con variantes responsive. Se mantiene la proporción original y el recorte lo sigue controlando el CSS; no se fuerzan transformaciones de recorte distintas.
+
+Los JPG de Próxima salida, su póster estático y los logos permanecen en `public/`. No mover ni renumerar los frames sin revisar su controlador y el verificador.
+
+## Datos y nueva página
+
+Las FAQs usan `{ question, answer }`; los pasos usan `{ title, description }`. Los servicios comunes tienen `id`, `title`, `image`, `description` y `href` opcional. Solo se añade `href` cuando existe la página.
+
+`ServiceLayout` ya monta los bloques comunes. Dentro de la página solo se escriben sus secciones exclusivas. Consulta `docs/NUEVO-SERVICIO.md` para crear `ebike-barcelona.astro`.
+
+No hace falta usar colecciones de contenido para estas tres páginas distintas. Se podrán valorar si aparece una colección amplia y homogénea de artículos o fichas.
+
+## Reserva y seguridad
+
+El formulario prepara un correo `mailto:`; no envía automáticamente, no guarda datos y no crea una reserva confirmada. El correo se cambia en `site.ts`. La lista de opciones procede de `service-catalog.ts`, no de los datos editoriales de la Home.
+
+Nunca guardes claves o credenciales privadas en `src/data/` ni en variables expuestas al navegador. `.env` está excluido de Git; eso no convierte en secretos los valores que se incorporan al HTML o al JavaScript público.
+
+## GitHub Pages
+
+`astro.config.mjs` conserva `site: https://dpenasmi.github.io`, `base: /oncycles/` y salida estática. `SITE_URL` y `BASE_PATH` permiten sobrescribirlos al compilar.
+
+El workflow mantiene Node 24 y `build-cmd: npm run verify`; por tanto, los nuevos diagnósticos y tests participan antes de publicar. Configura Pages con fuente **GitHub Actions**.
 
 ```bash
-npm run dev -- --host 0.0.0.0
+git status
+git add -A
+git diff --cached --stat
+git commit -m "Aplica buenas prácticas Astro y catálogo común"
+git push origin main
 ```
 
-## Dónde editar cada cosa
+No versionar `node_modules/`, `dist/`, `.astro/` ni `.env`. Los cambios de `package.json` y `package-lock.json` se suben juntos.
 
-| Archivo / carpeta                 | Responsabilidad                                                                         |
-| --------------------------------- | --------------------------------------------------------------------------------------- |
-| `src/data/images.js`              | Registro único de archivos de imagen y configuración de la secuencia.                   |
-| `src/data/home.js`                | Cards de servicios, catálogo, espacios del taller, carrusel del hero y FAQs de la Home. |
-| `src/data/services.js`            | Datos del hero, proceso y FAQs de Servicios.                                            |
-| `src/data/suspension.js`          | Hero, subservicios, marcas, proceso y FAQs de Suspensiones.                             |
-| `src/data/brands.js`              | Marcas del carrusel; el bucle reutiliza la misma lista.                                 |
-| `src/data/site.js`                | Correo y metadatos comunes.                                                             |
-| `src/data/content.js`             | Exportaciones de compatibilidad; no es una segunda copia de los datos.                  |
-| `src/layouts/BaseLayout.astro`    | Documento HTML, metadatos, cabecera, main y footer.                                     |
-| `src/layouts/ServiceLayout.astro` | Hero, credenciales, contenido particular, próxima salida, FAQ y reserva.                |
-| `src/pages/`                      | Rutas y secciones exclusivas de cada página.                                            |
-| `src/components/`                 | Bloques reutilizables con HTML generado por Astro.                                      |
-| `src/styles/`                     | CSS; se conserva el orden de la cascada y los breakpoints.                              |
-| `src/scripts/booking.js`          | Único controlador de reserva y selección desde las cards.                               |
-| `src/scripts/proxima-salida.js`   | Animación de scroll que ya funcionaba.                                                  |
-| `public/images/`                  | Archivos físicos de imagen, sin mover ni recomprimir.                                   |
+## Validación y documentación
 
-No es necesario acumular todos los datos en un único `content.js`: los archivos separados por página son más fáciles de mantener. El registro de imágenes sí es común para que cada recurso se pueda cambiar desde un solo lugar.
-
-## Cambiar imágenes
-
-En `src/data/images.js`, conserva la **clave** y modifica el **valor** del archivo:
-
-```js
-export const imageFiles = {
-  'horquillas-suspensiones.webp': 'mi-nueva-fotografia.webp',
-  // ...resto del registro
-};
-```
-
-Guarda el archivo nuevo en `public/images/`. La clave sigue siendo válida en las páginas. Para marcas, los valores incluyen `marcas/`. No escribas `/oncycles/` en las páginas: los helpers aplican la ruta base de Astro.
-
-En `nextRideSequence` se configura la carpeta de fotogramas. El controlador conserva sus 190 imágenes y nombres `ezgif-frame-001.jpg` a `ezgif-frame-190.jpg`; cambiar el número de frames exige ajustar también su cronología en el JS. `siteImages.nextRide` es el fondo estático de respaldo.
-
-## Componentes comunes
-
-Cabecera, footer, formulario y próxima salida se importan y renderizan una sola vez por página desde sus layouts. `FaqSection`, `Workflow`, `ServiceHero` y `ServiceTrust` reciben sus datos como props y conservan sus clases y estructura visual.
-
-Los estilos que antes estaban dentro de Marcas, SobreOnCycles y ResenasGoogle están en sus respectivos CSS. Los atributos `data-oc-marcas`, `data-oc-sobre-oncycles` y `data-oc-resenas-google` mantienen el aislamiento y la especificidad que tenían los estilos scoped de Astro. No los elimines al modificar su HTML.
-
-La Home conserva sus textos editoriales en HTML; solo las colecciones de contenido repetitivo viven en `/data`. No hay contenido comercial construido desde JavaScript del navegador.
-
-## Añadir un nuevo servicio
-
-`ebike-barcelona.astro` todavía no estaba en el archivo entregado. No se ha añadido una página provisional ni publicado contenido nuevo.
-
-Para crearla, utiliza el ejemplo de `docs/NUEVO-SERVICIO.md`: define sus datos, usa `ServiceLayout` y escribe dentro únicamente las secciones propias del servicio. Añade después su ruta en el objeto E-Bike de `src/data/home.js` (campo `href`). No enlaces una ruta que aún no existe.
-
-## Reserva
-
-El formulario prepara un correo `mailto:`; no realiza envíos automáticos ni guarda datos personales. La cita requiere confirmación del taller. El controlador es único para todas las páginas, reconoce `data-service` y `data-booking-service` y conserva el detalle de la revisión cuando existe.
-
-El correo del taller se cambia en `src/data/site.js`. Suspensiones queda preseleccionado desde el HTML en su propia página, también sin JavaScript.
-
-## Despliegue
-
-La configuración por defecto mantiene:
-
-- `site`: `https://dpenasmi.github.io`
-- `base`: `/oncycles/`
-- `output`: `static`
-
-Puedes sobrescribir `SITE_URL` y `BASE_PATH` como variables de entorno al compilar. Ejemplo Bash para un dominio en raíz:
-
-```bash
-SITE_URL=https://tu-dominio.es BASE_PATH=/ npm run build
-```
-
-PowerShell:
-
-```powershell
-$env:SITE_URL='https://tu-dominio.es'
-$env:BASE_PATH='/'
-npm run build
-```
-
-Publica el contenido de `dist/`. No subas `node_modules`, `.astro` ni los archivos de trabajo del entorno. El ZIP fuente excluye esas carpetas.
-
-## Comprobaciones y límites
-
-Consulta `docs/CAMBIOS-Y-VALIDACION.md`. La auditoría de npm no sustituye una auditoría integral de seguridad. Las fuentes de Google y el enlace de reseñas existentes se conservan. Los enlaces legales sin destino siguen siendo texto: no se han inventado páginas legales.
+Consulta `docs/CAMBIOS-Y-VALIDACION.md`. La comprobación técnica de DOM y CSS no sustituye revisar el resultado en navegadores reales, especialmente el scroll en PC, tablet y móvil.

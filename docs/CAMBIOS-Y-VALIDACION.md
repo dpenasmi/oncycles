@@ -1,51 +1,56 @@
-# Cambios y validación · 25/11/2026
+# Cambios y validación · Buenas prácticas Astro · 25/11/2026
 
-## Resultado
+## Copia utilizada
 
-Se reorganizan las tres páginas recibidas: Home, reparación de bicicletas y suspensión de bicicleta. No se añade una página E-Bike inexistente en la entrega ni se publican cambios en producción.
+Se parte del archivo `CODIGO (2).7z` entregado en esta sesión. Incluye los últimos ajustes de la etiqueta del catálogo: 14 px, número naranja y texto blanco. Las tres rutas y su contenido comercial se mantienen; no se crea una página E-Bike de muestra.
 
-## Cambios
+## Cambios aplicados
 
-- Layout HTML común y layout específico de servicios sin contenedores nuevos que alteren la distribución.
-- Hero, credenciales, proceso y FAQ reutilizables con sus textos particulares.
-- Imágenes centralizadas en `data/images.js`; datos por responsabilidad dentro de `/data`.
-- Marcas renderizadas desde una sola lista, conservando las dos copias visuales necesarias para el bucle.
-- Un controlador de reserva sustituye las tres implementaciones anteriores. Se mantienen las consultas por revisión y la preselección del servicio.
-- Eliminados `scripts/servicios.js` y `scripts/suspension-bicicleta.js`; no deben copiarse desde la versión antigua.
-- Eliminadas 26 reglas del footer antiguo y reglas de una cabecera de servicios que ya no se renderiza.
-- CSS de componentes separado en archivos conservando la especificidad y el aislamiento originales.
-- Formato uniforme y comandos para mantenerlo en futuras ediciones.
-- `BASE_PATH` y `SITE_URL` configurables; valores por defecto originales conservados.
-- Servidores de desarrollo y preview limitados a localhost por defecto.
+1. Se añaden `@astrojs/check` y TypeScript como dependencias de desarrollo fijadas en el lockfile. `npm run check` participa en `verify` y, por tanto, en el workflow existente.
+2. Se corrigen los cuatro errores de tipado implícito del carrusel y se retiran dos imports no utilizados de Home. Los componentes reciben contratos claros.
+3. `src/types/content.ts` agrupa contratos de metadatos, hero, tarjetas, marcas, preguntas, pasos y catálogo común.
+4. `src/data/service-catalog.ts` es la fuente compartida de servicios para Home y formulario. Se conserva el mismo orden, texto, opciones y enlace de Suspensiones.
+5. Los datos editoriales pasan a `.ts`. Las FAQs se editan como `{ question, answer }`; el proceso como `{ title, description }`. Los componentes renderizan el mismo HTML.
+6. `Marcas`, `SobreOnCycles` y `ResenasGoogle` recuperan estilos `<style>` encapsulados por Astro. Se eliminan sus tres CSS externos y los atributos que simulaban su ámbito. Los estilos compartidos de servicios siguen siendo compartidos.
+7. Se extraen los tokens base a `tokens.css` conservando su posición en la cascada. Las reglas heredadas y los ajustes responsive no se reordenan arbitrariamente.
+8. Se trasladan 31 fotos, sin alterar los archivos fuente, desde `public/images/` a `src/assets/images/`. Se registran en `images.ts` y se renderizan con `<Image>` y variantes responsive donde corresponde. El CSS mantiene el recorte original. Logos, póster y fotogramas de scroll conservan su uso estático.
+9. El verificador descubre todas las páginas HTML compiladas y comprueba las variantes `srcset`, destinos internos y anclas, además de los controles anteriores. Ya no hay una lista manual `routes` que mantener.
+10. Se añaden dos pruebas de consistencia del catálogo común. Se actualizan README y el patrón de nueva página.
 
-## Correcciones puntuales
+## Comprobaciones realizadas
 
-Dos rutas antiguas no existían: `servicio-ebike.webp` y `servicio-setup.webp`. El registro las resuelve ahora con las fotografías existentes `ebike.webp` y `servicios-setup.webp`.
+- La copia original compila y supera sus cuatro tests; permite comparar antes y después.
+- `npm run check`: 0 errores, 0 avisos y 0 sugerencias en los diagnósticos revisados.
+- `npm run verify`: 3 páginas, 208 referencias de recursos y `srcset`, enlaces, anclas, IDs y H1 correctos; 190 fotogramas presentes; 6 tests correctos.
+- Verificación en la base `/oncycles/` y en raíz `/` mediante `BASE_PATH`.
+- `npm run format:check`: formato correcto.
+- Auditoría de dependencias de esta entrega: 0 vulnerabilidades conocidas. No sustituye una auditoría integral ni garantiza ausencia de problemas futuros.
+- Comparación del DOM compilado: mismo número y orden de elementos en las tres páginas (625 en Home, 317 en Servicios y 308 en Suspensiones), sin diferencias de textos, clases, enlaces o atributos de comportamiento después de excluir los cambios previstos de imágenes y encapsulación.
+- Comparación técnica de 4.104 propiedades CSS en tamaños 1440×900, 768×1024 y 390×844: sin diferencias en las propiedades y elementos revisados. Simulación de reglas y estilos con PostCSS y JSDOM; no es una prueba visual en un navegador real.
+- Los 190 JPG son idénticos al original. El controlador `proxima-salida.js`, su CSS, `booking.js` y `manual-carousel.js` mantienen el comportamiento existente. En el componente Próxima salida solo cambia la importación del registro de imágenes.
 
-La selección de Suspensiones se genera ahora en el HTML de su formulario. La marca `data-menu-enhanced` de las páginas interiores se conserva desde el renderizado para mantener su espaciado móvil. Se unifica una etiqueta accesible de credenciales; los textos visibles se conservan.
+## Límites y revisión manual
 
-## Seguridad
+El navegador Chromium local no estaba disponible y la descarga de su ejecutable fue rechazada por el entorno. Por eso no se afirma una comprobación visual de píxeles ni una prueba de interacción real en PC, tablet o móvil.
 
-Astro se ha actualizado de la rama 5 a 7.4.13, con versiones exactas y lockfile actualizado. La auditoría npm inicial detectó cinco dependencias afectadas; la final, incluyendo desarrollo, informa de cero vulnerabilidades conocidas. Resultado observado en esta revisión, no garantía frente a vulnerabilidades futuras.
+Revisar en local y tras el despliegue: encuadres y calidad de imágenes responsive, navegación, apertura del correo, selección de servicio y animación de scroll en ambos sentidos. Las fotos sí se recomprimen al compilar como parte de la optimización; sus fuentes se conservan intactas.
 
-El formulario valida el destinatario, limita y normaliza campos de texto y codifica el asunto y cuerpo del mailto para impedir que un texto introducido añada parámetros o cabeceras. No introduce HTML dinámico ni almacenamiento de datos personales. Se conservan `noopener noreferrer` en el enlace externo de reseñas.
+No se cambian el correo de destino, el mecanismo mailto, los textos comerciales ni las certificaciones. No se publica nada en GitHub desde esta entrega.
 
-## Pruebas realizadas
+## Criterios para próximas páginas
 
-- `npm run verify` con `/oncycles/`: tres rutas compiladas, cuatro tests de reserva correctos, 105 referencias de recursos, anclas locales e IDs verificados y 190 JPG presentes.
-- `BASE_PATH=/ npm run verify`: compilación y verificaciones correctas también en raíz de dominio.
-- `npm audit`: cero avisos en el conjunto final de dependencias.
-- Comparación del HTML antes/después: Home con la misma estructura y contenido; páginas interiores con los cambios intencionados indicados arriba. Se ignoran comentarios, espacios de formato y atributos internos de encapsulado.
-- Comparación de 3648 propiedades de estilo en elementos representativos a 1440×900, 768×1024 y 390×844: sin diferencias en la simulación de CSS para esas condiciones.
-- Análisis sintáctico de `proxima-salida.js`, `asi-trabajo.js`, `cabecera.js` y `manual-carousel.js`: árboles de código idénticos antes y después, descontando formato. No se reescribe el comportamiento de las animaciones ya aceptadas.
-- Comprobación binaria: los 279 archivos de `public/` permanecen idénticos, sin conversiones ni recomprimir fotografías o fotogramas.
+- Usar BaseLayout y ServiceLayout, sin duplicar bloques comunes.
+- Datos tipados por tema; catálogo de servicios común.
+- CSS encapsulado para un bloque exclusivo. CSS global solo para lo compartido y con alcance consciente.
+- Fotos procesables en `src/assets`; recursos de URL fija y secuencias dinámicas en `public`.
+- Scripts desde su componente y un solo controlador por interacción.
+- Las colecciones de contenido no son necesarias para estas tres páginas distintas.
 
-## Alcance de la validación visual
+Referencias oficiales consultadas:
 
-Se ha comparado el HTML y la cascada CSS en un entorno simulado. No equivale a una revisión de capturas y gestos en dispositivos reales. Antes de sustituir tu copia de trabajo, abre esta versión y comprueba PC, tablet y móvil, especialmente el menú y el scroll de Próxima salida. La presentación estática en pantallas donde no cabe todo el contenido sigue siendo la del código recibido.
-
-## Instalación
-
-El ZIP incluye el proyecto fuente completo y sus recursos. No incluye `node_modules`, `dist`, `.astro` ni herramientas temporales de revisión. Descomprime en otra carpeta y ejecuta `npm ci`, seguido de `npm run dev`.
-
-Necesita Node.js >=22.23.4; se recomienda Node.js 24 LTS. No reutilices el node_modules antiguo. La configuración estática y las rutas actuales permanecen disponibles.
+- https://docs.astro.build/en/basics/project-structure/
+- https://docs.astro.build/en/basics/layouts/
+- https://docs.astro.build/en/guides/styling/
+- https://docs.astro.build/en/guides/images/
+- https://docs.astro.build/en/guides/typescript/
+- https://docs.astro.build/en/guides/content-collections/

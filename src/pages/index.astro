@@ -3,16 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProximaSalida from '../components/ProximaSalida.astro';
 import FormularioReserva from '../components/FormularioReserva.astro';
 import FaqSection from '../components/FaqSection.astro';
-import { email } from '../data/site.js';
-import { base, withBase } from '../lib/paths.js';
-import { image } from '../data/images.js';
+import { email } from '../data/site.ts';
 import ServiceCarousel from '../components/ServiceCarousel.astro';
 import SobreOnCycles from '../components/SobreOnCycles.astro';
 import Marcas from '../components/Marcas.astro';
 import ResenasGoogle from '../components/ResenasGoogle.astro';
-import { services, catalog, workshop, faqs, heroSlides } from '../data/home.js';
-import { img } from '../data/images.js';
-import { site } from '../data/site.js';
+import { catalog, workshop, faqs, heroSlides } from '../data/home.ts';
+import { photo } from '../data/images';
+import { Image } from 'astro:assets';
+import { serviceCatalog as services } from '../data/service-catalog';
+import { site } from '../data/site.ts';
 ---
 
 <BaseLayout title={site.home.title} description={site.home.description}>
@@ -26,12 +26,14 @@ import { site } from '../data/site.js';
   >
     <div class="hero-backgrounds" aria-hidden="true">
       {heroSlides.map((slide, index) => (
-        <img
+        <Image
           class:list={['hero-image', { 'is-active': index === 0 }]}
-          src={img(slide.image)}
+          src={photo(`${slide.image}.webp`)}
           alt=""
-          width="1536"
-          height="1024"
+          widths={[768, 1280, 1536]}
+          sizes="100vw"
+          format="webp"
+          quality={90}
           loading="eager"
           fetchpriority={index === 0 ? 'high' : 'low'}
           style={`--hero-position:${slide.position ?? 'center'};--hero-mobile-position:${slide.mobilePosition ?? 'center'}`}
@@ -106,7 +108,15 @@ import { site } from '../data/site.js';
   >
     <!-- Fondo de toda la sección -->
     <div class="suspension-background" aria-hidden="true">
-      <img src={img('suspensiones-fondo')} alt="" width="1672" height="941" loading="lazy" />
+      <Image
+        src={photo('suspensiones-fondo.webp')}
+        alt=""
+        widths={[480, 900, 1280, 1672]}
+        sizes="(max-width: 700px) 100vw, 60vw"
+        format="webp"
+        quality={90}
+        loading="lazy"
+      />
     </div>
 
     <!-- Contenido sobre el fondo -->
@@ -219,11 +229,13 @@ import { site } from '../data/site.js';
       >
         {workshop.map((item) => (
           <figure>
-            <img
-              src={img(item.image)}
+            <Image
+              src={photo(`${item.image}.webp`)}
               alt={item.description}
-              width="900"
-              height="550"
+              widths={[480, 900, 1280]}
+              sizes="(max-width: 700px) 90vw, (max-width: 1024px) 64vw, 700px"
+              format="webp"
+              quality={90}
               loading="lazy"
             />
             <figcaption>{item.title}</figcaption>

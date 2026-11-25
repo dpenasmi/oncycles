@@ -1,8 +1,9 @@
 ---
+import type { FaqItem } from '../types/content';
 interface Props {
   id?: string;
   headingId: string;
-  items: string[][];
+  items: FaqItem[];
   variant?: 'home' | 'service';
   sectionClass?: string;
 }
@@ -34,7 +35,7 @@ const {
     </h2>
   )}
   <div class={variant === 'home' ? 'faq-list' : 'oc-services-faq__list'}>
-    {items.map(([question, answer]) => (
+    {items.map(({ question, answer }) => (
       <details>
         <summary>
           {question}

@@ -5,26 +5,7 @@
    Tipografía centralizada al final; variables en :root.
    Se conserva el orden de las reglas de diseño. */
 
-:root {
-  --orange: #ff5a1f;
-  --black: #050505;
-  --muted: #a3a3a3;
-  --line: #343434;
-  color-scheme: dark;
-  font-family: Inter, Arial, sans-serif;
-  font-synthesis: none;
-  --oc-side-padding: clamp(24px, 4vw, 80px);
-  --oc-font-text: 'Inter', Arial, sans-serif;
-  --oc-font-heading: Arial, sans-serif;
-  --oc-font-display: 'Archivo Black', Arial, sans-serif;
-  --oc-font-h1: 16px;
-  --oc-font-h2: 14px;
-  --oc-font-h3: 32px;
-  --oc-font-body: 18px;
-  --oc-font-cta: 12px;
-  --oc-font-card-label: 14px;
-  --oc-font-specialties: 16px;
-}
+@import './tokens.css';
 
 * {
   box-sizing: border-box;
@@ -2710,7 +2691,7 @@ p:not(
 
 /* Numeración independiente de los párrafos de las cards. */
 
-#servicios .class-info > span {
+:is(#servicios, #catalogo) .class-info > span {
   font-size: var(--oc-font-card-label);
   line-height: 1.5;
 }
@@ -3230,4 +3211,17 @@ oc-manual-carousel {
   .oc-resenas__enlace {
     margin-inline-start: auto;
   }
+}
+
+/* Catálogo · Número naranja y texto blanco */
+#catalogo .class-info > span {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--orange);
+}
+
+#catalogo .class-info > span > .catalog-label {
+  font: inherit;
+  letter-spacing: inherit;
+  color: #fff;
 }

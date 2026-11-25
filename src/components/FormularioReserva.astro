@@ -1,6 +1,6 @@
 ---
 import '../styles/formulario-reserva.css';
-import { services } from '../data/home.js';
+import { serviceCatalog } from '../data/service-catalog';
 
 interface Props {
   email: string;
@@ -56,7 +56,7 @@ const { email, defaultService = '' } = Astro.props;
           Servicio
           <select class="oc-booking__field" id="booking-service" name="servicio" required>
             <option value="">¿Qué necesita tu bici?</option>
-            {services.map(({ title }) => (
+            {serviceCatalog.map(({ title }) => (
               <option value={title} selected={title === defaultService}>
                 {title}
               </option>

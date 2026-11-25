@@ -1,0 +1,21 @@
+/* Colores, fuentes y medidas base. Los ajustes responsive permanecen en global.css. */
+:root {
+  --orange: #ff5a1f;
+  --black: #050505;
+  --muted: #a3a3a3;
+  --line: #343434;
+  color-scheme: dark;
+  font-family: Inter, Arial, sans-serif;
+  font-synthesis: none;
+  --oc-side-padding: clamp(24px, 4vw, 80px);
+  --oc-font-text: 'Inter', Arial, sans-serif;
+  --oc-font-heading: Arial, sans-serif;
+  --oc-font-display: 'Archivo Black', Arial, sans-serif;
+  --oc-font-h1: 16px;
+  --oc-font-h2: 14px;
+  --oc-font-h3: 32px;
+  --oc-font-body: 18px;
+  --oc-font-cta: 12px;
+  --oc-font-card-label: 14px;
+  --oc-font-specialties: 16px;
+}
