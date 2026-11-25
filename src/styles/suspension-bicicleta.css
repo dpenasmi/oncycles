@@ -1,68 +1,278 @@
 /* ON CYCLES · SUSPENSIONES
    Importar después de servicios.css y asi-trabajo.css.
    La base visual y el responsive del hero se heredan de Servicios. */
-.oc-suspension-page .oc-services-hero__title { max-width: 1100px; }
-.oc-suspension-page .oc-services-hero__intro { max-width: 600px; }
-.oc-suspension-page .oc-services-trust__logos { justify-content: center; }
-.oc-suspension-page .oc-services-trust__logo { flex: 0 1 160px; }
+.oc-suspension-page .oc-services-hero__title {
+  max-width: 1100px;
+}
+.oc-suspension-page .oc-services-hero__intro {
+  max-width: 600px;
+}
+.oc-suspension-page .oc-services-trust__logos {
+  justify-content: center;
+}
+.oc-suspension-page .oc-services-trust__logo {
+  flex: 0 1 160px;
+}
 /* Un único certificado: evita la regla :last-child de Bosch del CSS compartido. */
-.oc-suspension-page .oc-services-trust__logo:only-child img { width: min(100%, 132px); }
-.oc-suspension-page .oc-suspension-breadcrumb { padding-block: 24px 0; }
-.oc-suspension-breadcrumb ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.oc-suspension-breadcrumb li { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.5; color: #bdbdbd; }
-.oc-suspension-breadcrumb li + li::before { content: '/'; color: #666; }
-.oc-suspension-breadcrumb a { color: inherit; }
-.oc-suspension-breadcrumb a:hover, .oc-suspension-breadcrumb [aria-current] { color: var(--services-accent); }
-.oc-suspension-intro { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 56px; }
-.oc-suspension-intro__text { min-width: 0; padding-left: 48px; border-left: 1px solid var(--services-line); }
-.oc-suspension-page .oc-suspension-intro__text > p { margin: 0; font-size: 18px; line-height: 1.65; color: var(--services-text); }
-.oc-suspension-benefits { display: flex; flex-wrap: wrap; gap: 16px 24px; margin: 28px 0 0; padding: 0; list-style: none; }
-.oc-suspension-benefits li { display: flex; gap: 10px; align-items: center; font: 800 12px/1.5 Arial, sans-serif; text-transform: uppercase; }
-.oc-suspension-benefits li::before { content: '✓'; color: var(--services-accent); font-size: 20px; }
-.oc-suspension-specialties { border-top: 1px solid var(--services-line); }
-.oc-suspension-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
-.oc-suspension-card { min-width: 0; display: flex; flex-direction: column; background: #101010; border: 1px solid var(--services-line); }
-.oc-suspension-page .oc-suspension-card > img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 7; object-fit: cover; }
-.oc-suspension-card__body { flex: 1; padding: 22px; }
-.oc-suspension-page .oc-suspension-card h3 { margin: 0; font: 800 22px/1.25 Arial, sans-serif; text-transform: uppercase; letter-spacing: -.025em; }
-.oc-suspension-card h3 a { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; gap: 10px; color: #fff; }
-.oc-suspension-card__number, .oc-suspension-card__arrow { color: var(--services-accent); }
-.oc-suspension-card__arrow { font: 400 26px/1 Arial, sans-serif; }
-.oc-suspension-page .oc-suspension-card p { margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: var(--services-text); }
-.oc-suspension-card a:hover { color: var(--services-accent); }
-.oc-suspension-cta { display: flex; justify-content: center; margin-top: 32px; }
-.oc-suspension-brands { border-block: 1px solid var(--services-line); }
-.oc-suspension-brands__heading { display: flex; align-items: end; justify-content: space-between; gap: 32px; }
-.oc-suspension-page .oc-suspension-brands__heading > p { max-width: 360px; margin: 0; font-size: 16px; line-height: 1.6; color: var(--services-text); }
-.oc-suspension-brands__list { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 32px 0 0; padding: 0; list-style: none; }
-.oc-suspension-brands__list li { min-width: 0; display: flex; align-items: center; justify-content: center; padding-inline: 16px; }
-.oc-suspension-brands__list li + li { border-left: 1px solid var(--services-line); }
-.oc-suspension-page .oc-suspension-brand { display: block; width: min(100%, 170px); height: 100px; object-fit: contain; filter: grayscale(1) invert(1) brightness(1.35); mix-blend-mode: screen; }
-.oc-suspension-page .oc-suspension-brand--white { width: min(100%, 150px); height: 65px; filter: none; }
+.oc-suspension-page .oc-services-trust__logo:only-child img {
+  width: min(100%, 132px);
+}
+.oc-suspension-page .oc-suspension-breadcrumb {
+  padding-block: 24px 0;
+}
+.oc-suspension-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.oc-suspension-breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #bdbdbd;
+}
+.oc-suspension-breadcrumb li + li::before {
+  content: '/';
+  color: #666;
+}
+.oc-suspension-breadcrumb a {
+  color: inherit;
+}
+.oc-suspension-breadcrumb a:hover,
+.oc-suspension-breadcrumb [aria-current] {
+  color: var(--services-accent);
+}
+.oc-suspension-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 56px;
+}
+.oc-suspension-intro__text {
+  min-width: 0;
+  padding-left: 48px;
+  border-left: 1px solid var(--services-line);
+}
+.oc-suspension-page .oc-suspension-intro__text > p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--services-text);
+}
+.oc-suspension-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.oc-suspension-benefits li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font:
+    800 12px/1.5 Arial,
+    sans-serif;
+  text-transform: uppercase;
+}
+.oc-suspension-benefits li::before {
+  content: '✓';
+  color: var(--services-accent);
+  font-size: 20px;
+}
+.oc-suspension-specialties {
+  border-top: 1px solid var(--services-line);
+}
+.oc-suspension-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.oc-suspension-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #101010;
+  border: 1px solid var(--services-line);
+}
+.oc-suspension-page .oc-suspension-card > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+}
+.oc-suspension-card__body {
+  flex: 1;
+  padding: 22px;
+}
+.oc-suspension-page .oc-suspension-card h3 {
+  margin: 0;
+  font:
+    800 22px/1.25 Arial,
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+}
+.oc-suspension-card h3 a {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  color: #fff;
+}
+.oc-suspension-card__number,
+.oc-suspension-card__arrow {
+  color: var(--services-accent);
+}
+.oc-suspension-card__arrow {
+  font:
+    400 26px/1 Arial,
+    sans-serif;
+}
+.oc-suspension-page .oc-suspension-card p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--services-text);
+}
+.oc-suspension-card a:hover {
+  color: var(--services-accent);
+}
+.oc-suspension-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+.oc-suspension-brands {
+  border-block: 1px solid var(--services-line);
+}
+.oc-suspension-brands__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+}
+.oc-suspension-page .oc-suspension-brands__heading > p {
+  max-width: 360px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--services-text);
+}
+.oc-suspension-brands__list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.oc-suspension-brands__list li {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 16px;
+}
+.oc-suspension-brands__list li + li {
+  border-left: 1px solid var(--services-line);
+}
+.oc-suspension-page .oc-suspension-brand {
+  display: block;
+  width: min(100%, 170px);
+  height: 100px;
+  object-fit: contain;
+  filter: grayscale(1) invert(1) brightness(1.35);
+  mix-blend-mode: screen;
+}
+.oc-suspension-page .oc-suspension-brand--white {
+  width: min(100%, 150px);
+  height: 65px;
+  filter: none;
+}
 @media (min-width: 701px) and (max-width: 1024px) {
-  .oc-suspension-intro { grid-template-columns: 1fr; gap: 28px; }
-  .oc-suspension-intro__text { padding-left: 0; border-left: 0; }
-  .oc-suspension-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .oc-suspension-brands__heading { display: block; }
-  .oc-suspension-page .oc-suspension-brands__heading > p { max-width: none; margin-top: 24px; }
-  .oc-suspension-brands__list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 0; }
-  .oc-suspension-brands__list li:nth-child(4) { border-left: 0; }
+  .oc-suspension-intro {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .oc-suspension-intro__text {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .oc-suspension-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .oc-suspension-brands__heading {
+    display: block;
+  }
+  .oc-suspension-page .oc-suspension-brands__heading > p {
+    max-width: none;
+    margin-top: 24px;
+  }
+  .oc-suspension-brands__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 0;
+  }
+  .oc-suspension-brands__list li:nth-child(4) {
+    border-left: 0;
+  }
 }
 @media (max-width: 700px) {
-  .oc-suspension-page .oc-services-hero__image { object-position: 65% center; }
-  .oc-suspension-intro { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .oc-suspension-intro__text { padding-left: 0; border-left: 0; }
-  .oc-suspension-page .oc-suspension-intro__text > p { font-size: 16px; }
-  .oc-suspension-benefits { gap: 12px 18px; }
-  .oc-suspension-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 28px; }
-  .oc-suspension-page .oc-suspension-card > img { aspect-ratio: 16 / 8; }
-  .oc-suspension-page .oc-suspension-card h3 { font-size: 20px; }
-  .oc-suspension-brands__heading { display: block; }
-  .oc-suspension-page .oc-suspension-brands__heading > p { margin-top: 20px; }
-  .oc-suspension-brands__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
-  .oc-suspension-brands__list li:nth-child(odd) { border-left: 0; }
-  .oc-suspension-page .oc-suspension-brand { height: 90px; }
-  .oc-suspension-page .oc-suspension-brand--white { height: 55px; }
+  .oc-suspension-page .oc-services-hero__image {
+    object-position: 65% center;
+  }
+  .oc-suspension-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .oc-suspension-intro__text {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .oc-suspension-page .oc-suspension-intro__text > p {
+    font-size: 16px;
+  }
+  .oc-suspension-benefits {
+    gap: 12px 18px;
+  }
+  .oc-suspension-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .oc-suspension-page .oc-suspension-card > img {
+    aspect-ratio: 16 / 8;
+  }
+  .oc-suspension-page .oc-suspension-card h3 {
+    font-size: 20px;
+  }
+  .oc-suspension-brands__heading {
+    display: block;
+  }
+  .oc-suspension-page .oc-suspension-brands__heading > p {
+    margin-top: 20px;
+  }
+  .oc-suspension-brands__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 0;
+  }
+  .oc-suspension-brands__list li:nth-child(odd) {
+    border-left: 0;
+  }
+  .oc-suspension-page .oc-suspension-brand {
+    height: 90px;
+  }
+  .oc-suspension-page .oc-suspension-brand--white {
+    height: 55px;
+  }
 }
 
 /* Credenciales centradas: ajuste acordado para esta página. */
@@ -97,7 +307,9 @@
   }
 }
 @media (max-width: 700px) {
-  .oc-suspension-page .oc-suspension-brands__list { gap: 4px 0; }
+  .oc-suspension-page .oc-suspension-brands__list {
+    gap: 4px 0;
+  }
   .oc-suspension-page .oc-suspension-brands__list > li {
     flex-basis: 50%;
     min-height: 104px;
@@ -124,8 +336,9 @@
   transform: scale(1);
   transform-origin: center;
   filter: brightness(1);
-  transition: transform 800ms cubic-bezier(.22, 1, .36, 1),
-              filter 800ms cubic-bezier(.22, 1, .36, 1);
+  transition:
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 /* Cubre el pequeño exceso del zoom bajo la fotografía para mantener
    la separación exacta entre imagen y texto, sin añadir un wrapper. */

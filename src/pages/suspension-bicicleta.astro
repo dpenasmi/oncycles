@@ -1,156 +1,152 @@
 ---
-import Cabecera from '../components/Cabecera.astro';
-import '../styles/global.css';
-import '../styles/brand.css';
-import ProximaSalida from '../components/ProximaSalida.astro';
-import FormularioReserva from '../components/FormularioReserva.astro';
-import Footer from '../components/Footer.astro';
-import { email } from '../data/content.js';
-import '../styles/servicios.css';
-import '../styles/asi-trabajo.css';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { base, withBase } from '../lib/paths.js';
+import { image } from '../data/images.js';
+import Workflow from '../components/Workflow.astro';
+import {
+  suspensionPage,
+  suspensionHero,
+  specialties,
+  brands,
+  faqs,
+  workflowSteps,
+} from '../data/suspension.js';
+import { siteImages } from '../data/images.js';
 import '../styles/suspension-bicicleta.css';
-
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
-const asset = (path: string) => `${base}${path}`;
-const title = 'Suspensión de bicicleta en Barcelona · On Cycles';
-const description = 'Revisión, mantenimiento y ajuste de horquillas, amortiguadores y tijas telescópicas en Barcelona. Atención personal de Alfredo y servicio técnico certificado Öhlins.';
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-
-// Fotografías que ya utiliza el proyecto. Cambia aquí las rutas por las
-// fotografías específicas de cada subservicio cuando estén disponibles.
-const heroSrc = asset('images/suspensiones-fondo.webp');
-const specialties = [
-  { title: 'Horquillas', image: 'horquillas-suspensiones.webp', alt: 'Detalle de una horquilla de suspensión', description: 'Revisión, mantenimiento y ajuste.', service: 'Suspensiones' },
-  { title: 'Amortiguadores', image: 'amortiguadores-suspensiones.webp', alt: 'Componentes de suspensión de bicicleta', description: 'Cuidado del sistema de aire e hidráulico.', service: 'Suspensiones' },
-  { title: 'Tijas telescópicas', image: 'tijas-suspensiones.webp', alt: 'Detalle de una tija telescópica', description: 'Mantenimiento y ajuste de funcionamiento.', service: 'Tijas telescópicas' },
-  { title: 'Setup y ajustes', image: 'setup-suspensiones.webp', alt: 'Detalle de los componentes de una bicicleta', description: 'Presión, SAG, rebote y compresión.', service: 'Suspensiones' },
-  { title: 'Tuning', image: 'tuning-suspensiones.webp', alt: 'Detalle de una suspensión de bicicleta', description: 'Configuración adaptada a tu forma de rodar.', service: 'Suspensiones' },
-  { title: 'Mantenimiento completo', image: 'mantenimiento-suspensiones.webp', alt: 'Zona de trabajo de suspensiones del taller', description: 'Limpieza, lubricación y revisión de componentes.', service: 'Suspensiones' },
-];
-// Marcas confirmadas en los recursos del proyecto; no equivalen a certificaciones.
-const brands = [
-  { name: 'Öhlins', image: 'ohlins-monocromo.png', white: true },
-  { name: 'RockShox', image: 'rockshox.webp', white: false },
-  { name: 'FOX', image: 'fox.webp', white: false },
-  { name: 'Cane Creek', image: 'cane-creek.webp', white: false },
-  { name: 'DT Swiss', image: 'dt-swiss.webp', white: false },
-];
-const faqs = [
-  ['¿Cuándo necesita mantenimiento mi suspensión?', 'Depende del modelo, las horas de uso y las condiciones en las que ruedas. Tomo como referencia las indicaciones del fabricante y reviso el estado de tu suspensión para orientarte sobre el mantenimiento que necesita.'],
-  ['¿Qué incluye una revisión?', 'Primero valoro el estado del componente. Según el servicio acordado, realizo limpieza, lubricación, revisión de los elementos internos y sustitución de las piezas necesarias. Te explico el alcance del trabajo antes de intervenir.'],
-  ['¿Puedes ajustar el SAG, el rebote y la compresión?', 'Sí. Reviso los ajustes disponibles en tu suspensión y adapto la configuración a tu peso, tu bicicleta y tu forma de rodar.'],
-  ['¿Atiendes mi marca y modelo?', 'Indícame la marca, el modelo y el mantenimiento o ajuste que necesitas. Confirmo el servicio disponible y la disponibilidad de recambios antes de concertar la intervención.'],
-  ['¿Debo traer la bici completa o el componente?', 'Depende del trabajo. Para valorar el comportamiento y realizar ajustes de conjunto puede ser necesario traer la bicicleta. Consúltame antes de desmontar o traer el componente y te indicaré cómo preparar la visita.'],
-];
 ---
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#050505" />
-    <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
-    {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="On Cycles" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    {canonical && <meta property="og:url" content={canonical} />}
-  </head>
-  <body class="oc-services-page oc-suspension-page">
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <Cabecera />
-    <main id="contenido">
-      <section class="oc-services-hero" id="inicio" aria-labelledby="suspension-h1">
-        <img class="oc-services-hero__image" src={heroSrc} alt="Suspensión de bicicleta en el taller On Cycles" width="1672" height="941" loading="eager" fetchpriority="high" />
-        <div class="oc-services-container oc-services-hero__content">
-          <h1 class="oc-services-eyebrow" id="suspension-h1">Servicio de suspensiones de bicicleta en Barcelona</h1>
-          <p class="oc-services-hero__title">Más control.<br /><span>Mejores sensaciones.</span></p>
-          <p class="oc-services-hero__intro">Revisión, mantenimiento y ajuste de horquillas y amortiguadores. Me ocupo de tu suspensión para que responda a tu forma de rodar.</p>
-          <div class="oc-services-actions">
-            <a class="button" href="#reserva" data-booking-service="Suspensiones">Solicita tu cita <span aria-hidden="true">↗</span></a>
-            <a class="button button-white" href="#cuidado-suspension">Explora el servicio <span aria-hidden="true">↓</span></a>
+
+<ServiceLayout
+  page={suspensionPage}
+  hero={suspensionHero}
+  headingId="suspension-h1"
+  bodyClass="oc-services-page oc-suspension-page"
+  certificates={[{ name: 'Öhlins', src: siteImages.ohlins }]}
+  faqs={faqs}
+  faqHeadingId="suspension-faq-title"
+  defaultService="Suspensiones"
+>
+  <nav class="oc-services-container oc-suspension-breadcrumb" aria-label="Ruta de navegación">
+    <ol>
+      <li>
+        <a href={base}>Inicio</a>
+      </li>
+      <li>
+        <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
+      </li>
+      <li>
+        <span aria-current="page">Suspensiones</span>
+      </li>
+    </ol>
+  </nav>
+
+  <section
+    class="oc-services-container oc-services-section oc-suspension-intro"
+    aria-labelledby="suspension-intro-title"
+  >
+    <div>
+      <p class="oc-services-eyebrow">Especialista en suspensiones</p>
+      <h2 class="oc-services-display" id="suspension-intro-title">
+        Cada ajuste.
+        <br />
+        <span>Se nota en el camino.</span>
+      </h2>
+    </div>
+    <div class="oc-suspension-intro__text">
+      <p>
+        Una suspensión bien mantenida aporta sensibilidad, apoyo y control. Reviso su estado y te
+        explico qué necesita antes de intervenir.
+      </p>
+      <ul class="oc-suspension-benefits">
+        <li>Sensibilidad</li>
+        <li>Estabilidad</li>
+        <li>Confianza</li>
+      </ul>
+    </div>
+  </section>
+
+  <section
+    class="oc-services-container oc-services-section oc-suspension-specialties"
+    id="cuidado-suspension"
+    aria-labelledby="suspension-specialties-title"
+  >
+    <p class="oc-services-eyebrow">Cuidado para cada componente</p>
+    <h2 class="oc-services-display" id="suspension-specialties-title">
+      Tu suspensión.
+      <br />
+      <span>Al detalle.</span>
+    </h2>
+    <div class="oc-suspension-grid">
+      {specialties.map((item, index) => (
+        <article class="oc-suspension-card">
+          <img
+            src={image(item.image)}
+            alt={item.alt}
+            width="800"
+            height="450"
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="oc-suspension-card__body">
+            <h3>
+              <a
+                href="#reserva"
+                data-booking-service={item.service}
+                data-booking-detail={`Suspensiones · ${item.title}`}
+              >
+                <span class="oc-suspension-card__number" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {item.title}
+                <span class="oc-suspension-card__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            </h3>
+            <p>{item.description}</p>
           </div>
-          <p class="oc-services-hero__signature">Precisión · Control · Confianza</p>
-        </div>
-      </section>
+        </article>
+      ))}
+    </div>
+    <div class="oc-suspension-cta">
+      <a class="button" href="#reserva" data-booking-service="Suspensiones">
+        Consulta tu suspensión <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
 
-      <div class="oc-services-trust" aria-label="Atención personal y certificación del servicio">
-        <div class="oc-services-container oc-services-trust__inner">
-          <p>Atención personal de Alfredo</p><p>Desde 2006</p>
-          <p>Servicio técnico certificado</p>
-          <div class="oc-services-trust__logos">
-            <div class="oc-services-trust__logo"><img src={asset('images/OHLINS.png')} alt="Öhlins" width="500" height="500" loading="lazy" /></div>
-          </div>
-        </div>
-      </div>
+  <Workflow
+    headingId="suspension-workflow-title"
+    line1="Un proceso técnico."
+    steps={workflowSteps}
+  />
 
-      <nav class="oc-services-container oc-suspension-breadcrumb" aria-label="Ruta de navegación">
-        <ol><li><a href={base}>Inicio</a></li><li><a href={asset('reparacion-bicicletas-barcelona/')}>Servicios</a></li><li><span aria-current="page">Suspensiones</span></li></ol>
-      </nav>
-
-      <section class="oc-services-container oc-services-section oc-suspension-intro" aria-labelledby="suspension-intro-title">
-        <div>
-          <p class="oc-services-eyebrow">Especialista en suspensiones</p>
-          <h2 class="oc-services-display" id="suspension-intro-title">Cada ajuste.<br /><span>Se nota en el camino.</span></h2>
-        </div>
-        <div class="oc-suspension-intro__text">
-          <p>Una suspensión bien mantenida aporta sensibilidad, apoyo y control. Reviso su estado y te explico qué necesita antes de intervenir.</p>
-          <ul class="oc-suspension-benefits"><li>Sensibilidad</li><li>Estabilidad</li><li>Confianza</li></ul>
-        </div>
-      </section>
-
-      <section class="oc-services-container oc-services-section oc-suspension-specialties" id="cuidado-suspension" aria-labelledby="suspension-specialties-title">
-        <p class="oc-services-eyebrow">Cuidado para cada componente</p>
-        <h2 class="oc-services-display" id="suspension-specialties-title">Tu suspensión.<br /><span>Al detalle.</span></h2>
-        <div class="oc-suspension-grid">
-          {specialties.map((item, index) => (
-            <article class="oc-suspension-card">
-              <img src={asset(`images/${item.image}`)} alt={item.alt} width="800" height="450" loading="lazy" decoding="async" />
-              <div class="oc-suspension-card__body">
-                <h3><a href="#reserva" data-booking-service={item.service} data-booking-detail={`Suspensiones · ${item.title}`}><span class="oc-suspension-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{item.title}<span class="oc-suspension-card__arrow" aria-hidden="true">↗</span></a></h3>
-                <p>{item.description}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div class="oc-suspension-cta"><a class="button" href="#reserva" data-booking-service="Suspensiones">Consulta tu suspensión <span aria-hidden="true">↗</span></a></div>
-      </section>
-
-      <section class="oc-services-container oc-services-section oc-workflow" id="asi-trabajo" aria-labelledby="suspension-workflow-title">
-        <p class="oc-services-eyebrow">Así trabajo</p>
-        <h2 class="oc-services-display" id="suspension-workflow-title">Un proceso técnico.<br /><span>Con criterio.</span></h2>
-        <ol class="oc-workflow__steps">
-          <li><span class="oc-workflow__number" aria-hidden="true">01</span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8" /><path d="m19 19 9 9" /></svg><h3>Diagnóstico</h3><p>Reviso el estado y el funcionamiento de tu suspensión.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">02</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 6H6v23h20V6h-5M12 3h8v7h-8zM11 19l4 4 7-9" /></svg><h3>Mantenimiento</h3><p>Limpio, lubrico y reviso los componentes según el servicio acordado.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">03</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 3a9 9 0 0 0-11 11L4 26a2 2 0 0 0 3 3l12-12A9 9 0 0 0 30 6l-6 6-5-5z" /></svg><h3>Ajuste</h3><p>Adapto la configuración a tu peso y a tu forma de rodar.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">04</span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" /><path d="m9 16 5 5 10-11" /></svg><h3>Comprobación</h3><p>Verifico la respuesta y realizo las comprobaciones finales antes de la entrega.</p></li>
-        </ol>
-      </section>
-
-      <section class="oc-services-container oc-services-section oc-suspension-brands" aria-labelledby="suspension-brands-title">
-        <p class="oc-services-eyebrow">Principales marcas</p>
-        <div class="oc-suspension-brands__heading"><h2 class="oc-services-display" id="suspension-brands-title">Experiencia<br /><span>con tu suspensión.</span></h2><p>Consulta el servicio disponible para tu marca y modelo.</p></div>
-        <ul class="oc-suspension-brands__list" role="list">
-          {brands.map((brand) => <li><img class:list={['oc-suspension-brand', { 'oc-suspension-brand--white': brand.white }]} src={asset(`images/marcas/${brand.image}`)} alt={brand.name} width={brand.white ? 2144 : 500} height={brand.white ? 736 : 500} loading="lazy" decoding="async" /></li>)}
-        </ul>
-      </section>
-
-      <ProximaSalida />
-
-      <section class="oc-services-container oc-services-section oc-services-faq" id="preguntas" aria-labelledby="suspension-faq-title">
-        <h2 class="oc-services-display" id="suspension-faq-title">Resuelvo<br /><span>tus dudas.</span></h2>
-        <div class="oc-services-faq__list">
-          {faqs.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}
-        </div>
-      </section>
-      <FormularioReserva email={email} />
-    </main>
-    <Footer email={email} homeHref={base} />
-    <script src="../scripts/suspension-bicicleta.js"></script>
-    <script src="../scripts/asi-trabajo.js"></script>
-  </body>
-</html>
+  <section
+    class="oc-services-container oc-services-section oc-suspension-brands"
+    aria-labelledby="suspension-brands-title"
+  >
+    <p class="oc-services-eyebrow">Principales marcas</p>
+    <div class="oc-suspension-brands__heading">
+      <h2 class="oc-services-display" id="suspension-brands-title">
+        Experiencia
+        <br />
+        <span>con tu suspensión.</span>
+      </h2>
+      <p>Consulta el servicio disponible para tu marca y modelo.</p>
+    </div>
+    <ul class="oc-suspension-brands__list" role="list">
+      {brands.map((brand) => (
+        <li>
+          <img
+            class:list={['oc-suspension-brand', { 'oc-suspension-brand--white': brand.white }]}
+            src={image(`marcas/${brand.image}`)}
+            alt={brand.name}
+            width={brand.white ? 2144 : 500}
+            height={brand.white ? 736 : 500}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
+  </section>
+</ServiceLayout>

@@ -47,7 +47,7 @@
 
 /* Capa lateral para asegurar la legibilidad del contenido. */
 .oc-visit::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -64,7 +64,7 @@
 
 /* Fusión superior e inferior con el fondo de la web. */
 .oc-visit::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -98,7 +98,7 @@
 .oc-visit__title {
   margin: 0;
   color: var(--oc-visit-orange);
-  font-family: "Archivo Black", Arial, sans-serif;
+  font-family: 'Archivo Black', Arial, sans-serif;
   font-size: clamp(34px, 3.6vw, 64px);
   font-weight: 400;
   line-height: 1.02;
@@ -142,7 +142,7 @@
 
 .oc-visit__number {
   color: var(--oc-visit-orange);
-  font-family: "Archivo Black", Arial, sans-serif;
+  font-family: 'Archivo Black', Arial, sans-serif;
   font-size: clamp(26px, 2.3vw, 40px);
   font-weight: 400;
   line-height: 1.1;
@@ -299,136 +299,187 @@
 
 /* Tipografía trasladada del componente: HTML, CSS y JS separados. */
 
-  /* Tipografía de la sección. Las variables siguen el sistema global;
+/* Tipografía de la sección. Las variables siguen el sistema global;
      los valores alternativos permiten usar el componente por separado. */
+#tu-visita .oc-visit__eyebrow {
+  font-family: var(--oc-font-heading, Arial, sans-serif);
+  font-size: var(--oc-font-h2, 14px);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Mensaje visual: primera línea blanca y continuación naranja. */
+#tu-visita .oc-visit__title {
+  font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif);
+  font-weight: 400;
+  color: var(--orange, #ff5a1f);
+}
+
+#tu-visita .oc-visit__title > .oc-heading-white {
+  color: #ffffff;
+}
+
+#tu-visita .oc-visit__title > .oc-heading-orange {
+  color: var(--orange, #ff5a1f);
+}
+
+#tu-visita .oc-visit__intro,
+#tu-visita .oc-visit__step-description {
+  font-family: var(--oc-font-text, 'Inter', Arial, sans-serif);
+  font-size: var(--oc-font-body, 18px);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Párrafos destacados de los pasos: independientes de los H3 globales. */
+#tu-visita.oc-visit p.oc-visit__step-heading {
+  margin: 0;
+  font-family: var(--oc-font-text, 'Inter', Arial, sans-serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+#tu-visita .oc-visit__cta {
+  font-family: var(--oc-font-text, 'Inter', Arial, sans-serif);
+  font-size: var(--oc-font-cta, 12px);
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+/* Tablet */
+@media (min-width: 701px) and (max-width: 1024px) {
+  #tu-visita .oc-visit__intro,
+  #tu-visita .oc-visit__step-description {
+    font-size: var(--oc-font-body, 17px);
+  }
+
+  #tu-visita.oc-visit p.oc-visit__step-heading {
+    font-size: 22px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 700px) {
   #tu-visita .oc-visit__eyebrow {
-    font-family: var(--oc-font-heading, Arial, sans-serif);
-    font-size: var(--oc-font-h2, 14px);
-    font-weight: 800;
-    line-height: 1.5;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #ffffff;
-  }
-
-  /* Mensaje visual: primera línea blanca y continuación naranja. */
-  #tu-visita .oc-visit__title {
-    font-family: var(--oc-font-display, "Archivo Black", Arial, sans-serif);
-    font-weight: 400;
-    color: var(--orange, #ff5a1f);
-  }
-
-  #tu-visita .oc-visit__title > .oc-heading-white {
-    color: #ffffff;
-  }
-
-  #tu-visita .oc-visit__title > .oc-heading-orange {
-    color: var(--orange, #ff5a1f);
+    letter-spacing: 0.08em;
   }
 
   #tu-visita .oc-visit__intro,
   #tu-visita .oc-visit__step-description {
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: var(--oc-font-body, 18px);
-    font-weight: 400;
-    line-height: 1.65;
-    letter-spacing: normal;
-    text-transform: none;
+    font-size: var(--oc-font-body, 16px);
   }
 
-  /* Párrafos destacados de los pasos: independientes de los H3 globales. */
   #tu-visita.oc-visit p.oc-visit__step-heading {
-    margin: 0;
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: 24px;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1.25;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-    overflow-wrap: break-word;
+    font-size: 20px;
   }
-
-  #tu-visita .oc-visit__cta {
-    font-family: var(--oc-font-text, "Inter", Arial, sans-serif);
-    font-size: var(--oc-font-cta, 12px);
-    font-weight: 800;
-    line-height: 1.4;
-    letter-spacing: normal;
-  }
-
-  /* Tablet */
-  @media (min-width: 701px) and (max-width: 1024px) {
-    #tu-visita .oc-visit__intro,
-    #tu-visita .oc-visit__step-description {
-      font-size: var(--oc-font-body, 17px);
-    }
-
-    #tu-visita.oc-visit p.oc-visit__step-heading {
-      font-size: 22px;
-    }
-  }
-
-  /* Móvil */
-  @media (max-width: 700px) {
-    #tu-visita .oc-visit__eyebrow {
-      letter-spacing: 0.08em;
-    }
-
-    #tu-visita .oc-visit__intro,
-    #tu-visita .oc-visit__step-description {
-      font-size: var(--oc-font-body, 16px);
-    }
-
-    #tu-visita.oc-visit p.oc-visit__step-heading {
-      font-size: 20px;
-    }
-  }
+}
 
 /* ==================================================
    SECUENCIA DE SCROLL · V1
    Solo se fija si todo el contenido cabe en pantalla.
 ================================================== */
-.oc-visit-scroll { position: relative; background: #050505; }
+.oc-visit-scroll {
+  position: relative;
+  background: #050505;
+}
 .oc-visit .oc-visit__canvas {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%; display: none; pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
 }
-.oc-visit-scroll[data-visit-active] { height: var(--visit-total); }
+.oc-visit-scroll[data-visit-active] {
+  height: var(--visit-total);
+}
 .oc-visit-scroll[data-visit-active] > .oc-visit {
-  position: sticky; top: 0; height: var(--visit-height);
-  min-height: 0; padding-block: 28px; display: flex; align-items: center;
+  position: sticky;
+  top: 0;
+  height: var(--visit-height);
+  min-height: 0;
+  padding-block: 28px;
+  display: flex;
+  align-items: center;
 }
-.oc-visit-scroll[data-visit-active] .oc-visit__canvas { display: block; }
-.oc-visit-scroll[data-visit-active] .oc-visit__content { margin-block: 0; }
+.oc-visit-scroll[data-visit-active] .oc-visit__canvas {
+  display: block;
+}
+.oc-visit-scroll[data-visit-active] .oc-visit__content {
+  margin-block: 0;
+}
 .oc-visit-scroll[data-visit-active] [data-visit-reveal] {
   opacity: var(--visit-opacity, 1);
   transform: translateY(var(--visit-shift, 0px));
 }
-.oc-visit-scroll[data-visit-active] .oc-visit__steps { margin-top: 20px; }
-.oc-visit-scroll[data-visit-active] .oc-visit__step { padding-block: 12px; }
-.oc-visit-scroll[data-visit-active] .oc-visit__eyebrow { margin-bottom: 16px; }
-.oc-visit-scroll[data-visit-active] .oc-visit__cta { margin-top: 20px; }
+.oc-visit-scroll[data-visit-active] .oc-visit__steps {
+  margin-top: 20px;
+}
+.oc-visit-scroll[data-visit-active] .oc-visit__step {
+  padding-block: 12px;
+}
+.oc-visit-scroll[data-visit-active] .oc-visit__eyebrow {
+  margin-bottom: 16px;
+}
+.oc-visit-scroll[data-visit-active] .oc-visit__cta {
+  margin-top: 20px;
+}
 .oc-visit-scroll[data-visit-active] .oc-visit__cta[data-visit-hidden] {
-  visibility: hidden; pointer-events: none;
+  visibility: hidden;
+  pointer-events: none;
 }
 @media (max-width: 700px) {
-  .oc-visit-scroll[data-visit-active] > .oc-visit { padding-block: 24px; }
-  .oc-visit-scroll[data-visit-active] .oc-visit__content { width: 100%; }
-  .oc-visit-scroll[data-visit-active] .oc-visit__background { height: 100%; }
-  .oc-visit-scroll[data-visit-active] .oc-visit::before {
-    height: 100%; background: rgba(5,5,5,.72);
+  .oc-visit-scroll[data-visit-active] > .oc-visit {
+    padding-block: 24px;
   }
-  .oc-visit-scroll[data-visit-active] .oc-visit__title { font-size: clamp(28px, 7vw, 38px); }
-  .oc-visit-scroll[data-visit-active] .oc-visit__intro { margin-top: 16px; }
+  .oc-visit-scroll[data-visit-active] .oc-visit__content {
+    width: 100%;
+  }
+  .oc-visit-scroll[data-visit-active] .oc-visit__background {
+    height: 100%;
+  }
+  .oc-visit-scroll[data-visit-active] .oc-visit::before {
+    height: 100%;
+    background: rgba(5, 5, 5, 0.72);
+  }
+  .oc-visit-scroll[data-visit-active] .oc-visit__title {
+    font-size: clamp(28px, 7vw, 38px);
+  }
+  .oc-visit-scroll[data-visit-active] .oc-visit__intro {
+    margin-top: 16px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .oc-visit-scroll { height: auto !important; }
-  .oc-visit-scroll[data-visit-active] > .oc-visit { position: relative; height: auto; }
-  .oc-visit-scroll [data-visit-reveal] { opacity: 1 !important; transform: none !important; }
+  .oc-visit-scroll {
+    height: auto !important;
+  }
+  .oc-visit-scroll[data-visit-active] > .oc-visit {
+    position: relative;
+    height: auto;
+  }
+  .oc-visit-scroll [data-visit-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* V1.1: evitar que el anclaje automático altere el scroll de la escena. */
 .oc-visit-scroll,
-.oc-visit-scroll > .oc-visit { overflow-anchor: none; }
-.oc-visit-scroll[data-visit-active] > .oc-visit { flex-shrink: 0; }
+.oc-visit-scroll > .oc-visit {
+  overflow-anchor: none;
+}
+.oc-visit-scroll[data-visit-active] > .oc-visit {
+  flex-shrink: 0;
+}

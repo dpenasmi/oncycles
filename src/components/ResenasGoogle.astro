@@ -1,250 +1,299 @@
-<oc-manual-carousel>
-<section class="oc-resenas" aria-labelledby="oc-resenas-titulo">
-  <div class="oc-resenas__container oc-carousel-container">
-    <h2 id="oc-resenas-titulo" class="oc-resenas__etiqueta">Opiniones de mis clientes</h2>
+---
+import '../styles/resenas-google.css';
+---
 
-    <div class="oc-resenas__cabecera">
-      <p class="oc-resenas__titular">
-        La confianza<br />
-        <span>también se comparte.</span>
-      </p>
-      <div class="oc-resenas__intro">
-        <p class="oc-resenas__autoridad"><strong>+190</strong> reseñas en Google</p>
-        <p>Quienes me confían su bici cuentan su experiencia.</p>
-        <a class="oc-resenas__enlace" href="https://www.google.com/search?q=on+cycles&amp;si=AE1YtOqiKPb2pdLXAi8quZ9vbH4aVq_aX8-3H9iFBLpRNK95cw_HfTft_9r1rzDuEcFuHSG9FIBBZLmI0q110oOXGCvYzzjsBOLEI8kcPB7O4q3lzV3vWMk%3D" target="_blank" rel="noopener noreferrer">
-          Ver las reseñas en Google <span aria-hidden="true">↗</span>
-        </a>
+<oc-manual-carousel data-oc-resenas-google>
+  <section data-oc-resenas-google class="oc-resenas" aria-labelledby="oc-resenas-titulo">
+    <div data-oc-resenas-google class="oc-resenas__container oc-carousel-container">
+      <h2 data-oc-resenas-google id="oc-resenas-titulo" class="oc-resenas__etiqueta">
+        Opiniones de mis clientes
+      </h2>
+
+      <div data-oc-resenas-google class="oc-resenas__cabecera">
+        <p data-oc-resenas-google class="oc-resenas__titular">
+          La confianza
+          <br data-oc-resenas-google />
+          <span data-oc-resenas-google>también se comparte.</span>
+        </p>
+        <div data-oc-resenas-google class="oc-resenas__intro">
+          <p data-oc-resenas-google class="oc-resenas__autoridad">
+            <strong data-oc-resenas-google>+190</strong> reseñas en Google
+          </p>
+          <p data-oc-resenas-google>Quienes me confían su bici cuentan su experiencia.</p>
+          <a
+            data-oc-resenas-google
+            class="oc-resenas__enlace"
+            href="https://www.google.com/search?q=on+cycles&amp;si=AE1YtOqiKPb2pdLXAi8quZ9vbH4aVq_aX8-3H9iFBLpRNK95cw_HfTft_9r1rzDuEcFuHSG9FIBBZLmI0q110oOXGCvYzzjsBOLEI8kcPB7O4q3lzV3vWMk%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver las reseñas en Google{' '}
+            <span data-oc-resenas-google aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div data-oc-resenas-google class="oc-resenas__controles oc-carousel-controls" hidden>
+        <div
+          data-oc-resenas-google
+          class="oc-resenas__dots oc-carousel-dots"
+          role="group"
+          aria-label="Posiciones del carrusel"
+        >
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="0"
+            aria-label="Ir a la posición 1"
+            aria-current="true"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="1"
+            aria-label="Ir a la posición 2"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="2"
+            aria-label="Ir a la posición 3"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="3"
+            aria-label="Ir a la posición 4"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="4"
+            aria-label="Ir a la posición 5"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="5"
+            aria-label="Ir a la posición 6"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+          <button
+            data-oc-resenas-google
+            type="button"
+            data-oc-dot="6"
+            aria-label="Ir a la posición 7"
+          >
+            <span data-oc-resenas-google aria-hidden="true"></span>
+          </button>
+        </div>
+        <button
+          data-oc-resenas-google
+          type="button"
+          class="oc-resenas__flecha oc-carousel-arrow"
+          data-oc-direction="-1"
+          aria-label="Reseña anterior"
+          disabled
+        >
+          <span data-oc-resenas-google aria-hidden="true">
+            ←
+          </span>
+        </button>
+        <button
+          data-oc-resenas-google
+          type="button"
+          class="oc-resenas__flecha oc-carousel-arrow"
+          data-oc-direction="1"
+          aria-label="Reseña siguiente"
+        >
+          <span data-oc-resenas-google aria-hidden="true">
+            →
+          </span>
+        </button>
+      </div>
+      <div
+        data-oc-resenas-google
+        class="oc-resenas__carrusel-pista oc-carousel-track"
+        data-oc-track
+        tabindex="0"
+        role="region"
+        aria-label="Reseñas de clientes; utiliza las flechas para recorrerlas"
+      >
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Me habían recomendado este taller unos amigos para arreglar la suspensión. Alfredo me
+              aconsejo y me dio todas las explicaciones pertinentes. Volveré otra vez. Taller
+              espectacular, nunca había visto otro igual.»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Montserrat</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «El mejor taller de bicis de la zona. No solo repararon la avería de los
+              amortiguadores a la perfección, sino que Alfredo se tomó el tiempo necesario para
+              darme consejos de mantenimiento muy útiles. Es honesto y muy profesional. Un servicio
+              de 5 estrellas. Volveré.»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Ainara García correa</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Súper buena experiencia en esta tienda. Me trataron genial y el servicio fue de
+              primera. ¡Cien por cien recomendable!»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Mikeldi Cesteros</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Excelente en todo, servicio, rapidez.
+              <br data-oc-resenas-google />
+              Y sobretodo Alfredo un gran profesional.
+              <br data-oc-resenas-google />
+              Te da todas las explicaciones posibles.
+              <br data-oc-resenas-google />
+              Me dejó el amortiguador como nuevo.
+              <br data-oc-resenas-google />
+              <br data-oc-resenas-google />
+              Recomiendo el sitio 100%.»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Cortines Montse</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Un buen mecánico que disfruta de su trabajo, un taller ejemplar,muy profesional y
+              buen trato hacia el cliente»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Manuel Corral Mariño</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Alfredo sabe lo que hace, muy buen servicio, soluciones y consejos para la bici. Mi
+              taller de confianza en Barcelona»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Natalia Gómez Villaverde</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
+
+        <figure data-oc-resenas-google class="oc-resenas__card">
+          <div
+            data-oc-resenas-google
+            class="oc-resenas__estrellas"
+            role="img"
+            aria-label="5 de 5 estrellas"
+          >
+            ★★★★★
+          </div>
+          <blockquote data-oc-resenas-google>
+            <p data-oc-resenas-google>
+              «Hoy he ido a retirar mi bicicleta eléctrica y fui atendida por Alfredo, excelente
+              chico, muy amable y atento. Se tomó el tiempo sin prisas de explicarme todo lo
+              necesario de mi bicicleta, y no solo eso sino que me ayudó a guardarla en mi coche .
+              100% recomendado!!!»
+            </p>
+          </blockquote>
+          <figcaption data-oc-resenas-google>
+            <strong data-oc-resenas-google>Andrea De Sousa</strong>
+            <span data-oc-resenas-google>Reseña · Google</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
-
-    <div class="oc-resenas__controles oc-carousel-controls" hidden>
-      <div class="oc-resenas__dots oc-carousel-dots" role="group" aria-label="Posiciones del carrusel">
-        <button type="button" data-oc-dot="0" aria-label="Ir a la posición 1" aria-current="true"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="1" aria-label="Ir a la posición 2"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="2" aria-label="Ir a la posición 3"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="3" aria-label="Ir a la posición 4"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="4" aria-label="Ir a la posición 5"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="5" aria-label="Ir a la posición 6"><span aria-hidden="true"></span></button>
-        <button type="button" data-oc-dot="6" aria-label="Ir a la posición 7"><span aria-hidden="true"></span></button>
-      </div>
-      <button type="button" class="oc-resenas__flecha oc-carousel-arrow" data-oc-direction="-1" aria-label="Reseña anterior" disabled><span aria-hidden="true">←</span></button>
-      <button type="button" class="oc-resenas__flecha oc-carousel-arrow" data-oc-direction="1" aria-label="Reseña siguiente"><span aria-hidden="true">→</span></button>
-    </div>
-    <div class="oc-resenas__carrusel-pista oc-carousel-track" data-oc-track tabindex="0" role="region" aria-label="Reseñas de clientes; utiliza las flechas para recorrerlas">
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«Me habían recomendado este taller unos amigos para arreglar la suspensión.
-        Alfredo me aconsejo y me dio todas las explicaciones pertinentes.
-        Volveré otra vez. Taller espectacular, nunca había visto otro igual.»</p></blockquote>
-        <figcaption><strong>Montserrat</strong><span>Reseña · Google</span></figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«El mejor taller de bicis de la zona. No solo repararon la avería de los amortiguadores a la perfección, sino que Alfredo se tomó el tiempo necesario para darme consejos de mantenimiento muy útiles. Es honesto y muy profesional. Un servicio de 5 estrellas. Volveré.»</p></blockquote>
-        <figcaption><strong>Ainara García correa</strong><span>Reseña · Google</span></figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«Súper buena experiencia en esta tienda. Me trataron genial y el servicio fue de primera. ¡Cien por cien recomendable!»</p></blockquote>
-        <figcaption><strong>Mikeldi Cesteros</strong><span>Reseña · Google</span></figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote>
-          <p>«Excelente en todo, servicio, rapidez.<br />
-          Y sobretodo Alfredo un gran profesional.<br />
-          Te da todas las explicaciones posibles.<br />
-          Me dejó el amortiguador como nuevo.<br /><br />
-          Recomiendo el sitio 100%.»</p>
-        </blockquote>
-        <figcaption>
-          <strong>Cortines Montse</strong>
-          <span>Reseña · Google</span>
-        </figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«Un buen mecánico que disfruta de su trabajo, un taller ejemplar,muy profesional y buen trato hacia el cliente»</p></blockquote>
-        <figcaption><strong>Manuel Corral Mariño</strong><span>Reseña · Google</span></figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«Alfredo sabe lo que hace, muy buen servicio, soluciones y consejos para la bici. Mi taller de confianza en Barcelona»</p></blockquote>
-        <figcaption><strong>Natalia Gómez Villaverde</strong><span>Reseña · Google</span></figcaption>
-      </figure>
-
-      <figure class="oc-resenas__card">
-        <div class="oc-resenas__estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-        <blockquote><p>«Hoy he ido a retirar mi bicicleta eléctrica y fui atendida por Alfredo, excelente chico, muy amable y atento. Se tomó el tiempo sin prisas de explicarme todo lo necesario de mi bicicleta, y no solo eso sino que me ayudó a guardarla en mi coche . 100% recomendado!!!»</p></blockquote>
-        <figcaption>
-          <strong>Andrea De Sousa</strong>
-          <span>Reseña · Google</span>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
+  </section>
 </oc-manual-carousel>
-
-<style>
-  oc-manual-carousel { display: block; }
-
-  .oc-resenas .oc-resenas__autoridad {
-    margin-bottom: 12px;
-    color: #fff;
-    font-weight: 800;
-  }
-  .oc-resenas__autoridad strong {
-    color: #ff5a1f;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 1;
-  }
-  .oc-resenas__carrusel-pista:focus-visible { outline: 2px solid #ff5a1f; outline-offset: 3px; }
-
-  .oc-resenas {
-    background: #050505;
-    color: #fff;
-    padding-block: clamp(48px, 6vw, 96px);
-  }
-
-  .oc-resenas__container { width: 92%; max-width: 1760px; margin-inline: auto; }
-
-  .oc-resenas .oc-resenas__etiqueta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 24px;
-    padding: 0;
-    color: #fff;
-    font: 800 14px/1.5 Arial, sans-serif;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .oc-resenas .oc-resenas__etiqueta::before {
-    content: "";
-    position: static;
-    flex: 0 0 6px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #ff5a1f;
-    transform: none;
-  }
-
-  .oc-resenas__cabecera {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: end;
-    gap: 32px;
-    margin-bottom: 32px;
-  }
-
-  .oc-resenas .oc-resenas__titular {
-    margin: 0;
-    color: #fff;
-    font-family: "Archivo Black", Arial, sans-serif;
-    font-size: clamp(32px, 3.4vw, 52px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    text-transform: uppercase;
-  }
-
-  .oc-resenas__titular span { color: #ff5a1f; }
-
-  .oc-resenas__intro p,
-  .oc-resenas__card blockquote p {
-    margin: 0;
-    color: #eee;
-    font: 400 18px/1.65 Inter, Arial, sans-serif;
-    text-transform: none;
-    letter-spacing: normal;
-  }
-
-  .oc-resenas__enlace {
-    display: inline-flex;
-    align-items: center;
-    gap: 18px;
-    min-height: 44px;
-    margin-top: 12px;
-    color: #fff;
-    font: 800 12px/1.5 Inter, Arial, sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-
-  .oc-resenas__enlace span { color: #ff5a1f; font-size: 22px; }
-  .oc-resenas__enlace:hover { color: #ff5a1f; }
-  .oc-resenas__enlace:focus-visible { outline: 2px solid #ff5a1f; outline-offset: 4px; }
-
-  .oc-resenas .oc-resenas__carrusel-pista {
-    --visibles: 3;
-    --gap: 24px;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: stretch;
-    gap: var(--gap);
-    width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    
-    padding-block: 4px 12px;
-  }
-
-  .oc-resenas .oc-resenas__carrusel-pista > .oc-resenas__card {
-    flex: 0 0 calc((100% - (var(--visibles) - 1) * var(--gap)) / var(--visibles));
-    width: auto;
-    max-width: none;
-    box-sizing: border-box;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    margin: 0;
-    padding: 28px;
-    border: 1px solid #333;
-    background: #101010;
-  }
-
-  .oc-resenas__estrellas { margin-bottom: 20px; color: #ff5a1f; font-size: 20px; letter-spacing: 0.15em; }
-  .oc-resenas__card blockquote { flex: 1; margin: 0 0 28px; padding: 0; border: 0; }
-  .oc-resenas__card figcaption { display: grid; gap: 6px; font-family: Inter, Arial, sans-serif; }
-  .oc-resenas__card figcaption strong { color: #fff; font-size: 16px; font-weight: 800; }
-  .oc-resenas__card figcaption a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
-  .oc-resenas__card figcaption a:hover { color: #ff5a1f; }
-  .oc-resenas__card figcaption a:focus-visible { outline: 2px solid #ff5a1f; outline-offset: 4px; }
-  .oc-resenas__card figcaption span { color: #bdbdbd; font-size: 12px; line-height: 1.5; }
-
-  @media (max-width: 1024px) {
-    .oc-resenas__cabecera { grid-template-columns: 1fr; gap: 20px; }
-    .oc-resenas .oc-resenas__carrusel-pista { --visibles: 2; --gap: 20px; }
-    .oc-resenas__intro p,
-    .oc-resenas__card blockquote p { font-size: 17px; }
-  }
-
-  @media (max-width: 600px) {
-    .oc-resenas__container { width: calc(100% - 40px); }
-    .oc-resenas .oc-resenas__carrusel-pista { --visibles: 1; --gap: 16px; }
-    .oc-resenas .oc-resenas__carrusel-pista > .oc-resenas__card {
-    flex: 0 0 calc((100% - (var(--visibles) - 1) * var(--gap)) / var(--visibles));
-    width: auto;
-    max-width: none;
-    box-sizing: border-box;
-    scroll-snap-align: start;
-    scroll-snap-stop: always; padding: 24px; }
-    .oc-resenas__intro p,
-    .oc-resenas__card blockquote p { font-size: 16px; }
-  }
-</style>
 
 <script src="../scripts/manual-carousel.js"></script>

@@ -1,153 +1,273 @@
 ---
-import Cabecera from "../components/Cabecera.astro";
-import '../styles/global.css';
-import '../styles/brand.css';
-import ProximaSalida from '../components/ProximaSalida.astro';
-import FormularioReserva from '../components/FormularioReserva.astro';
-import Footer from '../components/Footer.astro';
-import { email } from '../data/content.js';
-import '../styles/servicios.css';
-import '../styles/asi-trabajo.css';
-
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
-const home = base;
-const asset = (path: string) => `${base}${path}`;
-const title = 'Reparación de bicicletas en Barcelona · On Cycles';
-const description = 'Servicio técnico especializado para bicicletas de alta gama en Barcelona. Revisiones, suspensiones, frenos, transmisión y E-Bike con atención personal de Alfredo.';
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
-// Fotografía del taller ya utilizada en la HOME. Cambia sólo esta ruta si deseas otra.
-const heroSrc = asset('images/SERVICIO-TECNICO-ONCYLES.webp');
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { withBase } from '../lib/paths.js';
+import { image } from '../data/images.js';
+import Workflow from '../components/Workflow.astro';
+import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/services.js';
 ---
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#050505" />
-    <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
-    {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:site_name" content="On Cycles" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    {canonical && <meta property="og:url" content={canonical} />}
-  </head>
-  <body class="oc-services-page">
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <Cabecera />
 
-    <main id="contenido">
-      <!-- HERO: ocupa como mínimo el viewport completo, también en móvil. -->
-      <section class="oc-services-hero" id="inicio" aria-labelledby="services-h1">
-        <img class="oc-services-hero__image" src={heroSrc} alt="Alfredo trabajando en una bicicleta en el taller On Cycles" width="1536" height="1024" loading="eager" fetchpriority="high" />
-        <div class="oc-services-container oc-services-hero__content">
-          <h1 class="oc-services-eyebrow" id="services-h1">Reparación y mantenimiento de bicicletas en Barcelona</h1>
-          <p class="oc-services-hero__title">Alta gama.<br /><span>Máximo cuidado.</span></p>
-          <p class="oc-services-hero__intro">Servicio técnico especializado para bicicletas de alta gama. Precisión, rendimiento y atención personal de Alfredo en cada intervención.</p>
-          <div class="oc-services-actions">
-            <a class="button" href="#reserva">Solicita tu cita <span aria-hidden="true">↗</span></a>
-            <a class="button button-white" href="#servicios-especializados">Explora los servicios <span aria-hidden="true">↓</span></a>
+<ServiceLayout
+  page={servicesPage}
+  hero={serviceHero}
+  headingId="services-h1"
+  faqs={serviceFaqs}
+  faqId="preguntas-servicios"
+  faqHeadingId="services-faq-title"
+  faqClass="oc-services-section oc-services-container oc-services-faq"
+>
+  <!-- HERO: ocupa como mínimo el viewport completo, también en móvil. -->
+
+  <!-- Credenciales: recorte de los márgenes transparentes de los PNG. -->
+
+  <!-- SECCIÓN NUEVA: revisiones, sin carrusel ni precios inventados. -->
+  <section
+    class="oc-services-section oc-services-container"
+    id="revisiones"
+    aria-labelledby="revisiones-title"
+  >
+    <h2 class="oc-services-eyebrow" id="revisiones-title">
+      Revisiones y mantenimiento
+    </h2>
+    <p class="oc-services-display">
+      Cuidado a la altura
+      <br />
+      <span>de tu bicicleta.</span>
+    </p>
+    <p class="oc-services-lead">
+      Revisiones adaptadas a las exigencias de tu bicicleta y a tu forma de rodar.
+    </p>
+    <div class="oc-revision-grid">
+      <article class="oc-revision-card">
+        <img
+          src={image('servicio-suspensiones.webp')}
+          alt="Detalle de una horquilla de suspensión"
+          width="800"
+          height="550"
+          loading="lazy"
+        />
+        <div class="oc-revision-card__content">
+          <h3>
+            <span>01 /</span> Revisión básica
+          </h3>
+          <ul>
+            <li>Ajuste general</li>
+            <li>Revisión de seguridad</li>
+            <li>Limpieza básica</li>
+          </ul>
+          <a
+            href="#reserva"
+            data-booking-service="Revisiones"
+            data-booking-detail="Revisión básica"
+          >
+            Consultar revisión <span aria-hidden="true">↗</span>
+            <span class="sr-only"> básica</span>
+          </a>
+        </div>
+      </article>
+      <article class="oc-revision-card">
+        <img
+          src={image('servicio-transmision.webp')}
+          alt="Detalle del cassette y la transmisión"
+          width="800"
+          height="550"
+          loading="lazy"
+        />
+        <div class="oc-revision-card__content">
+          <h3>
+            <span>02 /</span> Revisión intermedia
+          </h3>
+          <ul>
+            <li>Revisión completa</li>
+            <li>Ajustes y lubricación</li>
+            <li>Informe de estado</li>
+          </ul>
+          <a
+            href="#reserva"
+            data-booking-service="Revisiones"
+            data-booking-detail="Revisión intermedia"
+          >
+            Consultar revisión <span aria-hidden="true">↗</span>
+            <span class="sr-only"> intermedia</span>
+          </a>
+        </div>
+      </article>
+      <article class="oc-revision-card">
+        <img
+          src={image('servicio-frenos.webp')}
+          alt="Detalle de un freno de disco"
+          width="800"
+          height="550"
+          loading="lazy"
+        />
+        <div class="oc-revision-card__content">
+          <h3>
+            <span>03 /</span> Revisión completa
+          </h3>
+          <ul>
+            <li>Desmontaje y limpieza</li>
+            <li>Revisión de componentes</li>
+            <li>Puesta a punto avanzada</li>
+          </ul>
+          <a
+            href="#reserva"
+            data-booking-service="Revisiones"
+            data-booking-detail="Revisión completa"
+          >
+            Consultar revisión <span aria-hidden="true">↗</span>
+            <span class="sr-only"> completa</span>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SECCIÓN NUEVA: los ocho servicios permanecen visibles. -->
+  <section
+    class="oc-services-section oc-services-container"
+    id="servicios-especializados"
+    aria-labelledby="specialist-title"
+  >
+    <h2 class="oc-services-eyebrow" id="specialist-title">
+      Servicio técnico especializado
+    </h2>
+    <p class="oc-services-display">
+      Precisión en
+      <br />
+      <span>cada componente.</span>
+    </p>
+    <p class="oc-services-lead">
+      Trabajo personalmente cada bicicleta, con herramientas específicas y criterio técnico.
+    </p>
+    <ul class="oc-specialist-grid">
+      <li>
+        <a href={withBase('suspension-bicicleta/')}>
+          <img
+            src={image('servicio-suspensiones.webp')}
+            alt=""
+            width="400"
+            height="240"
+            loading="lazy"
+          />
+          <div>
+            <h3>Suspensiones</h3>
+            <p>Revisión, mantenimiento y configuración.</p>
           </div>
-          <p class="oc-services-hero__signature">Precisión · Rendimiento · Oficio</p>
-        </div>
-      </section>
-
-      <!-- Credenciales: recorte de los márgenes transparentes de los PNG. -->
-      <div class="oc-services-trust" aria-label="Experiencia y certificaciones del taller">
-        <div class="oc-services-container oc-services-trust__inner">
-          <p>Atención personal de Alfredo</p><p>Desde 2006</p>
-          <p>Servicio técnico certificado</p>
-          <div class="oc-services-trust__logos">
-            <div class="oc-services-trust__logo"><img src={asset('images/OHLINS.png')} alt="Öhlins" width="500" height="500" loading="lazy" /></div>
-            <div class="oc-services-trust__logo"><img src={asset('images/BOSCH.png')} alt="Bosch" width="500" height="500" loading="lazy" /></div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Frenos">
+          <img src={image('servicio-frenos.webp')} alt="" width="400" height="240" loading="lazy" />
+          <div>
+            <h3>Frenos e hidráulica</h3>
+            <p>Ajuste, purgado y sustitución de componentes.</p>
           </div>
-        </div>
-      </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Transmisión">
+          <img
+            src={image('servicio-transmision.webp')}
+            alt=""
+            width="400"
+            height="240"
+            loading="lazy"
+          />
+          <div>
+            <h3>Transmisión</h3>
+            <p>Revisión, ajuste y sustitución de componentes.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Ruedas">
+          <img src={image('servicio-ruedas.webp')} alt="" width="400" height="240" loading="lazy" />
+          <div>
+            <h3>Ruedas</h3>
+            <p>Centrado, tensión y mantenimiento.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Tijas telescópicas">
+          <img src={image('servicio-tijas.webp')} alt="" width="400" height="240" loading="lazy" />
+          <div>
+            <h3>Tijas telescópicas</h3>
+            <p>Revisión, mantenimiento y ajuste del funcionamiento.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Rodamientos y dirección">
+          <img
+            src={image('servicio-rodamientos.webp')}
+            alt=""
+            width="400"
+            height="240"
+            loading="lazy"
+          />
+          <div>
+            <h3>Rodamientos y dirección</h3>
+            <p>Control, limpieza y sustitución.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="E-Bike">
+          <img src={image('servicio-ebike.webp')} alt="" width="400" height="240" loading="lazy" />
+          <div>
+            <h3>E-Bike</h3>
+            <p>Diagnóstico y mantenimiento de e-bikes de alta gama.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#reserva" data-booking-service="Setup y ajustes">
+          <img src={image('servicio-setup.webp')} alt="" width="400" height="240" loading="lazy" />
+          <div>
+            <h3>Puesta a punto y ajustes</h3>
+            <p>Ajustes de posición y funcionamiento según tu uso.</p>
+          </div>
+          <span class="oc-services-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
 
-      <!-- SECCIÓN NUEVA: revisiones, sin carrusel ni precios inventados. -->
-      <section class="oc-services-section oc-services-container" id="revisiones" aria-labelledby="revisiones-title">
-        <h2 class="oc-services-eyebrow" id="revisiones-title">Revisiones y mantenimiento</h2>
-        <p class="oc-services-display">Cuidado a la altura<br /><span>de tu bicicleta.</span></p>
-        <p class="oc-services-lead">Revisiones adaptadas a las exigencias de tu bicicleta y a tu forma de rodar.</p>
-        <div class="oc-revision-grid">
-          <article class="oc-revision-card">
-            <img src={asset('images/servicio-suspensiones.webp')} alt="Detalle de una horquilla de suspensión" width="800" height="550" loading="lazy" />
-            <div class="oc-revision-card__content">
-              <h3><span>01 /</span> Revisión básica</h3>
-              <ul><li>Ajuste general</li><li>Revisión de seguridad</li><li>Limpieza básica</li></ul>
-              <a href="#reserva" data-booking-service="Revisiones" data-booking-detail="Revisión básica">Consultar revisión <span aria-hidden="true">↗</span><span class="sr-only"> básica</span></a>
-            </div>
-          </article>
-          <article class="oc-revision-card">
-            <img src={asset('images/servicio-transmision.webp')} alt="Detalle del cassette y la transmisión" width="800" height="550" loading="lazy" />
-            <div class="oc-revision-card__content">
-              <h3><span>02 /</span> Revisión intermedia</h3>
-              <ul><li>Revisión completa</li><li>Ajustes y lubricación</li><li>Informe de estado</li></ul>
-              <a href="#reserva" data-booking-service="Revisiones" data-booking-detail="Revisión intermedia">Consultar revisión <span aria-hidden="true">↗</span><span class="sr-only"> intermedia</span></a>
-            </div>
-          </article>
-          <article class="oc-revision-card">
-            <img src={asset('images/servicio-frenos.webp')} alt="Detalle de un freno de disco" width="800" height="550" loading="lazy" />
-            <div class="oc-revision-card__content">
-              <h3><span>03 /</span> Revisión completa</h3>
-              <ul><li>Desmontaje y limpieza</li><li>Revisión de componentes</li><li>Puesta a punto avanzada</li></ul>
-              <a href="#reserva" data-booking-service="Revisiones" data-booking-detail="Revisión completa">Consultar revisión <span aria-hidden="true">↗</span><span class="sr-only"> completa</span></a>
-            </div>
-          </article>
-        </div>
-      </section>
+  <!-- SECCIÓN NUEVA: proceso completo, accesible sin JavaScript. -->
+  <Workflow
+    headingId="workflow-title"
+    line1="Cada intervención."
+    steps={workflowSteps}
+    displayHeading={false}
+    sectionClass="oc-services-section oc-services-container oc-workflow"
+  />
 
-      <!-- SECCIÓN NUEVA: los ocho servicios permanecen visibles. -->
-      <section class="oc-services-section oc-services-container" id="servicios-especializados" aria-labelledby="specialist-title">
-        <h2 class="oc-services-eyebrow" id="specialist-title">Servicio técnico especializado</h2>
-        <p class="oc-services-display">Precisión en<br /><span>cada componente.</span></p>
-        <p class="oc-services-lead">Trabajo personalmente cada bicicleta, con herramientas específicas y criterio técnico.</p>
-        <ul class="oc-specialist-grid">
-          <li><a href={asset('suspension-bicicleta/')}><img src={asset('images/servicio-suspensiones.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Suspensiones</h3><p>Revisión, mantenimiento y configuración.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Frenos"><img src={asset('images/servicio-frenos.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Frenos e hidráulica</h3><p>Ajuste, purgado y sustitución de componentes.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Transmisión"><img src={asset('images/servicio-transmision.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Transmisión</h3><p>Revisión, ajuste y sustitución de componentes.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Ruedas"><img src={asset('images/servicio-ruedas.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Ruedas</h3><p>Centrado, tensión y mantenimiento.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Tijas telescópicas"><img src={asset('images/servicio-tijas.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Tijas telescópicas</h3><p>Revisión, mantenimiento y ajuste del funcionamiento.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Rodamientos y dirección"><img src={asset('images/servicio-rodamientos.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Rodamientos y dirección</h3><p>Control, limpieza y sustitución.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="E-Bike"><img src={asset('images/servicio-ebike.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>E-Bike</h3><p>Diagnóstico y mantenimiento de e-bikes de alta gama.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-          <li><a href="#reserva" data-booking-service="Setup y ajustes"><img src={asset('images/servicio-setup.webp')} alt="" width="400" height="240" loading="lazy" /><div><h3>Puesta a punto y ajustes</h3><p>Ajustes de posición y funcionamiento según tu uso.</p></div><span class="oc-services-arrow" aria-hidden="true">↗</span></a></li>
-        </ul>
-      </section>
+  <!-- Componente existente, sin duplicar su contenido. -->
 
-      <!-- SECCIÓN NUEVA: proceso completo, accesible sin JavaScript. -->
-      <section class="oc-services-section oc-services-container oc-workflow" id="asi-trabajo" aria-labelledby="workflow-title">
-        <h2 class="oc-services-eyebrow" id="workflow-title">Así trabajo</h2>
-        <p class="oc-services-display">Cada intervención.<br /><span>Con criterio.</span></p>
-        <ol class="oc-workflow__steps">
-          <li><span class="oc-workflow__number" aria-hidden="true">01</span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="8" /><path d="m19 19 9 9" /></svg><h3>Diagnóstico</h3><p>Reviso tu bici y escucho qué has notado para localizar el origen del problema.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">02</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 6H6v23h20V6h-5M12 3h8v7h-8zM11 19l4 4 7-9" /></svg><h3>Valoración técnica</h3><p>Te explico qué necesita tu bicicleta y la intervención adecuada antes de realizar el trabajo.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">03</span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 3a9 9 0 0 0-11 11L4 26a2 2 0 0 0 3 3l12-12A9 9 0 0 0 30 6l-6 6-5-5z" /></svg><h3>Intervención</h3><p>Realizo cada ajuste, reparación o sustitución con criterio técnico y herramientas específicas.</p></li>
-          <li><span class="oc-workflow__number" aria-hidden="true">04</span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" /><path d="m9 16 5 5 10-11" /></svg><h3>Entrega</h3><p>Compruebo cada ajuste antes de devolverte la bicicleta preparada para tu próxima salida.</p></li>
-        </ol>
-      </section>
+  <!-- SECCIÓN NUEVA: preguntas exclusivas de Servicios. -->
 
-      <!-- Componente existente, sin duplicar su contenido. -->
-      <ProximaSalida />
-
-      <!-- SECCIÓN NUEVA: preguntas exclusivas de Servicios. -->
-      <section class="oc-services-section oc-services-container oc-services-faq" id="preguntas-servicios" aria-labelledby="services-faq-title">
-        <h2 class="oc-services-display" id="services-faq-title">Resuelvo<br /><span>tus dudas.</span></h2>
-        <div class="oc-services-faq__list">
-          <details><summary>¿Qué tipo de bicicletas atiendes?<span aria-hidden="true">+</span></summary><p>El taller está orientado al mantenimiento y la reparación de bicicletas deportivas de alta gama. Cuéntame qué bicicleta tienes y qué necesitas para valorar el servicio adecuado.</p></details>
-          <details><summary>¿Qué revisión necesita mi bicicleta?<span aria-hidden="true">+</span></summary><p>Depende del uso, el estado de los componentes y el mantenimiento previo. Primero reviso la bicicleta y te explico qué intervención necesita.</p></details>
-          <details><summary>¿Puedes valorar mi marca y modelo?<span aria-hidden="true">+</span></summary><p>Sí. Indícame la marca, el modelo y el trabajo que necesitas. Así puedo confirmar el alcance del servicio y la disponibilidad de los recambios necesarios.</p></details>
-          <details><summary>¿Cómo solicito una cita?<span aria-hidden="true">+</span></summary><p>Selecciona el servicio en el formulario y prepara tu solicitud. Se abrirá tu aplicación de correo para enviarla. La cita queda pendiente de confirmación del taller.</p></details>
-        </div>
-      </section>
-
-      <!-- Conserva el título y los campos del formulario de la HOME. -->
-      <FormularioReserva email={email} />
-    </main>
-    <Footer email={email} homeHref={home} />
-    <script src="../scripts/servicios.js"></script>
-    <script> import '../scripts/asi-trabajo.js'; </script>
-  </body>
-</html>
+  <!-- Conserva el título y los campos del formulario de la HOME. -->
+</ServiceLayout>

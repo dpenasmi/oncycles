@@ -1,5 +1,7 @@
 ---
-import "../styles/footer.css";
+import { siteImages } from '../data/images.js';
+import '../styles/footer.css';
+import { email as defaultEmail } from '../data/site.js';
 
 type LegalLink = {
   label: string;
@@ -14,43 +16,39 @@ interface Props {
 }
 
 const {
-  email = "info@oncycles.es",
-  homeHref = "",
-  logoSrc = `${import.meta.env.BASE_URL}images/oncycles-logo.png`,
-  legalLinks = [
-    { label: "Aviso legal" },
-    { label: "Privacidad" },
-    { label: "Cookies" },
-  ],
+  email = defaultEmail,
+  homeHref = '',
+  logoSrc = siteImages.logo,
+  legalLinks = [{ label: 'Aviso legal' }, { label: 'Privacidad' }, { label: 'Cookies' }],
 } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 // Sin homeHref conserva los enlaces originales de la HOME.
 // En páginas interiores permite volver a sus secciones sin depender de JS.
-const sectionHref = (href: string) => href.startsWith('#') ? `${homeHref}${href}` : href;
+const sectionHref = (href: string) => (href.startsWith('#') ? `${homeHref}${href}` : href);
 
 const sections = [
   {
-    title: "El taller",
+    title: 'El taller',
     links: [
-      { label: "Conoce el taller", href: "#taller" },
-      { label: "Sobre On Cycles", href: "#oficio" },
-      { label: "Tu próxima visita", href: "#tu-visita" },
+      { label: 'Conoce el taller', href: '#taller' },
+      { label: 'Sobre On Cycles', href: '#oficio' },
+      { label: 'Tu próxima visita', href: '#tu-visita' },
     ],
   },
   {
-    title: "Servicios",
+    title: 'Servicios',
     links: [
-      { label: "Todos los servicios", href: "#servicios" },
-      { label: "Suspensiones", href: "#suspensiones" },
-      { label: "Catálogo técnico", href: "#catalogo" },
+      { label: 'Todos los servicios', href: '#servicios' },
+      { label: 'Suspensiones', href: '#suspensiones' },
+      { label: 'Catálogo técnico', href: '#catalogo' },
     ],
   },
   {
-    title: "Contacto",
+    title: 'Contacto',
     links: [
-      { label: "Reserva tu cita", href: "#reserva" },
-      { label: "Resuelve tus dudas", href: "#preguntas" },
+      { label: 'Reserva tu cita', href: '#reserva' },
+      { label: 'Resuelve tus dudas', href: '#preguntas' },
       { label: email, href: `mailto:${email}` },
     ],
   },
@@ -59,7 +57,11 @@ const sections = [
 
 <footer class="oc-footer" aria-label="Pie de página de On Cycles">
   <div class="oc-footer__top">
-    <a class="oc-footer__brand" href={sectionHref("#inicio")} aria-label="On Cycles, volver al inicio">
+    <a
+      class="oc-footer__brand"
+      href={sectionHref('#inicio')}
+      aria-label="On Cycles, volver al inicio"
+    >
       <img
         class="oc-footer__logo"
         src={logoSrc}
@@ -77,7 +79,9 @@ const sections = [
         <h3 class="oc-footer__heading">{section.title}</h3>
         <ul class="oc-footer__links">
           {section.links.map((link) => (
-            <li><a href={sectionHref(link.href)}>{link.label}</a></li>
+            <li>
+              <a href={sectionHref(link.href)}>{link.label}</a>
+            </li>
           ))}
         </ul>
       </nav>
@@ -85,21 +89,26 @@ const sections = [
 
     <div class="oc-footer__column">
       <h3 class="oc-footer__heading">Barcelona</h3>
-      <p class="oc-footer__location">Tu bici.<br />Tu taller.<br />Desde 2006.</p>
+      <p class="oc-footer__location">
+        Tu bici.
+        <br />
+        Tu taller.
+        <br />
+        Desde 2006.
+      </p>
     </div>
   </div>
 
   <div class="oc-footer__signature">
     <!-- Texto vectorial: conserva la nitidez y se ajusta al ancho sin JavaScript. -->
-    <svg
-      class="oc-footer__wordmark"
-      viewBox="0 60 1600 220"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <text x="0" y="285" textLength="1600" lengthAdjust="spacingAndGlyphs">ON CYCLES</text>
+    <svg class="oc-footer__wordmark" viewBox="0 60 1600 220" aria-hidden="true" focusable="false">
+      <text x="0" y="285" textLength="1600" lengthAdjust="spacingAndGlyphs">
+        ON CYCLES
+      </text>
     </svg>
-    <p class="oc-footer__claim">Siempre a punto<span>.</span></p>
+    <p class="oc-footer__claim">
+      Siempre a punto<span>.</span>
+    </p>
   </div>
 
   <div class="oc-footer__bottom">
@@ -108,7 +117,11 @@ const sections = [
     <ul class="oc-footer__legal" aria-label="Información legal">
       {legalLinks.map((link) => (
         <li>
-          {link.href ? <a href={sectionHref(link.href)}>{link.label}</a> : <span>{link.label}</span>}
+          {link.href ? (
+            <a href={sectionHref(link.href)}>{link.label}</a>
+          ) : (
+            <span>{link.label}</span>
+          )}
         </li>
       ))}
     </ul>

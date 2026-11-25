@@ -8,7 +8,10 @@ if (hero) {
   let visible = false;
   let timer;
 
-  function stop() { window.clearTimeout(timer); timer = undefined; }
+  function stop() {
+    window.clearTimeout(timer);
+    timer = undefined;
+  }
   function schedule() {
     stop();
     if (slides.length < 2 || !visible || document.hidden || reducedMotion.matches) return;
@@ -22,9 +25,12 @@ if (hero) {
   if (slides.length > 1) {
     document.addEventListener('visibilitychange', schedule);
     reducedMotion.addEventListener('change', schedule);
-    new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      schedule();
-    }, { threshold: 0.2 }).observe(hero);
+    new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        schedule();
+      },
+      { threshold: 0.2 },
+    ).observe(hero);
   }
 }

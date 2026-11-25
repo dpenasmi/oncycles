@@ -33,19 +33,6 @@
 }
 
 /* Footer: símbolo encima del nombre. */
-.footer .footer-logo.oncycles-brand {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  width: 160px;
-  max-width: 100%;
-}
-
-.footer .oncycles-brand .oncycles-brand__symbol {
-  width: 88px;
-  height: 88px;
-}
 
 @media (min-width: 701px) and (max-width: 1050px) {
   .header .header-inner {
@@ -88,11 +75,6 @@
   .header .oncycles-wordmark__caption {
     margin-top: 7px;
     font-size: 6px;
-  }
-
-  .footer .oncycles-brand .oncycles-brand__symbol {
-    width: 76px;
-    height: 76px;
   }
 }
 

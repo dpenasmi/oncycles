@@ -1,0 +1,47 @@
+---
+interface Props {
+  id?: string;
+  headingId: string;
+  items: string[][];
+  variant?: 'home' | 'service';
+  sectionClass?: string;
+}
+const {
+  id = 'preguntas',
+  headingId,
+  items,
+  variant = 'service',
+  sectionClass = 'oc-services-container oc-services-section oc-services-faq',
+} = Astro.props;
+---
+
+<section
+  class={variant === 'home' ? 'section faq-section' : sectionClass}
+  id={id}
+  aria-labelledby={headingId}
+>
+  {variant === 'home' ? (
+    <h2 id={headingId}>
+      <span class="oc-heading-white">Resuelvo</span>
+      <br />
+      <span class="oc-heading-orange">tus dudas.</span>
+    </h2>
+  ) : (
+    <h2 class="oc-services-display" id={headingId}>
+      Resuelvo
+      <br />
+      <span>tus dudas.</span>
+    </h2>
+  )}
+  <div class={variant === 'home' ? 'faq-list' : 'oc-services-faq__list'}>
+    {items.map(([question, answer]) => (
+      <details>
+        <summary>
+          {question}
+          <span aria-hidden="true">+</span>
+        </summary>
+        <p>{answer}</p>
+      </details>
+    ))}
+  </div>
+</section>

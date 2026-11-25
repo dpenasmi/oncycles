@@ -21,8 +21,12 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v7
 
-      - name: Compilar Astro y preparar publicación
+      - name: Compilar y comprobar el proyecto
         uses: withastro/action@v6
+        with:
+          node-version: "24"
+          package-manager: npm
+          build-cmd: npm run verify
 
   deploy:
     needs: build

@@ -7,13 +7,13 @@
 }
 
 @media (min-width: 1025px) and (prefers-reduced-motion: no-preference) {
-  .oc-services-page .oc-workflow[data-workflow-motion="pinned"] {
+  .oc-services-page .oc-workflow[data-workflow-motion='pinned'] {
     position: relative;
     padding-block: 0;
     height: var(--workflow-height);
     /* No overflow:hidden: impediría el comportamiento sticky. */
   }
-  .oc-workflow[data-workflow-motion="pinned"] .oc-workflow__panel {
+  .oc-workflow[data-workflow-motion='pinned'] .oc-workflow__panel {
     position: sticky;
     top: var(--workflow-top, 24px);
     padding-block: var(--workflow-padding, 80px);

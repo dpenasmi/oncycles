@@ -1,21 +1,22 @@
 ---
+import '../styles/sobre-oncycles.css';
+import { siteImages } from '../data/images.js';
 interface Props {
   image?: string;
   workshopHref?: string;
 }
 
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
-const {
-  image = `${base}images/oficio.png`,
-  workshopHref = '#taller',
-} = Astro.props;
+const { image = siteImages.portrait, workshopHref = '#taller' } = Astro.props;
 ---
 
-<section id="oficio" class="oc-about" aria-labelledby="oc-about-title">
-  <div class="oc-about__layout">
-    <figure class="oc-about__portrait">
-      <span class="oc-about__year" aria-hidden="true">2006</span>
+<section data-oc-sobre-oncycles id="oficio" class="oc-about" aria-labelledby="oc-about-title">
+  <div data-oc-sobre-oncycles class="oc-about__layout">
+    <figure data-oc-sobre-oncycles class="oc-about__portrait">
+      <span data-oc-sobre-oncycles class="oc-about__year" aria-hidden="true">
+        2006
+      </span>
       <img
+        data-oc-sobre-oncycles
         class="oc-about__illustration"
         src={image}
         alt="Ilustración de un mecánico de On Cycles con una llave de taller"
@@ -24,254 +25,71 @@ const {
         loading="lazy"
         decoding="async"
       />
-      <figcaption class="oc-about__caption">Desde 2006 · Barcelona</figcaption>
+      <figcaption data-oc-sobre-oncycles class="oc-about__caption">
+        Desde 2006 · Barcelona
+      </figcaption>
     </figure>
 
-    <div class="oc-about__content">
-      <h2 id="oc-about-title" class="oc-about__eyebrow oc-section-heading">Sobre On Cycles</h2>
-      <p class="oc-about__title">
-        <span>Un taller</span>
-        <span>con mucho</span>
-        <span class="oc-about__accent">oficio.</span>
+    <div data-oc-sobre-oncycles class="oc-about__content">
+      <h2 data-oc-sobre-oncycles id="oc-about-title" class="oc-about__eyebrow oc-section-heading">
+        Sobre On Cycles
+      </h2>
+      <p data-oc-sobre-oncycles class="oc-about__title">
+        <span data-oc-sobre-oncycles>Un taller</span>
+        <span data-oc-sobre-oncycles>con mucho</span>
+        <span data-oc-sobre-oncycles class="oc-about__accent">
+          oficio.
+        </span>
       </p>
-      <p class="oc-about__description">
-        Experiencia, tecnología y atención cercana desde 2006. Reviso tu bici,
-        te explico lo que necesita y cuido cada ajuste para que vuelvas a disfrutar.
+      <p data-oc-sobre-oncycles class="oc-about__description">
+        Experiencia, tecnología y atención cercana desde 2006. Reviso tu bici, te explico lo que
+        necesita y cuido cada ajuste para que vuelvas a disfrutar.
       </p>
 
-      <div class="oc-about__certifications" aria-labelledby="oc-about-certifications">
-        <h3 id="oc-about-certifications" class="oc-about__certification-label">
+      <div
+        data-oc-sobre-oncycles
+        class="oc-about__certifications"
+        aria-labelledby="oc-about-certifications"
+      >
+        <h3
+          data-oc-sobre-oncycles
+          id="oc-about-certifications"
+          class="oc-about__certification-label"
+        >
           Servicio técnico certificado
         </h3>
-        <div class="oc-about__brands">
-          <div class="oc-about__brand oc-about__brand--ohlins">
-            <img src={`${base}images/OHLINS.png`} alt="Öhlins" width="500" height="500" loading="lazy" decoding="async" />
+        <div data-oc-sobre-oncycles class="oc-about__brands">
+          <div data-oc-sobre-oncycles class="oc-about__brand oc-about__brand--ohlins">
+            <img
+              data-oc-sobre-oncycles
+              src={siteImages.ohlins}
+              alt="Öhlins"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="oc-about__brand oc-about__brand--bosch">
-            <img src={`${base}images/BOSCH.png`} alt="Bosch" width="500" height="500" loading="lazy" decoding="async" />
+          <div data-oc-sobre-oncycles class="oc-about__brand oc-about__brand--bosch">
+            <img
+              data-oc-sobre-oncycles
+              src={siteImages.bosch}
+              alt="Bosch"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
 
-      <a class="oc-about__link" href={workshopHref}>
-        Conoce el taller <span aria-hidden="true">↗</span>
+      <a data-oc-sobre-oncycles class="oc-about__link" href={workshopHref}>
+        Conoce el taller{' '}
+        <span data-oc-sobre-oncycles aria-hidden="true">
+          ↗
+        </span>
       </a>
     </div>
   </div>
 </section>
-
-<style>
-  .oc-about {
-    --oc-about-orange: #ff5a1f;
-    padding: clamp(44px, 6vw, 96px) clamp(20px, 4vw, 80px);
-    background: #050505;
-    color: #fff;
-    scroll-margin-top: 100px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .oc-about *, .oc-about *::before, .oc-about *::after { box-sizing: border-box; }
-
-  .oc-about__layout {
-    display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-    align-items: center;
-    gap: clamp(36px, 5vw, 90px);
-    max-width: 1600px;
-    margin-inline: auto;
-  }
-
-  .oc-about__portrait {
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-    margin: 0;
-    background: radial-gradient(ellipse at 50% 58%, #191919 0%, transparent 66%);
-  }
-
-  .oc-about__year {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(110px, 16vw, 260px);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -.08em;
-    color: #202020;
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  .oc-about__illustration {
-    display: block;
-    width: 100%;
-    max-width: 570px;
-    height: clamp(390px, 34vw, 590px);
-    object-fit: contain;
-    object-position: center bottom;
-    margin: 28px 0 0;
-    aspect-ratio: auto;
-  }
-
-  .oc-about__caption {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    width: 100%;
-    margin-top: 20px;
-    font-size: clamp(11px, 1vw, 16px);
-    font-weight: 800;
-    line-height: 1.5;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .oc-about__caption::before, .oc-about__caption::after {
-    content: '';
-    width: 40px;
-    height: 2px;
-    flex-shrink: 0;
-    background: var(--oc-about-orange);
-  }
-
-  .oc-about__eyebrow {
-    margin: 0 0 22px;
-  }
-
-  .oc-about__title {
-    margin: 0 0 24px;
-    color: #fff;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(36px, 4.4vw, 74px);
-    font-weight: 400;
-    line-height: 1.04;
-    letter-spacing: -.045em;
-    text-transform: uppercase;
-  }
-
-  .oc-about__title > span { display: block; }
-  .oc-about__title > .oc-about__accent { color: var(--oc-about-orange); }
-
-  .oc-about__description {
-    max-width: 66ch;
-    margin: 0;
-    color: #ddd;
-    font-size: clamp(16px, 1.25vw, 21px);
-    line-height: 1.65;
-  }
-
-  .oc-about__certifications {
-    margin-top: 30px;
-    padding-top: 24px;
-    border-top: 1px solid #414141;
-  }
-
-  .oc-about__certification-label {
-    margin: 0 0 14px;
-    color: #ddd;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-  }
-
-  .oc-about__brands { display: flex; align-items: center; gap: 28px; }
-  .oc-about__brand { position: relative; height: 92px; overflow: hidden; }
-  .oc-about__brand--ohlins { width: 230px; flex-shrink: 0; }
-  .oc-about__brand--bosch { width: 280px; border-left: 1px solid #414141; }
-
-  /* Recorta solo el margen transparente de los PNG originales de 500 × 500. */
-  .oc-about__brand img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 230px;
-    max-width: none;
-    height: 230px;
-    transform: translate(-50%, -50%);
-    object-fit: contain;
-  }
-  .oc-about__brand--bosch img { width: 260px; height: 260px; }
-
-  .oc-about__link {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 16px;
-    width: fit-content;
-    margin: 36px 0 0 auto;
-    padding-block: 8px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 1.5;
-    letter-spacing: .13em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .oc-about__link span { color: var(--oc-about-orange); font-size: 30px; line-height: 1; }
-  .oc-about__link:hover { color: var(--oc-about-orange); }
-  .oc-about__link:focus-visible { outline: 2px solid var(--oc-about-orange); outline-offset: 6px; }
-
-  @media (min-width: 761px) and (max-width: 1100px) {
-    .oc-about__layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 30px; }
-    .oc-about__brands { gap: 14px; }
-    .oc-about__brand--ohlins { width: 170px; }
-    .oc-about__brand--bosch { width: 190px; }
-    .oc-about__brand img { width: 180px; height: 180px; }
-    .oc-about__brand--bosch img { width: 195px; height: 195px; }
-  }
-
-  @media (max-width: 760px) {
-    .oc-about__layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-    .oc-about__portrait { width: 100%; max-width: 420px; margin-inline: auto; }
-    .oc-about__year { font-size: clamp(120px, 38vw, 190px); }
-    .oc-about__illustration { height: clamp(300px, 90vw, 430px); margin-top: 14px; }
-    .oc-about__caption { font-size: 11px; gap: 12px; }
-    .oc-about__caption::before, .oc-about__caption::after { width: 24px; }
-    .oc-about__eyebrow { margin: 0 0 22px; }
-    .oc-about__content { min-width: 0; }
-
-    /* Dos certificados en la misma fila, sin anchos mínimos fijos. */
-    .oc-about__brands {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-      min-width: 0;
-    }
-
-    .oc-about__brand,
-    .oc-about__brand--ohlins,
-    .oc-about__brand--bosch {
-      width: 100%;
-      min-width: 0;
-      height: clamp(64px, 20vw, 92px);
-    }
-
-    /* Conserva el recorte de los márgenes transparentes del PNG,
-       pero limita el ancho del logo a su columna. */
-    .oc-about__brand img {
-      width: min(100%, 230px);
-      max-width: 100%;
-      height: auto;
-      aspect-ratio: 1;
-      object-fit: contain;
-    }
-
-    .oc-about__brand--bosch img {
-      width: min(calc(100% - 16px), 260px);
-      left: calc(50% + 8px);
-      height: auto;
-    }
-  }
-</style>

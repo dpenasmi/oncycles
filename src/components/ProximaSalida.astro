@@ -1,5 +1,6 @@
 ---
-import "../styles/proxima-salida.css";
+import { siteImages, nextRideSequence } from '../data/images.js';
+import '../styles/proxima-salida.css';
 
 interface Props {
   backgroundSrc?: string;
@@ -8,79 +9,80 @@ interface Props {
 }
 
 const {
-  backgroundSrc = `${import.meta.env.BASE_URL}images/salida-fondo.png`,
-  reservationHref = "#reserva",
-  framesDirectory = `${import.meta.env.BASE_URL}images/proxima-salida/`,
+  backgroundSrc = siteImages.nextRide,
+  reservationHref = '#reserva',
+  framesDirectory = nextRideSequence.directory,
 } = Astro.props;
 ---
 
 <div class="oc-visit-scroll" data-visit-scroll data-frames-directory={framesDirectory}>
-<section class="oc-visit" id="tu-visita" aria-labelledby="visita-title">
-  <img
-    class="oc-visit__background"
-    src={backgroundSrc}
-    alt=""
-    aria-hidden="true"
-    width="1536"
-    height="512"
-    loading="lazy"
-    decoding="async"
-  />
+  <section class="oc-visit" id="tu-visita" aria-labelledby="visita-title">
+    <img
+      class="oc-visit__background"
+      src={backgroundSrc}
+      alt=""
+      aria-hidden="true"
+      width="1536"
+      height="512"
+      loading="lazy"
+      decoding="async"
+    />
 
-  <canvas class="oc-visit__canvas" aria-hidden="true"></canvas>
+    <canvas class="oc-visit__canvas" aria-hidden="true"></canvas>
 
-  <div class="oc-visit__content">
-    <h2 id="visita-title" class="oc-visit__eyebrow oc-section-heading">
-      Me ocupo de tu bici
-    </h2>
+    <div class="oc-visit__content">
+      <h2 id="visita-title" class="oc-visit__eyebrow oc-section-heading">
+        Me ocupo de tu bici
+      </h2>
 
-    <p class="oc-visit__title">
-      <span class="oc-heading-white">Tu próxima salida</span>
-      <span class="oc-heading-orange">empieza en el taller.</span>
-    </p>
+      <p class="oc-visit__title">
+        <span class="oc-heading-white">Tu próxima salida</span>
+        <span class="oc-heading-orange">empieza en el taller.</span>
+      </p>
 
-    <p class="oc-visit__intro">
-      Cuéntame cómo utilizas tu bicicleta y qué te gustaría mejorar.
-      Te oriento para encontrar el servicio adecuado.
-    </p>
+      <p class="oc-visit__intro">
+        Cuéntame cómo utilizas tu bicicleta y qué te gustaría mejorar. Te oriento para encontrar el
+        servicio adecuado.
+      </p>
 
-    <ol class="oc-visit__steps">
-      <li class="oc-visit__step">
-        <span class="oc-visit__number" aria-hidden="true">01</span>
-        <div>
-          <p class="oc-visit__step-heading">Cuéntame qué necesitas</p>
-          <p class="oc-visit__step-description">
-            Tu bici, tu uso y lo que te gustaría mejorar.
-          </p>
-        </div>
-      </li>
+      <ol class="oc-visit__steps">
+        <li class="oc-visit__step">
+          <span class="oc-visit__number" aria-hidden="true">
+            01
+          </span>
+          <div>
+            <p class="oc-visit__step-heading">Cuéntame qué necesitas</p>
+            <p class="oc-visit__step-description">Tu bici, tu uso y lo que te gustaría mejorar.</p>
+          </div>
+        </li>
 
-      <li class="oc-visit__step">
-        <span class="oc-visit__number" aria-hidden="true">02</span>
-        <div>
-          <p class="oc-visit__step-heading">Reviso tu bici</p>
-          <p class="oc-visit__step-description">
-            Valoro su estado y te oriento sobre el servicio.
-          </p>
-        </div>
-      </li>
+        <li class="oc-visit__step">
+          <span class="oc-visit__number" aria-hidden="true">
+            02
+          </span>
+          <div>
+            <p class="oc-visit__step-heading">Reviso tu bici</p>
+            <p class="oc-visit__step-description">
+              Valoro su estado y te oriento sobre el servicio.
+            </p>
+          </div>
+        </li>
 
-      <li class="oc-visit__step">
-        <span class="oc-visit__number" aria-hidden="true">03</span>
-        <div>
-          <p class="oc-visit__step-heading">Vuelve a disfrutar</p>
-          <p class="oc-visit__step-description">
-            Más confianza para tu próxima salida.
-          </p>
-        </div>
-      </li>
-    </ol>
+        <li class="oc-visit__step">
+          <span class="oc-visit__number" aria-hidden="true">
+            03
+          </span>
+          <div>
+            <p class="oc-visit__step-heading">Vuelve a disfrutar</p>
+            <p class="oc-visit__step-description">Más confianza para tu próxima salida.</p>
+          </div>
+        </li>
+      </ol>
 
-    <a class="button oc-visit__cta" href={reservationHref}>
-      Reserva tu cita <span aria-hidden="true">↗</span>
-    </a>
-  </div>
-</section>
+      <a class="button oc-visit__cta" href={reservationHref}>
+        Reserva tu cita <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
 </div>
 <script src="../scripts/proxima-salida.js"></script>
-

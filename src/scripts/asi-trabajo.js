@@ -101,7 +101,9 @@ function initWorkflows() {
     reduced.addEventListener('change', resize);
     desktop.addEventListener('change', resize);
     document.addEventListener('astro:before-swap', dispose, { once: true });
-    document.fonts?.ready.then(() => { if (!disposed) resize(); });
+    document.fonts?.ready.then(() => {
+      if (!disposed) resize();
+    });
     schedule();
   });
 }

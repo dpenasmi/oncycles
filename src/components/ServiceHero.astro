@@ -1,0 +1,53 @@
+---
+export interface Props {
+  headingId: string;
+  hero: {
+    image: string;
+    alt: string;
+    width: number;
+    height: number;
+    eyebrow: string;
+    line1: string;
+    line2: string;
+    intro: string;
+    service?: string;
+    exploreHref: string;
+    exploreLabel: string;
+    exploreIcon: string;
+    signature: string;
+  };
+}
+const { headingId, hero } = Astro.props;
+---
+
+<section class="oc-services-hero" id="inicio" aria-labelledby={headingId}>
+  <img
+    class="oc-services-hero__image"
+    src={hero.image}
+    alt={hero.alt}
+    width={hero.width}
+    height={hero.height}
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="oc-services-container oc-services-hero__content">
+    <h1 class="oc-services-eyebrow" id={headingId}>
+      {hero.eyebrow}
+    </h1>
+    <p class="oc-services-hero__title">
+      {hero.line1}
+      <br />
+      <span>{hero.line2}</span>
+    </p>
+    <p class="oc-services-hero__intro">{hero.intro}</p>
+    <div class="oc-services-actions">
+      <a class="button" href="#reserva" data-booking-service={hero.service}>
+        Solicita tu cita <span aria-hidden="true">↗</span>
+      </a>
+      <a class="button button-white" href={hero.exploreHref}>
+        {hero.exploreLabel} <span aria-hidden="true">{hero.exploreIcon}</span>
+      </a>
+    </div>
+    <p class="oc-services-hero__signature">{hero.signature}</p>
+  </div>
+</section>

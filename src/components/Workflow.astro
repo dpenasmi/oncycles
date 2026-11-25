@@ -1,0 +1,74 @@
+---
+import '../styles/asi-trabajo.css';
+interface Props {
+  headingId: string;
+  line1: string;
+  steps: string[][];
+  displayHeading?: boolean;
+  sectionClass?: string;
+}
+const {
+  headingId,
+  line1,
+  steps,
+  displayHeading = true,
+  sectionClass = 'oc-services-container oc-services-section oc-workflow',
+} = Astro.props;
+---
+
+<section class={sectionClass} id="asi-trabajo" aria-labelledby={headingId}>
+  {displayHeading ? (
+    <p class="oc-services-eyebrow">Así trabajo</p>
+  ) : (
+    <h2 class="oc-services-eyebrow" id={headingId}>
+      Así trabajo
+    </h2>
+  )}
+  {displayHeading ? (
+    <h2 class="oc-services-display" id={headingId}>
+      {line1}
+      <br />
+      <span>Con criterio.</span>
+    </h2>
+  ) : (
+    <p class="oc-services-display">
+      {line1}
+      <br />
+      <span>Con criterio.</span>
+    </p>
+  )}
+  <ol class="oc-workflow__steps">
+    {steps.map(([title, description], index) => (
+      <li>
+        <span class="oc-workflow__number" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        {index === 0 && (
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="13" cy="13" r="8" />
+            <path d="m19 19 9 9" />
+          </svg>
+        )}
+        {index === 1 && (
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M11 6H6v23h20V6h-5M12 3h8v7h-8zM11 19l4 4 7-9" />
+          </svg>
+        )}
+        {index === 2 && (
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M27 3a9 9 0 0 0-11 11L4 26a2 2 0 0 0 3 3l12-12A9 9 0 0 0 30 6l-6 6-5-5z" />
+          </svg>
+        )}
+        {index === 3 && (
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="13" />
+            <path d="m9 16 5 5 10-11" />
+          </svg>
+        )}
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </li>
+    ))}
+  </ol>
+</section>
+<script src="../scripts/asi-trabajo.js"></script>

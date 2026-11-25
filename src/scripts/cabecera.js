@@ -19,12 +19,19 @@ function initHeaders() {
       const body = document.body;
       scrollPosition = { top: window.scrollY, left: window.scrollX };
       const properties = ['position', 'top', 'left', 'width', 'overflow', 'padding-right'];
-      savedStyles = properties.map((key) => [key, body.style.getPropertyValue(key), body.style.getPropertyPriority(key)]);
+      savedStyles = properties.map((key) => [
+        key,
+        body.style.getPropertyValue(key),
+        body.style.getPropertyPriority(key),
+      ]);
       const scrollbar = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
       const padding = parseFloat(getComputedStyle(body).paddingRight) || 0;
       Object.assign(body.style, {
-        position: 'fixed', top: `-${scrollPosition.top}px`,
-        left: `-${scrollPosition.left}px`, width: '100%', overflow: 'hidden',
+        position: 'fixed',
+        top: `-${scrollPosition.top}px`,
+        left: `-${scrollPosition.left}px`,
+        width: '100%',
+        overflow: 'hidden',
         paddingRight: `${padding + scrollbar}px`,
       });
       // Inhabilita únicamente el contenido que queda fuera de la cabecera.
@@ -42,7 +49,9 @@ function initHeaders() {
     }
 
     function unlockPage() {
-      inertElements.forEach(([element, previous]) => { element.inert = previous; });
+      inertElements.forEach(([element, previous]) => {
+        element.inert = previous;
+      });
       inertElements = [];
       savedStyles.forEach(([key, value, priority]) => {
         if (value) document.body.style.setProperty(key, value, priority);
@@ -76,28 +85,39 @@ function initHeaders() {
     header.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setMenu(false), options);
     });
-    document.addEventListener('keydown', (event) => {
-      if (!open) return;
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        setMenu(false, true);
-      } else if (event.key === 'Tab') {
-        const targets = Array.from(header.querySelectorAll('a[href], button:not([disabled])'))
-          .filter((element) => element.getClientRects().length > 0);
-        const first = targets[0];
-        const last = targets[targets.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault(); last?.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault(); first?.focus();
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        if (!open) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          setMenu(false, true);
+        } else if (event.key === 'Tab') {
+          const targets = Array.from(
+            header.querySelectorAll('a[href], button:not([disabled])'),
+          ).filter((element) => element.getClientRects().length > 0);
+          const first = targets[0];
+          const last = targets[targets.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
         }
-      }
-    }, options);
+      },
+      options,
+    );
     mobile.addEventListener('change', () => setMenu(false), options);
-    document.addEventListener('astro:before-swap', () => {
-      setMenu(false);
-      controller.abort();
-    }, { ...options, once: true });
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        setMenu(false);
+        controller.abort();
+      },
+      { ...options, once: true },
+    );
   });
 }
 initHeaders();

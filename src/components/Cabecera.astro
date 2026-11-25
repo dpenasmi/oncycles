@@ -1,31 +1,63 @@
 ---
+import { base } from '../lib/paths.js';
+import { siteImages } from '../data/images.js';
 import '../styles/cabecera.css';
 
 interface Props {
   reservaHref?: string;
 }
 const { reservaHref = '#reserva' } = Astro.props;
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+
 const servicesHref = `${base}reparacion-bicicletas-barcelona/`;
 const path = Astro.url.pathname.replace(/\/+$/, '');
 const isHome = path === base.replace(/\/+$/, '');
-const isServices = [servicesHref, `${base}suspension-bicicleta/`].some((href) => path === href.replace(/\/+$/, ''));
-const homeSection = (id: string) => isHome ? `#${id}` : `${base}#${id}`;
+const isServices = [servicesHref, `${base}suspension-bicicleta/`].some(
+  (href) => path === href.replace(/\/+$/, ''),
+);
+const homeSection = (id: string) => (isHome ? `#${id}` : `${base}#${id}`);
 ---
+
 <header class="header oc-site-header" data-oc-header>
   <div class="header-inner">
-    <a class="header-logo oncycles-brand" href={homeSection('inicio')} aria-label="On Cycles, inicio">
-      <img class="oncycles-brand__symbol" src={`${base}images/oncycles-logo.png`} alt="" aria-hidden="true" width="500" height="500" />
-      <span class="oncycles-wordmark">ON<br />CYCLES<span class="oncycles-wordmark__caption">BARCELONA · DESDE 2006</span></span>
+    <a
+      class="header-logo oncycles-brand"
+      href={homeSection('inicio')}
+      aria-label="On Cycles, inicio"
+    >
+      <img
+        class="oncycles-brand__symbol"
+        src={siteImages.logo}
+        alt=""
+        aria-hidden="true"
+        width="500"
+        height="500"
+      />
+      <span class="oncycles-wordmark">
+        ON
+        <br />
+        CYCLES<span class="oncycles-wordmark__caption">BARCELONA · DESDE 2006</span>
+      </span>
     </a>
     <nav id="main-nav" aria-label="Navegación principal">
-      <a href={servicesHref} aria-current={isServices ? 'page' : undefined}>Servicios</a>
+      <a href={servicesHref} aria-current={isServices ? 'page' : undefined}>
+        Servicios
+      </a>
       <a href={homeSection('taller')}>El taller</a>
       <a href={homeSection('catalogo')}>Catálogo técnico</a>
     </nav>
-    <a class="button header-cta" href={reservaHref}>Reserva tu cita <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav" hidden>
-      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    <a class="button header-cta" href={reservaHref}>
+      Reserva tu cita <span aria-hidden="true">↗</span>
+    </a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="main-nav"
+      hidden
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
   </div>
 </header>

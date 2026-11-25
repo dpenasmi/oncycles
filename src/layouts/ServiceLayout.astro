@@ -1,0 +1,43 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ServiceHero from '../components/ServiceHero.astro';
+import ServiceTrust from '../components/ServiceTrust.astro';
+import ProximaSalida from '../components/ProximaSalida.astro';
+import FaqSection from '../components/FaqSection.astro';
+import FormularioReserva from '../components/FormularioReserva.astro';
+import { email } from '../data/site.js';
+import '../styles/servicios.css';
+interface Props {
+  page: { title: string; description: string };
+  hero: import('../components/ServiceHero.astro').Props['hero'];
+  headingId: string;
+  bodyClass?: string;
+  certificates?: { name: string; src: string }[];
+  faqs: string[][];
+  faqId?: string;
+  faqHeadingId: string;
+  faqClass?: string;
+  defaultService?: string;
+}
+const {
+  page,
+  hero,
+  headingId,
+  bodyClass = 'oc-services-page',
+  certificates,
+  faqs,
+  faqId,
+  faqHeadingId,
+  faqClass,
+  defaultService,
+} = Astro.props;
+---
+
+<BaseLayout title={page.title} description={page.description} bodyClass={bodyClass}>
+  <ServiceHero hero={hero} headingId={headingId} />
+  <ServiceTrust certificates={certificates} />
+  <slot />
+  <ProximaSalida />
+  <FaqSection id={faqId} headingId={faqHeadingId} items={faqs} sectionClass={faqClass} />
+  <FormularioReserva email={email} defaultService={defaultService} />
+</BaseLayout>

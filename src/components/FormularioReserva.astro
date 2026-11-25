@@ -1,33 +1,28 @@
 ---
-import "../styles/formulario-reserva.css";
+import '../styles/formulario-reserva.css';
+import { services } from '../data/home.js';
 
 interface Props {
   email: string;
+  defaultService?: string;
 }
 
-const { email } = Astro.props;
+const { email, defaultService = '' } = Astro.props;
 ---
 
-<section
-  class="booking-section oc-booking"
-  id="reserva"
-  aria-labelledby="reserva-heading"
->
+<section class="booking-section oc-booking" id="reserva" aria-labelledby="reserva-heading">
   <div class="container">
     <h2 id="reserva-heading" class="eyebrow oc-booking__eyebrow">
       Tu siguiente salida empieza aquí
     </h2>
 
     <p id="reserva-title" class="oc-booking__title">
-      Prepara tu<br />próxima salida<span>.</span>
+      Prepara tu
+      <br />
+      próxima salida<span>.</span>
     </p>
 
-    <form
-      id="booking-form"
-      data-email={email}
-      action={`mailto:${email}`}
-      method="get"
-    >
+    <form id="booking-form" data-email={email} action={`mailto:${email}`} method="get">
       <div class="form-grid oc-booking__fields">
         <label class="oc-booking__label" for="booking-name">
           Nombre
@@ -59,22 +54,13 @@ const { email } = Astro.props;
 
         <label class="oc-booking__label oc-booking__service" for="booking-service">
           Servicio
-          <select
-            class="oc-booking__field"
-            id="booking-service"
-            name="servicio"
-            required
-          >
+          <select class="oc-booking__field" id="booking-service" name="servicio" required>
             <option value="">¿Qué necesita tu bici?</option>
-            <option value="Revisiones">Revisiones</option>
-            <option value="Suspensiones">Suspensiones</option>
-            <option value="Frenos">Frenos</option>
-            <option value="Transmisión">Transmisión</option>
-            <option value="Ruedas">Ruedas</option>
-            <option value="Tijas telescópicas">Tijas telescópicas</option>
-            <option value="Rodamientos y dirección">Rodamientos y dirección</option>
-            <option value="E-Bike">E-Bike</option>
-            <option value="Setup y ajustes">Setup y ajustes</option>
+            {services.map(({ title }) => (
+              <option value={title} selected={title === defaultService}>
+                {title}
+              </option>
+            ))}
           </select>
         </label>
       </div>
@@ -84,13 +70,16 @@ const { email } = Astro.props;
           Preparar solicitud <span aria-hidden="true">↗</span>
         </button>
         <p class="oc-booking__note">
-          Se abrirá tu aplicación de correo para enviarla.<br />
+          Se abrirá tu aplicación de correo para enviarla.
+          <br />
           La cita requiere confirmación del taller.
         </p>
       </div>
 
       <p id="form-status" role="status" hidden></p>
-      <a id="mail-fallback" hidden>Enviar solicitud por correo ↗</a>
+      <a id="mail-fallback" hidden>
+        Enviar solicitud por correo ↗
+      </a>
     </form>
 
     <noscript>
@@ -101,3 +90,5 @@ const { email } = Astro.props;
     </noscript>
   </div>
 </section>
+
+<script src="../scripts/booking.js"></script>

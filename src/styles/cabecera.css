@@ -1,24 +1,73 @@
 /* Cabecera común. Reutiliza las clases y el diseño de la HOME.
    global.css y brand.css continúan aportando tipografía, marca y botones. */
-.header.oc-site-header { position: absolute; inset: 0 0 auto; z-index: 30; width: 100%; background: transparent; border: 0; }
-.header.oc-site-header [hidden] { display: none !important; }
-.header.oc-site-header .header-inner { width: 100%; max-width: 1920px; height: 110px; margin-inline: auto; padding-inline: var(--oc-side-padding, clamp(24px, 4vw, 80px)); }
-.header.oc-site-header nav a[aria-current='page'] { color: var(--orange, #ff5a1f); }
-.header.oc-site-header :is(a, button):focus-visible { outline: 2px solid var(--orange, #ff5a1f); outline-offset: 5px; }
-.header.oc-site-header .menu-toggle[aria-expanded='true'] span:first-child { transform: translateY(4px) rotate(45deg); }
-.header.oc-site-header .menu-toggle[aria-expanded='true'] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+.header.oc-site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 30;
+  width: 100%;
+  background: transparent;
+  border: 0;
+}
+.header.oc-site-header [hidden] {
+  display: none !important;
+}
+.header.oc-site-header .header-inner {
+  width: 100%;
+  max-width: 1920px;
+  height: 110px;
+  margin-inline: auto;
+  padding-inline: var(--oc-side-padding, clamp(24px, 4vw, 80px));
+}
+.header.oc-site-header nav a[aria-current='page'] {
+  color: var(--orange, #ff5a1f);
+}
+.header.oc-site-header :is(a, button):focus-visible {
+  outline: 2px solid var(--orange, #ff5a1f);
+  outline-offset: 5px;
+}
+.header.oc-site-header .menu-toggle[aria-expanded='true'] span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+.header.oc-site-header .menu-toggle[aria-expanded='true'] span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
 @media (max-width: 700px) {
-  .header.oc-site-header .header-inner { height: 74px; padding-inline: 20px; }
-  .header.oc-site-header nav { top: 74px; }
-  .header.oc-site-header .menu-toggle { flex-shrink: 0; width: 44px; height: 44px; align-items: center; padding: 10px; }
-  .header.oc-site-header .header-cta { flex-shrink: 0; }
+  .header.oc-site-header .header-inner {
+    height: 74px;
+    padding-inline: 20px;
+  }
+  .header.oc-site-header nav {
+    top: 74px;
+  }
+  .header.oc-site-header .menu-toggle {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    padding: 10px;
+  }
+  .header.oc-site-header .header-cta {
+    flex-shrink: 0;
+  }
   /* Sin JS, los enlaces siguen visibles y utilizables. */
-  .header.oc-site-header:not([data-ready]) nav { display: flex; flex-wrap: wrap; gap: 0 20px; padding-block: 10px; }
-  .header.oc-site-header:not([data-ready]) nav a { width: auto; }
+  .header.oc-site-header:not([data-ready]) nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+    padding-block: 10px;
+  }
+  .header.oc-site-header:not([data-ready]) nav a {
+    width: auto;
+  }
 }
 @media (max-width: 380px) {
-  .header.oc-site-header .header-inner { gap: 8px; }
-  .header.oc-site-header .menu-toggle { width: 36px; padding-inline: 6px; }
+  .header.oc-site-header .header-inner {
+    gap: 8px;
+  }
+  .header.oc-site-header .menu-toggle {
+    width: 36px;
+    padding-inline: 6px;
+  }
 }
 
 /* Menú móvil a pantalla completa. El fondo se aplica a la cabecera entera
@@ -30,9 +79,9 @@
     z-index: 1000;
     height: 100vh;
     height: 100dvh;
-    background: rgba(5, 5, 5, .84);
-    -webkit-backdrop-filter: blur(22px) saturate(.65);
-    backdrop-filter: blur(22px) saturate(.65);
+    background: rgba(5, 5, 5, 0.84);
+    -webkit-backdrop-filter: blur(22px) saturate(0.65);
+    backdrop-filter: blur(22px) saturate(0.65);
     isolation: isolate;
   }
   .header.oc-site-header[data-menu-open] .header-inner {
@@ -70,17 +119,27 @@
     line-height: 1.2;
     text-transform: uppercase;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, .16);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   }
   .header.oc-site-header .menu-toggle span {
     transition: transform 180ms ease;
   }
 }
 @keyframes oc-menu-enter {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .header.oc-site-header[data-ready] nav.open { animation: none; }
-  .header.oc-site-header .menu-toggle span { transition: none; }
+  .header.oc-site-header[data-ready] nav.open {
+    animation: none;
+  }
+  .header.oc-site-header .menu-toggle span {
+    transition: none;
+  }
 }

@@ -1,0 +1,50 @@
+---
+import Cabecera from '../components/Cabecera.astro';
+import '../styles/global.css';
+import '../styles/brand.css';
+import Footer from '../components/Footer.astro';
+import { base, withBase } from '../lib/paths.js';
+import { email } from '../data/site.js';
+interface Props {
+  title: string;
+  description: string;
+  bodyClass?: string;
+}
+const { title, description, bodyClass } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const isHome = Astro.url.pathname.replace(/\/+$/, '') === base.replace(/\/+$/, '');
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="On Cycles" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <slot name="head" />
+  </head>
+  <body
+    class={bodyClass}
+    data-menu-enhanced={bodyClass?.includes('oc-services-page') ? 'true' : undefined}
+  >
+    <a class="skip-link" href="#contenido">
+      Saltar al contenido
+    </a>
+    <Cabecera />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer email={email} homeHref={isHome ? '' : base} />
+    <slot name="scripts" />
+  </body>
+</html>
