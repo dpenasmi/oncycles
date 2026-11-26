@@ -34,16 +34,15 @@ npm run preview
 | `src/layouts/BaseLayout.astro`        | HTML, metadatos, cabecera, main y footer.                                                   |
 | `src/layouts/ServiceLayout.astro`     | Hero, credenciales, contenido particular, Próxima salida, FAQ y reserva.                    |
 | `src/components/`                     | Bloques compartidos. Las props describen las variaciones de contenido.                      |
-| `src/data/service-catalog.ts`         | Lista común de servicios, IDs y enlaces. La usan la Home y el formulario.                   |
+| `src/data/service-catalog.ts`         | Textos, IDs y enlaces comunes. Las fotos de Home se asignan en home.ts.                     |
 | `src/data/home.ts`                    | Catálogo técnico, espacios, FAQs y carrusel principal de Home.                              |
 | `src/data/services.ts`                | Metadatos, hero, FAQs y proceso de Servicio Técnico.                                        |
 | `src/data/suspension.ts`              | Metadatos, hero, especialidades, marcas, FAQs y proceso de Suspensiones.                    |
 | `src/data/brands.ts`                  | Logos del carrusel general de marcas.                                                       |
 | `src/data/site.ts`                    | Correo del taller e identidad / metadatos comunes.                                          |
-| `src/data/images.ts`                  | Registro único de fotografías importadas, rutas estáticas y secuencia.                      |
-| `src/data/content.js`                 | Reexportaciones de compatibilidad. No añadir copias de los datos.                           |
+| `src/data/images.ts`                  | Solo logo, certificados y recursos comunes de Próxima salida.                               |
 | `src/types/content.ts`                | Contratos de datos y props compartidos.                                                     |
-| `src/assets/images/`                  | 31 fotografías procesadas por Astro.                                                        |
+| `src/assets/images/`                  | Fotografías importadas desde los datos de cada página.                                      |
 | `public/images/`                      | Recursos estáticos que conservan URL o no necesitan procesamiento.                          |
 | `public/images/proxima-salida/`       | 190 JPG originales de la animación.                                                         |
 | `src/styles/tokens.css`               | Variables base de colores, fuentes y medidas.                                               |
@@ -65,28 +64,21 @@ Los estilos externos no quedan encapsulados por importarlos desde un componente.
 
 La etiqueta del catálogo conserva el ajuste de esta entrega: 14 px, número naranja y texto blanco.
 
-## Imágenes: dos usos distintos
+## Imágenes: importaciones directas por página
 
-Todo se registra en `src/data/images.ts`, pero no todos los archivos se procesan igual:
+Cada página importa sus fotos directamente en su archivo de datos `.ts` y las asigna al hero, las tarjetas o los fondos. Los componentes reciben la imagen sin claves ni alias. Se mantiene la optimización de Astro.
 
-- `photo('catalogo-suspensiones.webp')` devuelve `ImageMetadata` de una foto en `src/assets/images/`, para `<Image>` de `astro:assets`.
-- `image('oncycles-logo.png')` devuelve una URL con base. También resuelve fotografías importadas si un consumidor necesita una URL.
-- `img('nombre')` mantiene compatibilidad con claves antiguas sin extensión.
-- `siteImages` agrupa recursos comunes; `nextRideSequence` describe los frames.
+Para cambiar una foto con distinto nombre, añade el archivo y cambia la ruta de su import en el `.ts` correspondiente, conservando el nombre de la variable. Si sustituyes el contenido del archivo sin cambiar su nombre, no necesitas editar código.
 
-Para sustituir una fotografía procesada, modifica su import en `images.ts` y conserva la clave de `photoFiles`. Si cambias el nombre físico asociado, actualiza la entrada de `imageFiles` en ese mismo archivo. Los datos y componentes siguen usando la clave estable. No repitas imports físicos por todas las páginas.
-
-Las fotografías de Home, las tarjetas de catálogo / servicios, los heroes de servicio y las especialidades de Suspensiones usan `<Image>` con variantes responsive. Se mantiene la proporción original y el recorte lo sigue controlando el CSS; no se fuerzan transformaciones de recorte distintas.
-
-Los JPG de Próxima salida, su póster estático y los logos permanecen en `public/`. No mover ni renumerar los frames sin revisar su controlador y el verificador.
+`images.ts` contiene solo recursos comunes; `brands.ts`, las URLs del carrusel de marcas. Consulta `docs/IMAGENES.md` para ejemplos y responsabilidades. Los 190 fotogramas y su controlador se conservan.
 
 ## Datos y nueva página
 
-Las FAQs usan `{ question, answer }`; los pasos usan `{ title, description }`. Los servicios comunes tienen `id`, `title`, `image`, `description` y `href` opcional. Solo se añade `href` cuando existe la página.
+Las FAQs usan `{ question, answer }`; los pasos usan `{ title, description }`. Los servicios comunes tienen `id`, `title`, `description` y `href` opcional. Solo se añade `href` cuando existe la página.
 
-`ServiceLayout` ya monta los bloques comunes. Dentro de la página solo se escriben sus secciones exclusivas. Consulta `docs/NUEVO-SERVICIO.md` para crear `ebike-barcelona.astro`.
+`ServiceLayout` ya monta los bloques comunes. Dentro de la página solo se escriben sus secciones exclusivas. Consulta `docs/NUEVO-SERVICIO.md` para añadir otros servicios.
 
-No hace falta usar colecciones de contenido para estas tres páginas distintas. Se podrán valorar si aparece una colección amplia y homogénea de artículos o fichas.
+No hace falta usar colecciones de contenido para estas cuatro páginas distintas. Se podrán valorar si aparece una colección amplia y homogénea de artículos o fichas.
 
 ## Reserva y seguridad
 

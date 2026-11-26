@@ -1,11 +1,11 @@
 ---
 import { siteImages } from '../data/images.ts';
 interface Props {
-  image?: string;
+  image: string;
   workshopHref?: string;
 }
 
-const { image = siteImages.portrait, workshopHref = '#taller' } = Astro.props;
+const { image, workshopHref = '#taller' } = Astro.props;
 ---
 
 <section id="oficio" class="oc-about" aria-labelledby="oc-about-title">

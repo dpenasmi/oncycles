@@ -1,3 +1,5 @@
+> Informe histórico. El registro de imágenes descrito aquí ha sido sustituido por el estándar de `IMAGENES.md`.
+
 # Cambios y validación · Buenas prácticas Astro · 25/11/2026
 
 ## Copia utilizada

@@ -1,60 +1,54 @@
 import type { ServiceDefinition } from '../types/content';
 
-/** Fuente común de servicios para tarjetas y formulario. href solo cuando exista la página. */
-export const serviceCatalog: ServiceDefinition[] = [
-  {
+/** Fuente común de servicios para navegación y formulario; las fotos se asignan en home.ts. href solo cuando exista la página. */
+export const serviceDefinitions = {
+  revisiones: {
     id: 'revisiones',
     title: 'Revisiones',
-    image: 'revisiones',
     description: 'Mantenimiento para que todo vuelva a ir fino.',
   },
-  {
+  suspensiones: {
     id: 'suspensiones',
     title: 'Suspensiones',
-    image: 'suspensiones',
     description: 'Revisión, mantenimiento y configuraciones.',
     href: 'suspension-bicicleta/',
   },
-  {
+  frenos: {
     id: 'frenos',
     title: 'Frenos',
-    image: 'frenos',
     description: 'Control y seguridad en cada salida.',
   },
-  {
+  transmision: {
     id: 'transmision',
     title: 'Transmisión',
-    image: 'transmision',
     description: 'Precisión y rendimiento en cada cambio.',
   },
-  {
+  ruedas: {
     id: 'ruedas',
     title: 'Ruedas',
-    image: 'ruedas',
     description: 'Fiabilidad, centrado y resistencia.',
   },
-  {
+  tijas: {
     id: 'tijas',
     title: 'Tijas telescópicas',
-    image: 'tijas',
     description: 'Servicio y optimización del funcionamiento.',
   },
-  {
+  rodamientos: {
     id: 'rodamientos',
     title: 'Rodamientos y dirección',
-    image: 'rodamientos',
     description: 'Suavidad y control, sin holguras.',
   },
-  {
+  ebike: {
     id: 'ebike',
+    href: 'ebike-barcelona/',
     title: 'E-Bike',
-    image: 'ebike',
     description: 'Diagnóstico y mantenimiento especializado.',
   },
-  {
+  setup: {
     id: 'setup',
     title: 'Setup y ajustes',
-    image: 'setup',
     description: 'Tu bici, a tu medida.',
   },
-];
+} satisfies Record<string, ServiceDefinition>;
+
+export const serviceCatalog: ServiceDefinition[] = Object.values(serviceDefinitions);

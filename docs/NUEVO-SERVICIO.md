@@ -1,24 +1,23 @@
-# Añadir otra página de servicio · Patrón v2
+# Añadir otra página de servicio · Importaciones directas
 
 La estructura común no obliga a que todas las páginas tengan las mismas secciones. Usa Suspensiones como referencia y adapta solo el contenido particular.
 
-## 1. Registrar recursos
+## 1. Añadir fotografías
 
-Copia una fotografía en `src/assets/images/`. Registra su import y su clave en `src/data/images.ts`, siguiendo las otras entradas de `photoFiles` y `imageFiles`. Para una imagen estática que no deba procesarse, utiliza `public/images/` y el registro de URLs.
+Copia la fotografía en `src/assets/images/` e impórtala directamente en los datos de la página. No se registra en `images.ts`. Para recursos estáticos de `public/images/`, usa `withBase()` en esos datos. Consulta `IMAGENES.md`.
 
 ## 2. Crear datos con tipos
 
 Ejemplo de `src/data/ebike.ts`. El texto es de muestra: debe revisarse antes de publicar.
 
 ```ts
-import { photo } from './images';
+import photograph from '../assets/images/ebike.webp';
 import type { PageMetadata, ServiceHeroData, FaqItem, WorkflowStep } from '../types/content';
 
 export const page: PageMetadata = {
   title: 'Servicio E-Bike en Barcelona | On Cycles',
   description: 'Diagnóstico y mantenimiento de tu e-bike.',
 };
-const photograph = photo('ebike.webp');
 export const hero: ServiceHeroData = {
   image: photograph,
   alt: 'Servicio E-Bike On Cycles',
@@ -92,10 +91,10 @@ Si un estilo debe controlar un componente hijo, no confíes en que el `<style>` 
 
 ## 4. Conectar y validar
 
-- Añade `href: 'ebike-barcelona/'` al elemento E-Bike de `service-catalog.ts`. No dupliques la lista en `home.ts` ni en el formulario.
+- En `serviceDefinitions`, añade `href: 'ebike-barcelona/'` al elemento E-Bike de `service-catalog.ts`. No dupliques la lista en `home.ts` ni en el formulario.
 - `defaultService` y `hero.service` deben coincidir con el título de una opción del catálogo común.
 - Revisa menú, enlaces y metadatos.
 - `verify-build.mjs` descubre la nueva página automáticamente; ya no hay una lista `routes` que editar.
 - Ejecuta `npm run verify` y `npm run format:check`. Revisa PC, tablet y móvil antes del commit.
 
-La versión actual todavía no incluye la página E-Bike del ejemplo.
+E-Bike ya existe; este ejemplo ilustra el patrón para nuevos servicios. Utiliza un slug e identificadores propios.

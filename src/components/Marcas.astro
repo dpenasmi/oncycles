@@ -1,6 +1,5 @@
 ---
 import { brands } from '../data/brands.ts';
-import { image } from '../data/images.ts';
 ---
 
 <section class="oc-marcas-loop" aria-labelledby="oc-marcas-loop-titulo">
@@ -15,7 +14,7 @@ import { image } from '../data/images.ts';
             <li>
               <img
                 class={brand.white ? 'oc-marcas__logo-blanco' : undefined}
-                src={image(brand.image)}
+                src={brand.image}
                 alt={brand.name}
                 width={brand.width}
                 height={brand.height}
@@ -31,7 +30,7 @@ import { image } from '../data/images.ts';
             <li>
               <img
                 class={brand.white ? 'oc-marcas__logo-blanco' : undefined}
-                src={image(brand.image)}
+                src={brand.image}
                 alt={brand.name}
                 width={brand.width}
                 height={brand.height}

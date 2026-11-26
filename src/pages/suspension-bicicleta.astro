@@ -1,7 +1,6 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import { base, withBase } from '../lib/paths.js';
-import { image, photo } from '../data/images';
 import { Image } from 'astro:assets';
 import Workflow from '../components/Workflow.astro';
 import {
@@ -80,7 +79,7 @@ import '../styles/suspension-bicicleta.css';
       {specialties.map((item, index) => (
         <article class="oc-suspension-card">
           <Image
-            src={photo(item.image)}
+            src={item.image}
             alt={item.alt}
             widths={[480, 800, 1200]}
             sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 560px"
@@ -141,7 +140,7 @@ import '../styles/suspension-bicicleta.css';
         <li>
           <img
             class:list={['oc-suspension-brand', { 'oc-suspension-brand--white': brand.white }]}
-            src={image(`marcas/${brand.image}`)}
+            src={brand.image}
             alt={brand.name}
             width={brand.white ? 2144 : 500}
             height={brand.white ? 736 : 500}

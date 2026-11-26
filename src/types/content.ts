@@ -7,12 +7,15 @@ export interface PageMetadata {
 }
 export interface ContentCard {
   title: string;
-  image: string;
+  image: ImageMetadata;
   description: string;
   href?: string;
 }
-export interface ServiceDefinition extends ContentCard {
+export interface ServiceDefinition {
   id: string;
+  title: string;
+  description: string;
+  href?: string;
 }
 export interface FaqItem {
   question: string;
@@ -23,7 +26,7 @@ export interface WorkflowStep {
   description: string;
 }
 export interface HeroSlide {
-  image: string;
+  image: ImageMetadata;
   label: string;
   position?: string;
   mobilePosition?: string;

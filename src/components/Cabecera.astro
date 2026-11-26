@@ -1,4 +1,5 @@
 ---
+import { serviceCatalog } from '../data/service-catalog';
 import { base } from '../lib/paths.js';
 import { siteImages } from '../data/images.ts';
 import '../styles/cabecera.css';
@@ -11,9 +12,10 @@ const { reservaHref = '#reserva' } = Astro.props;
 const servicesHref = `${base}reparacion-bicicletas-barcelona/`;
 const path = Astro.url.pathname.replace(/\/+$/, '');
 const isHome = path === base.replace(/\/+$/, '');
-const isServices = [servicesHref, `${base}suspension-bicicleta/`].some(
-  (href) => path === href.replace(/\/+$/, ''),
-);
+const isServices = [
+  servicesHref,
+  ...serviceCatalog.filter((service) => service.href).map((service) => `${base}${service.href}`),
+].some((href) => path === href.replace(/\/+$/, ''));
 const homeSection = (id: string) => (isHome ? `#${id}` : `${base}#${id}`);
 ---
 

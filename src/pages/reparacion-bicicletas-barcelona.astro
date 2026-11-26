@@ -1,9 +1,14 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import { withBase } from '../lib/paths.js';
-import { image } from '../data/images.ts';
 import Workflow from '../components/Workflow.astro';
-import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/services.ts';
+import {
+  servicesPage,
+  serviceHero,
+  serviceFaqs,
+  workflowSteps,
+  serviceImages,
+} from '../data/services.ts';
 ---
 
 <ServiceLayout
@@ -39,7 +44,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
     <div class="oc-revision-grid">
       <article class="oc-revision-card">
         <img
-          src={image('servicio-suspensiones.webp')}
+          src={serviceImages.suspensiones}
           alt="Detalle de una horquilla de suspensión"
           width="800"
           height="550"
@@ -66,7 +71,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </article>
       <article class="oc-revision-card">
         <img
-          src={image('servicio-transmision.webp')}
+          src={serviceImages.transmision}
           alt="Detalle del cassette y la transmisión"
           width="800"
           height="550"
@@ -93,7 +98,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </article>
       <article class="oc-revision-card">
         <img
-          src={image('servicio-frenos.webp')}
+          src={serviceImages.frenos}
           alt="Detalle de un freno de disco"
           width="800"
           height="550"
@@ -141,13 +146,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
     <ul class="oc-specialist-grid">
       <li>
         <a href={withBase('suspension-bicicleta/')}>
-          <img
-            src={image('servicio-suspensiones.webp')}
-            alt=""
-            width="400"
-            height="240"
-            loading="lazy"
-          />
+          <img src={serviceImages.suspensiones} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Suspensiones</h3>
             <p>Revisión, mantenimiento y configuración.</p>
@@ -159,7 +158,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Frenos">
-          <img src={image('servicio-frenos.webp')} alt="" width="400" height="240" loading="lazy" />
+          <img src={serviceImages.frenos} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Frenos e hidráulica</h3>
             <p>Ajuste, purgado y sustitución de componentes.</p>
@@ -171,13 +170,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Transmisión">
-          <img
-            src={image('servicio-transmision.webp')}
-            alt=""
-            width="400"
-            height="240"
-            loading="lazy"
-          />
+          <img src={serviceImages.transmision} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Transmisión</h3>
             <p>Revisión, ajuste y sustitución de componentes.</p>
@@ -189,7 +182,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Ruedas">
-          <img src={image('servicio-ruedas.webp')} alt="" width="400" height="240" loading="lazy" />
+          <img src={serviceImages.ruedas} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Ruedas</h3>
             <p>Centrado, tensión y mantenimiento.</p>
@@ -201,7 +194,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Tijas telescópicas">
-          <img src={image('servicio-tijas.webp')} alt="" width="400" height="240" loading="lazy" />
+          <img src={serviceImages.tijas} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Tijas telescópicas</h3>
             <p>Revisión, mantenimiento y ajuste del funcionamiento.</p>
@@ -213,13 +206,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Rodamientos y dirección">
-          <img
-            src={image('servicio-rodamientos.webp')}
-            alt=""
-            width="400"
-            height="240"
-            loading="lazy"
-          />
+          <img src={serviceImages.rodamientos} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Rodamientos y dirección</h3>
             <p>Control, limpieza y sustitución.</p>
@@ -230,8 +217,8 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
         </a>
       </li>
       <li>
-        <a href="#reserva" data-booking-service="E-Bike">
-          <img src={image('servicio-ebike.webp')} alt="" width="400" height="240" loading="lazy" />
+        <a href={withBase('ebike-barcelona/')}>
+          <img src={serviceImages.ebike} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>E-Bike</h3>
             <p>Diagnóstico y mantenimiento de e-bikes de alta gama.</p>
@@ -243,7 +230,7 @@ import { servicesPage, serviceHero, serviceFaqs, workflowSteps } from '../data/s
       </li>
       <li>
         <a href="#reserva" data-booking-service="Setup y ajustes">
-          <img src={image('servicio-setup.webp')} alt="" width="400" height="240" loading="lazy" />
+          <img src={serviceImages.setup} alt="" width="400" height="240" loading="lazy" />
           <div>
             <h3>Puesta a punto y ajustes</h3>
             <p>Ajustes de posición y funcionamiento según tu uso.</p>

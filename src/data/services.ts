@@ -1,5 +1,8 @@
+import { withBase } from '../lib/paths.js';
+import suspensionImage from '../assets/images/servicio-suspensiones.webp';
+import ebikeImage from '../assets/images/ebike.webp';
+import serviceHeroImage from '../assets/images/SERVICIO-TECNICO-ONCYLES.webp';
 import type { PageMetadata, ServiceHeroData, FaqItem, WorkflowStep } from '../types/content';
-import { photo } from './images';
 
 export const servicesPage: PageMetadata = {
   title: 'Reparación de bicicletas en Barcelona · On Cycles',
@@ -8,7 +11,7 @@ export const servicesPage: PageMetadata = {
 };
 
 export const serviceHero: ServiceHeroData = {
-  image: photo('SERVICIO-TECNICO-ONCYLES.webp'),
+  image: serviceHeroImage,
   alt: 'Alfredo trabajando en una bicicleta en el taller On Cycles',
   width: 1536,
   height: 1024,
@@ -67,3 +70,15 @@ export const workflowSteps: WorkflowStep[] = [
       'Compruebo cada ajuste antes de devolverte la bicicleta preparada para tu próxima salida.',
   },
 ];
+
+/** Imágenes de la página general de servicios, incluidas las de fondo. */
+export const serviceImages = {
+  suspensiones: suspensionImage.src,
+  ebike: ebikeImage.src,
+  transmision: withBase('images/servicio-transmision.webp'),
+  frenos: withBase('images/servicio-frenos.webp'),
+  ruedas: withBase('images/servicio-ruedas.webp'),
+  tijas: withBase('images/servicio-tijas.webp'),
+  rodamientos: withBase('images/servicio-rodamientos.webp'),
+  setup: withBase('images/servicios-setup.webp'),
+};

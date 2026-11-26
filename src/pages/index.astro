@@ -8,10 +8,16 @@ import ServiceCarousel from '../components/ServiceCarousel.astro';
 import SobreOnCycles from '../components/SobreOnCycles.astro';
 import Marcas from '../components/Marcas.astro';
 import ResenasGoogle from '../components/ResenasGoogle.astro';
-import { catalog, workshop, faqs, heroSlides } from '../data/home.ts';
-import { photo } from '../data/images';
+import {
+  catalog,
+  workshop,
+  faqs,
+  heroSlides,
+  services,
+  suspensionBackground,
+  aboutImage,
+} from '../data/home.ts';
 import { Image } from 'astro:assets';
-import { serviceCatalog as services } from '../data/service-catalog';
 import { site } from '../data/site.ts';
 ---
 
@@ -28,7 +34,7 @@ import { site } from '../data/site.ts';
       {heroSlides.map((slide, index) => (
         <Image
           class:list={['hero-image', { 'is-active': index === 0 }]}
-          src={photo(`${slide.image}.webp`)}
+          src={slide.image}
           alt=""
           widths={[768, 1280, 1536]}
           sizes="100vw"
@@ -109,7 +115,7 @@ import { site } from '../data/site.ts';
     <!-- Fondo de toda la sección -->
     <div class="suspension-background" aria-hidden="true">
       <Image
-        src={photo('suspensiones-fondo.webp')}
+        src={suspensionBackground}
         alt=""
         widths={[480, 900, 1280, 1672]}
         sizes="(max-width: 700px) 100vw, 60vw"
@@ -158,7 +164,7 @@ import { site } from '../data/site.ts';
 
   <!-- Sobre On Cycles -->
 
-  <SobreOnCycles />
+  <SobreOnCycles image={aboutImage} />
 
   <!-- Bloque Marcas -->
 
@@ -230,7 +236,7 @@ import { site } from '../data/site.ts';
         {workshop.map((item) => (
           <figure>
             <Image
-              src={photo(`${item.image}.webp`)}
+              src={item.image}
               alt={item.description}
               widths={[480, 900, 1280]}
               sizes="(max-width: 700px) 90vw, (max-width: 1024px) 64vw, 700px"

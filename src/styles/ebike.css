@@ -1,0 +1,26 @@
+/* Variantes de los bloques comunes, limitadas a esta página.
+   Las secciones exclusivas usan <style> encapsulado en ebike-barcelona.astro. */
+.oc-ebike-page .oc-services-hero__title {
+  max-width: 1100px;
+}
+.oc-ebike-page .oc-services-hero__intro {
+  max-width: 620px;
+}
+.oc-ebike-page .oc-services-trust__inner > p {
+  text-align: center;
+  justify-content: center;
+}
+.oc-ebike-page .oc-services-trust__logos {
+  justify-content: center;
+}
+.oc-ebike-page .oc-services-trust__logo {
+  flex: 0 1 180px;
+}
+.oc-ebike-page .oc-services-trust__logo:only-child img {
+  width: min(100%, 160px);
+}
+@media (max-width: 700px) {
+  .oc-ebike-page .oc-services-hero__image {
+    object-position: 65% center;
+  }
+}

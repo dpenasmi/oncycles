@@ -8,7 +8,7 @@ test('cada servicio tiene una identidad y una opción de reserva inequívocas', 
   assert.equal(new Set(serviceCatalog.map((item) => item.title)).size, serviceCatalog.length);
   for (const item of serviceCatalog) {
     assert.match(item.id, /^[a-z0-9-]+$/);
-    assert(item.title.trim() && item.description.trim() && item.image.trim());
+    assert(item.title.trim() && item.description.trim());
   }
 });
 test('no se enlazan páginas de servicio que todavía no existen', () => {

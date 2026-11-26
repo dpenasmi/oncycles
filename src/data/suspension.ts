@@ -1,3 +1,11 @@
+import { withBase } from '../lib/paths.js';
+import suspensionesFondoImage from '../assets/images/suspensiones-fondo.webp';
+import horquillasSuspensionesImage from '../assets/images/horquillas-suspensiones.webp';
+import amortiguadoresSuspensionesImage from '../assets/images/amortiguadores-suspensiones.webp';
+import tijasSuspensionesImage from '../assets/images/tijas-suspensiones.webp';
+import setupSuspensionesImage from '../assets/images/setup-suspensiones.webp';
+import tuningSuspensionesImage from '../assets/images/tuning-suspensiones.webp';
+import mantenimientoSuspensionesImage from '../assets/images/mantenimiento-suspensiones.webp';
 import type {
   PageMetadata,
   ServiceHeroData,
@@ -6,7 +14,6 @@ import type {
   Specialty,
   Brand,
 } from '../types/content';
-import { photo } from './images';
 
 export const suspensionPage: PageMetadata = {
   title: 'Suspensión de bicicleta en Barcelona · On Cycles',
@@ -17,42 +24,42 @@ export const suspensionPage: PageMetadata = {
 export const specialties: Specialty[] = [
   {
     title: 'Horquillas',
-    image: 'horquillas-suspensiones.webp',
+    image: horquillasSuspensionesImage,
     alt: 'Detalle de una horquilla de suspensión',
     description: 'Revisión, mantenimiento y ajuste.',
     service: 'Suspensiones',
   },
   {
     title: 'Amortiguadores',
-    image: 'amortiguadores-suspensiones.webp',
+    image: amortiguadoresSuspensionesImage,
     alt: 'Componentes de suspensión de bicicleta',
     description: 'Cuidado del sistema de aire e hidráulico.',
     service: 'Suspensiones',
   },
   {
     title: 'Tijas telescópicas',
-    image: 'tijas-suspensiones.webp',
+    image: tijasSuspensionesImage,
     alt: 'Detalle de una tija telescópica',
     description: 'Mantenimiento y ajuste de funcionamiento.',
     service: 'Tijas telescópicas',
   },
   {
     title: 'Setup y ajustes',
-    image: 'setup-suspensiones.webp',
+    image: setupSuspensionesImage,
     alt: 'Detalle de los componentes de una bicicleta',
     description: 'Presión, SAG, rebote y compresión.',
     service: 'Suspensiones',
   },
   {
     title: 'Tuning',
-    image: 'tuning-suspensiones.webp',
+    image: tuningSuspensionesImage,
     alt: 'Detalle de una suspensión de bicicleta',
     description: 'Configuración adaptada a tu forma de rodar.',
     service: 'Suspensiones',
   },
   {
     title: 'Mantenimiento completo',
-    image: 'mantenimiento-suspensiones.webp',
+    image: mantenimientoSuspensionesImage,
     alt: 'Zona de trabajo de suspensiones del taller',
     description: 'Limpieza, lubricación y revisión de componentes.',
     service: 'Suspensiones',
@@ -62,27 +69,27 @@ export const specialties: Specialty[] = [
 export const brands: Brand[] = [
   {
     name: 'Öhlins',
-    image: 'ohlins-monocromo.png',
+    image: withBase('images/marcas/ohlins-monocromo.png'),
     white: true,
   },
   {
     name: 'RockShox',
-    image: 'rockshox.webp',
+    image: withBase('images/marcas/rockshox.webp'),
     white: false,
   },
   {
     name: 'FOX',
-    image: 'fox.webp',
+    image: withBase('images/marcas/fox.webp'),
     white: false,
   },
   {
     name: 'Cane Creek',
-    image: 'cane-creek.webp',
+    image: withBase('images/marcas/cane-creek.webp'),
     white: false,
   },
   {
     name: 'DT Swiss',
-    image: 'dt-swiss.webp',
+    image: withBase('images/marcas/dt-swiss.webp'),
     white: false,
   },
 ];
@@ -116,7 +123,7 @@ export const faqs: FaqItem[] = [
 ];
 
 export const suspensionHero: ServiceHeroData = {
-  image: photo('suspensiones-fondo.webp'),
+  image: suspensionesFondoImage,
   alt: 'Suspensión de bicicleta en el taller On Cycles',
   width: 1672,
   height: 941,
