@@ -5,7 +5,7 @@ interface Props {
   title: string;
   accent: string;
   symptoms: string[];
-  backgroundText: string;
+  backgroundText?: string;
 }
 
 const { headingId, eyebrow, title, accent, symptoms, backgroundText } = Astro.props;
@@ -15,9 +15,11 @@ const { headingId, eyebrow, title, accent, symptoms, backgroundText } = Astro.pr
   class="oc-services-container oc-services-section oc-service-symptoms"
   aria-labelledby={headingId}
 >
-  <span class="oc-service-symptoms__background" aria-hidden="true">
-    {backgroundText}
-  </span>
+  {backgroundText && (
+    <span class="oc-service-symptoms__background" aria-hidden="true">
+      {backgroundText}
+    </span>
+  )}
   <div>
     <p class="oc-services-eyebrow">{eyebrow}</p>
     <h2 class="oc-services-display" id={headingId}>

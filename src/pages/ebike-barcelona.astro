@@ -26,157 +26,192 @@ import '../styles/ebike.css';
   faqHeadingId="ebike-faq-title"
   defaultService="E-Bike"
 >
-  <nav class="oc-services-container oc-ebike-breadcrumb" aria-label="Ruta de navegación">
-    <ol>
-      <li>
-        <a href={base}>Inicio</a>
-      </li>
-      <li>
-        <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
-      </li>
-      <li>
-        <span aria-current="page">E-Bike</span>
-      </li>
-    </ol>
-  </nav>
-
-  <ServiceSymptoms
-    headingId="ebike-symptoms-title"
-    eyebrow="Señales de aviso"
-    title="¿Tu e-bike"
-    accent="te está avisando?"
-    backgroundText="E-BIKE"
-    symptoms={[
-      'La asistencia se corta o responde de forma irregular',
-      'La autonomía ha bajado sin un motivo claro',
-      'Aparece un aviso o código de error en la pantalla',
-      'Notas ruidos o vibraciones al activar la asistencia',
-    ]}
-  />
-
-  <section
-    class="oc-services-container oc-services-section oc-ebike-intro"
-    aria-labelledby="ebike-intro-title"
-  >
-    <div>
-      <p class="oc-services-eyebrow">Tecnología y mecánica</p>
-      <h2 class="oc-services-display" id="ebike-intro-title">
-        Más tecnología.
-        <br />
-        <span>El mismo cuidado.</span>
-      </h2>
+  <div class="oc-ebike-content-track">
+    <div class="oc-ebike-content-track__watermark" aria-hidden="true">
+      <span>E-BIKE</span>
     </div>
-    <div class="oc-ebike-intro__text">
-      <p>
-        Reviso tu e-bike, te explico qué necesita y acuerdo contigo el trabajo antes de intervenir.
-      </p>
-      <ul class="oc-ebike-benefits" role="list">
-        <li>Diagnóstico</li>
-        <li>Precisión</li>
-        <li>Confianza</li>
-      </ul>
-    </div>
-  </section>
-
-  <section
-    class="oc-services-container oc-services-section oc-ebike-specialties"
-    id="cuidado-ebike"
-    aria-labelledby="ebike-specialties-title"
-  >
-    <p class="oc-services-eyebrow">Cuidado para cada sistema</p>
-    <h2 class="oc-services-display" id="ebike-specialties-title">
-      Tu e-bike. <span>Al detalle.</span>
-    </h2>
-    <div class="oc-ebike-grid">
-      {ebikeSpecialties.map((item, index) => (
-        <article class="oc-ebike-card">
-          <div class="oc-ebike-card__photo">
-            <Image
-              src={item.image}
-              alt={item.alt}
-              widths={[480, 800, 1200]}
-              sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 560px"
-              format="webp"
-              quality={90}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div class="oc-ebike-card__body">
-            <h3>
-              <a
-                href="#reserva"
-                data-booking-service={item.service}
-                data-booking-detail={`E-Bike · ${item.title}`}
-              >
-                <span class="oc-ebike-card__number" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span>{item.title}</span>
-                <span class="oc-ebike-card__arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-            </h3>
-            <p>{item.description}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-    <div class="oc-ebike-cta">
-      <a class="button" href="#reserva" data-booking-service="E-Bike">
-        Consulta tu e-bike <span aria-hidden="true">↗</span>
-      </a>
-    </div>
-  </section>
-
-  <Workflow headingId="ebike-workflow-title" line1="Un proceso técnico." steps={ebikeWorkflow} />
-
-  <section
-    class="oc-services-container oc-services-section oc-ebike-brands"
-    aria-labelledby="ebike-brands-title"
-  >
-    <p class="oc-services-eyebrow">Principales marcas</p>
-    <div class="oc-ebike-brands__heading">
-      <h2 class="oc-services-display" id="ebike-brands-title">
-        Experiencia <span>con tu e-bike.</span>
-      </h2>
-      <p>Consulta el servicio disponible para tu marca, sistema y modelo.</p>
-    </div>
-    <ul class="oc-ebike-brands__list" role="list">
-      {ebikeBrands.map((brand) => (
+    <nav class="oc-services-container oc-ebike-breadcrumb" aria-label="Ruta de navegación">
+      <ol>
         <li>
-          {brand.image ? (
-            <img
-              class:list={[
-                'oc-ebike-brand',
-                { 'oc-ebike-brand--inverted': brand.presentation === 'dark-on-light' },
-              ]}
-              src={brand.image}
-              alt={brand.name}
-              width="400"
-              height="140"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span
-              class:list={[
-                'oc-ebike-wordmark',
-                { 'oc-ebike-wordmark--brose': brand.name === 'Brose' },
-              ]}
-            >
-              {brand.name === 'Brose' ? 'brose' : brand.name}
-            </span>
-          )}
+          <a href={base}>Inicio</a>
         </li>
-      ))}
-    </ul>
-  </section>
+        <li>
+          <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
+        </li>
+        <li>
+          <span aria-current="page">E-Bike</span>
+        </li>
+      </ol>
+    </nav>
+
+    <ServiceSymptoms
+      headingId="ebike-symptoms-title"
+      eyebrow="Señales de aviso"
+      title="¿Tu e-bike"
+      accent="te está avisando?"
+      symptoms={[
+        'La asistencia se corta o responde de forma irregular',
+        'La autonomía ha bajado sin un motivo claro',
+        'Aparece un aviso o código de error en la pantalla',
+        'Notas ruidos o vibraciones al activar la asistencia',
+      ]}
+    />
+
+    <section
+      class="oc-services-container oc-services-section oc-ebike-intro"
+      aria-labelledby="ebike-intro-title"
+    >
+      <div>
+        <p class="oc-services-eyebrow">Tecnología y mecánica</p>
+        <h2 class="oc-services-display" id="ebike-intro-title">
+          Más tecnología.
+          <br />
+          <span>El mismo cuidado.</span>
+        </h2>
+      </div>
+      <div class="oc-ebike-intro__text">
+        <p>
+          Reviso tu e-bike, te explico qué necesita y acuerdo contigo el trabajo antes de
+          intervenir.
+        </p>
+        <ul class="oc-ebike-benefits" role="list">
+          <li>Diagnóstico</li>
+          <li>Precisión</li>
+          <li>Confianza</li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="oc-services-container oc-services-section oc-ebike-specialties"
+      id="cuidado-ebike"
+      aria-labelledby="ebike-specialties-title"
+    >
+      <p class="oc-services-eyebrow">Cuidado para cada sistema</p>
+      <h2 class="oc-services-display" id="ebike-specialties-title">
+        Tu e-bike. <span>Al detalle.</span>
+      </h2>
+      <div class="oc-ebike-grid">
+        {ebikeSpecialties.map((item, index) => (
+          <article class="oc-ebike-card">
+            <div class="oc-ebike-card__photo">
+              <Image
+                src={item.image}
+                alt={item.alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 560px"
+                format="webp"
+                quality={90}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="oc-ebike-card__body">
+              <h3>
+                <a
+                  href="#reserva"
+                  data-booking-service={item.service}
+                  data-booking-detail={`E-Bike · ${item.title}`}
+                >
+                  <span class="oc-ebike-card__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{item.title}</span>
+                  <span class="oc-ebike-card__arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              </h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="oc-ebike-cta">
+        <a class="button" href="#reserva" data-booking-service="E-Bike">
+          Consulta tu e-bike <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <Workflow headingId="ebike-workflow-title" line1="Un proceso técnico." steps={ebikeWorkflow} />
+
+    <section
+      class="oc-services-container oc-services-section oc-ebike-brands"
+      aria-labelledby="ebike-brands-title"
+    >
+      <p class="oc-services-eyebrow">Principales marcas</p>
+      <div class="oc-ebike-brands__heading">
+        <h2 class="oc-services-display" id="ebike-brands-title">
+          Experiencia <span>con tu e-bike.</span>
+        </h2>
+        <p>Consulta el servicio disponible para tu marca, sistema y modelo.</p>
+      </div>
+      <ul class="oc-ebike-brands__list" role="list">
+        {ebikeBrands.map((brand) => (
+          <li>
+            {brand.image ? (
+              <img
+                class:list={[
+                  'oc-ebike-brand',
+                  { 'oc-ebike-brand--inverted': brand.presentation === 'dark-on-light' },
+                ]}
+                src={brand.image}
+                alt={brand.name}
+                width="400"
+                height="140"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <span
+                class:list={[
+                  'oc-ebike-wordmark',
+                  { 'oc-ebike-wordmark--brose': brand.name === 'Brose' },
+                ]}
+              >
+                {brand.name === 'Brose' ? 'brose' : brand.name}
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
 </ServiceLayout>
 
 <style>
+  .oc-ebike-content-track {
+    --ebike-watermark-size: clamp(36px, 9.5vw, 200px);
+    position: relative;
+    isolation: isolate;
+  }
+  .oc-ebike-content-track__watermark {
+    position: sticky;
+    top: 45svh;
+    height: var(--ebike-watermark-size);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  .oc-ebike-content-track__watermark span {
+    position: absolute;
+    top: 0;
+    right: var(--services-gutter);
+    color: #202020;
+    font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif);
+    font-size: var(--ebike-watermark-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+  }
+  :global(.oc-ebike-content-track > :not(.oc-ebike-content-track__watermark)) {
+    position: relative;
+    z-index: 1;
+  }
   .oc-ebike-breadcrumb {
+    margin-top: calc(0px - var(--ebike-watermark-size));
     padding-block: 24px 0;
   }
   .oc-ebike-breadcrumb ol {
