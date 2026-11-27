@@ -1,0 +1,379 @@
+---
+import { Image } from 'astro:assets';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import Workflow from '../components/Workflow.astro';
+import ServiceSymptoms from '../components/ServiceSymptoms.astro';
+import { base, withBase } from '../lib/paths.js';
+import {
+  transmissionPage,
+  transmissionHero,
+  transmissionServices,
+  transmissionSymptoms,
+  transmissionWorkflow,
+  transmissionFaqs,
+} from '../data/transmision';
+---
+
+<ServiceLayout
+  page={transmissionPage}
+  hero={transmissionHero}
+  headingId="transmission-h1"
+  bodyClass="oc-services-page oc-transmission-page"
+  certificates={[]}
+  trustLabel="Servicio técnico especializado"
+  trustWordmark="On Cycles"
+  faqs={transmissionFaqs}
+  faqHeadingId="transmission-faq-title"
+  defaultService="Transmisión"
+>
+  <nav class="oc-services-container oc-transmission-breadcrumb" aria-label="Ruta de navegación">
+    <ol>
+      <li>
+        <a href={base}>Inicio</a>
+      </li>
+      <li>
+        <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
+      </li>
+      <li aria-current="page">Transmisión</li>
+    </ol>
+  </nav>
+
+  <ServiceSymptoms
+    headingId="transmission-symptoms-title"
+    eyebrow="Señales de desgaste"
+    title="¿Tu bici te"
+    accent="está avisando?"
+    symptoms={transmissionSymptoms}
+    backgroundText="TRANSMISIÓN"
+  />
+
+  <section
+    class="oc-services-container oc-services-section oc-transmission-intro"
+    aria-labelledby="transmission-intro-title"
+  >
+    <div>
+      <p class="oc-services-eyebrow">Cada componente cuenta</p>
+      <h2 class="oc-services-display" id="transmission-intro-title">
+        Cambios precisos.
+        <br />
+        <span>Más kilómetros.</span>
+      </h2>
+    </div>
+    <div class="oc-transmission-intro__text">
+      <p>
+        Reviso el desgaste, encuentro el origen del problema y te explico qué necesita tu
+        transmisión antes de intervenir.
+      </p>
+      <ul class="oc-transmission-benefits" role="list">
+        <li>Diagnóstico</li>
+        <li>Precisión</li>
+        <li>Confianza</li>
+      </ul>
+    </div>
+  </section>
+
+  <section
+    class="oc-services-container oc-services-section oc-transmission-services"
+    id="servicios-transmision"
+    aria-labelledby="transmission-services-title"
+  >
+    <p class="oc-services-eyebrow">Cuidado para cada componente</p>
+    <h2 class="oc-services-display" id="transmission-services-title">
+      Tu transmisión. <span>Al detalle.</span>
+    </h2>
+    <div class="oc-transmission-grid">
+      {transmissionServices.map((item, index) => (
+        <article class="oc-transmission-card">
+          <Image
+            src={item.image}
+            alt={item.alt}
+            widths={[480, 800, 1200]}
+            sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 31vw"
+            format="webp"
+            quality={85}
+            loading="lazy"
+            decoding="async"
+          />
+          <div class="oc-transmission-card__body">
+            <h3>
+              <a
+                href="#reserva"
+                data-booking-service="Transmisión"
+                data-booking-detail={`Transmisión · ${item.title}`}
+              >
+                <span class="oc-transmission-card__number" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span>{item.title}</span>
+                <span class="oc-transmission-card__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
+            </h3>
+            <p>{item.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="oc-transmission-cta">
+      <a class="button" href="#reserva" data-booking-service="Transmisión">
+        Consulta tu transmisión <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <Workflow
+    headingId="transmission-workflow-title"
+    line1="Un proceso técnico."
+    steps={transmissionWorkflow}
+  />
+
+  <section
+    class="oc-services-container oc-services-section oc-transmission-systems"
+    aria-labelledby="transmission-systems-title"
+  >
+    <p class="oc-services-eyebrow">Sistemas de transmisión</p>
+    <div class="oc-transmission-systems__heading">
+      <h2 class="oc-services-display" id="transmission-systems-title">
+        Experiencia <span>con tu cambio.</span>
+      </h2>
+      <p>Consulta el servicio disponible para tu marca, sistema y modelo.</p>
+    </div>
+    <ul class="oc-transmission-systems__list" role="list">
+      <li>Shimano</li>
+      <li>SRAM</li>
+      <li>Di2</li>
+      <li>AXS</li>
+    </ul>
+  </section>
+</ServiceLayout>
+
+<style>
+  .oc-transmission-breadcrumb {
+    padding-block: 24px 0;
+  }
+  .oc-transmission-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .oc-transmission-breadcrumb li {
+    display: flex;
+    gap: 8px;
+    color: #bdbdbd;
+    font-size: 12px;
+  }
+  .oc-transmission-breadcrumb li + li::before {
+    content: '/';
+    color: #666;
+  }
+  .oc-transmission-breadcrumb a {
+    color: inherit;
+  }
+  .oc-transmission-breadcrumb a:hover,
+  .oc-transmission-breadcrumb [aria-current] {
+    color: var(--services-accent);
+  }
+
+  .oc-transmission-intro {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 56px;
+  }
+  .oc-transmission-intro__text {
+    padding-left: 48px;
+    border-left: 1px solid var(--services-line);
+  }
+  .oc-transmission-intro__text > p {
+    margin: 0;
+    color: var(--services-text);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .oc-transmission-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    padding: 0;
+    margin: 28px 0 0;
+    list-style: none;
+  }
+  .oc-transmission-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .oc-transmission-benefits li::before {
+    content: '✓';
+    color: var(--services-accent);
+    font-size: 20px;
+  }
+
+  .oc-transmission-services,
+  .oc-transmission-systems {
+    border-top: 1px solid var(--services-line);
+  }
+  .oc-transmission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .oc-transmission-card {
+    position: relative;
+    min-width: 0;
+    isolation: isolate;
+    background: #101010;
+    border: 1px solid var(--services-line);
+  }
+  .oc-transmission-card :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .oc-transmission-card {
+    overflow: hidden;
+  }
+  .oc-transmission-card__body {
+    position: relative;
+    z-index: 1;
+    min-height: 120px;
+    padding: 18px 18px 22px;
+    background: #101010;
+  }
+  .oc-transmission-card h3 {
+    margin: 0;
+    font-size: clamp(16px, 1.65vw, 22px);
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .oc-transmission-card h3 a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 8px;
+    color: #fff;
+  }
+  .oc-transmission-card h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .oc-transmission-card__number,
+  .oc-transmission-card__arrow {
+    color: var(--services-accent);
+  }
+  .oc-transmission-card__arrow {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .oc-transmission-card p {
+    margin: 12px 0 0;
+    color: var(--services-text);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .oc-transmission-card:focus-within {
+    outline: 2px solid var(--services-accent);
+    outline-offset: 3px;
+  }
+  .oc-transmission-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .oc-transmission-systems {
+    border-bottom: 1px solid var(--services-line);
+  }
+  .oc-transmission-systems__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+  }
+  .oc-transmission-systems__heading p {
+    max-width: 360px;
+    margin: 0;
+    color: var(--services-text);
+    line-height: 1.6;
+  }
+  .oc-transmission-systems__list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .oc-transmission-systems__list li {
+    padding: 16px;
+    text-align: center;
+    font-size: clamp(22px, 3vw, 38px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+  }
+  .oc-transmission-systems__list li + li {
+    border-left: 1px solid var(--services-line);
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .oc-transmission-card:hover :global(img) {
+      transform: scale(1.035);
+    }
+    .oc-transmission-card:hover h3 a {
+      color: var(--services-accent);
+    }
+  }
+  @media (max-width: 1024px) {
+    .oc-transmission-intro {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+    .oc-transmission-intro__text {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .oc-transmission-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .oc-transmission-systems__heading {
+      display: block;
+    }
+    .oc-transmission-systems__heading p {
+      margin-top: 24px;
+    }
+  }
+  @media (max-width: 700px) {
+    .oc-transmission-grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+    .oc-transmission-card h3 {
+      font-size: 20px;
+    }
+    .oc-transmission-systems__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .oc-transmission-systems__list li:nth-child(odd) {
+      border-left: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .oc-transmission-card :global(img) {
+      transition: none;
+    }
+  }
+</style>

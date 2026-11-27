@@ -14,6 +14,8 @@ interface Props {
   headingId: string;
   bodyClass?: string;
   certificates?: { name: string; src: string }[];
+  trustLabel?: string;
+  trustWordmark?: string;
   faqs: FaqItem[];
   faqId?: string;
   faqHeadingId: string;
@@ -26,6 +28,8 @@ const {
   headingId,
   bodyClass = 'oc-services-page',
   certificates,
+  trustLabel,
+  trustWordmark,
   faqs,
   faqId,
   faqHeadingId,
@@ -36,7 +40,7 @@ const {
 
 <BaseLayout title={page.title} description={page.description} bodyClass={bodyClass}>
   <ServiceHero hero={hero} headingId={headingId} />
-  <ServiceTrust certificates={certificates} />
+  <ServiceTrust certificates={certificates} label={trustLabel} wordmark={trustWordmark} />
   <slot />
   <ProximaSalida />
   <FaqSection id={faqId} headingId={faqHeadingId} items={faqs} sectionClass={faqClass} />

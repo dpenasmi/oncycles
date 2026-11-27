@@ -22,6 +22,7 @@ export const serviceDefinitions = {
     id: 'transmision',
     title: 'Transmisión',
     description: 'Precisión y rendimiento en cada cambio.',
+    href: 'transmision-bicicleta-barcelona/',
   },
   ruedas: {
     id: 'ruedas',

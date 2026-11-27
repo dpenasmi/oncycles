@@ -2,32 +2,54 @@
 import { siteImages } from '../data/images.ts';
 interface Props {
   certificates?: { name: string; src: string }[];
+  label?: string;
+  wordmark?: string;
 }
 const {
   certificates = [
     { name: 'Öhlins', src: siteImages.ohlins },
     { name: 'Bosch', src: siteImages.bosch },
   ],
+  label = 'Servicio técnico certificado',
+  wordmark,
 } = Astro.props;
 ---
 
-<div class="oc-services-trust" aria-label="Atención personal y certificación del servicio">
+<div class="oc-services-trust" aria-label="Credenciales del taller">
   <div class="oc-services-container oc-services-trust__inner">
     <p>Atención personal de Alfredo</p>
     <p>Desde 2006</p>
-    <p>Servicio técnico certificado</p>
+    <p>{label}</p>
     <div class="oc-services-trust__logos">
-      {certificates.map((certificate) => (
-        <div class="oc-services-trust__logo">
-          <img
-            src={certificate.src}
-            alt={certificate.name}
-            width="500"
-            height="500"
-            loading="lazy"
-          />
-        </div>
-      ))}
+      {wordmark ? (
+        <span class="oc-services-trust__wordmark">{wordmark}</span>
+      ) : (
+        certificates.map((certificate) => (
+          <div class="oc-services-trust__logo">
+            <img
+              src={certificate.src}
+              alt={certificate.name}
+              width="500"
+              height="500"
+              loading="lazy"
+            />
+          </div>
+        ))
+      )}
     </div>
   </div>
 </div>
+
+<style>
+  .oc-services-trust__wordmark {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font:
+      800 clamp(16px, 2vw, 24px)/1.2 Inter,
+      Arial,
+      sans-serif;
+    text-transform: uppercase;
+  }
+</style>

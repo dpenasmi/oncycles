@@ -1,6 +1,7 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import Workflow from '../components/Workflow.astro';
+import ServiceSymptoms from '../components/ServiceSymptoms.astro';
 import { Image } from 'astro:assets';
 import { base, withBase } from '../lib/paths.js';
 import { siteImages } from '../data/images';
@@ -38,6 +39,20 @@ import '../styles/ebike.css';
       </li>
     </ol>
   </nav>
+
+  <ServiceSymptoms
+    headingId="ebike-symptoms-title"
+    eyebrow="Señales de aviso"
+    title="¿Tu e-bike"
+    accent="te está avisando?"
+    backgroundText="E-BIKE"
+    symptoms={[
+      'La asistencia se corta o responde de forma irregular',
+      'La autonomía ha bajado sin un motivo claro',
+      'Aparece un aviso o código de error en la pantalla',
+      'Notas ruidos o vibraciones al activar la asistencia',
+    ]}
+  />
 
   <section
     class="oc-services-container oc-services-section oc-ebike-intro"
@@ -84,6 +99,7 @@ import '../styles/ebike.css';
               format="webp"
               quality={90}
               loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="oc-ebike-card__body">

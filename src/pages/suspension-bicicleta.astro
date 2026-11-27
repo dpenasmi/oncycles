@@ -3,6 +3,7 @@ import ServiceLayout from '../layouts/ServiceLayout.astro';
 import { base, withBase } from '../lib/paths.js';
 import { Image } from 'astro:assets';
 import Workflow from '../components/Workflow.astro';
+import ServiceSymptoms from '../components/ServiceSymptoms.astro';
 import {
   suspensionPage,
   suspensionHero,
@@ -38,6 +39,20 @@ import '../styles/suspension-bicicleta.css';
       </li>
     </ol>
   </nav>
+
+  <ServiceSymptoms
+    headingId="suspension-symptoms-title"
+    eyebrow="Señales de tu suspensión"
+    title="¿Notas que tu bici"
+    accent="pierde control?"
+    backgroundText="SUSPENSIONES"
+    symptoms={[
+      'La horquilla pierde aire o se hunde más de lo habitual',
+      'Ves aceite en las barras o el amortiguador',
+      'La suspensión rebota de forma irregular',
+      'Oyes ruidos o notas holgura al rodar',
+    ]}
+  />
 
   <section
     class="oc-services-container oc-services-section oc-suspension-intro"
