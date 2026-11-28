@@ -1,0 +1,131 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import ServiceSymptoms from '../components/ServiceSymptoms.astro';
+import ServiceWatermarkTrack from '../components/ServiceWatermarkTrack.astro';
+import Workflow from '../components/Workflow.astro';
+import { base, withBase } from '../lib/paths.js';
+import {
+  brakesPage,
+  brakesHero,
+  brakesServices,
+  brakesSymptoms,
+  brakesWorkflow,
+  brakesFaqs,
+} from '../data/frenos';
+import '../styles/freno-hidraulico-bici.css';
+---
+
+<ServiceLayout
+  page={brakesPage}
+  hero={brakesHero}
+  headingId="brakes-h1"
+  bodyClass="oc-services-page oc-brakes-page"
+  certificates={[]}
+  trustLabel="Servicio técnico especializado"
+  trustWordmark="On Cycles"
+  faqs={brakesFaqs}
+  faqHeadingId="brakes-faq-title"
+  defaultService="Frenos"
+>
+  <ServiceWatermarkTrack text="FRENOS">
+    <nav class="oc-services-container oc-brakes-breadcrumb" aria-label="Ruta de navegación">
+      <ol>
+        <li><a href={base}>Inicio</a></li>
+        <li><a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a></li>
+        <li aria-current="page">Frenos e hidráulica</li>
+      </ol>
+    </nav>
+
+    <ServiceSymptoms
+      headingId="brakes-symptoms-title"
+      eyebrow="Señales de aviso"
+      title="¿Tus frenos"
+      accent="te están avisando?"
+      symptoms={brakesSymptoms}
+    />
+
+    <section
+      class="oc-services-container oc-services-section oc-brakes-intro"
+      aria-labelledby="brakes-intro-title"
+    >
+      <div>
+        <p class="oc-services-eyebrow">La confianza empieza al frenar</p>
+        <h2 class="oc-services-display" id="brakes-intro-title">
+          Respuesta precisa.
+          <br />
+          <span>Más control.</span>
+        </h2>
+      </div>
+      <div class="oc-brakes-intro__text">
+        <p>
+          Reviso el tacto, el desgaste y el circuito hidráulico para encontrar el origen del
+          problema. Te explico qué necesitan tus frenos antes de realizar el trabajo.
+        </p>
+        <ul class="oc-brakes-benefits" role="list">
+          <li>Diagnóstico</li>
+          <li>Precisión</li>
+          <li>Confianza</li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="oc-services-container oc-services-section oc-brakes-services"
+      id="servicios-frenos"
+      aria-labelledby="brakes-services-title"
+    >
+      <p class="oc-services-eyebrow">Cada detalle de tu frenada</p>
+      <h2 class="oc-services-display" id="brakes-services-title">
+        Tus frenos. <span>En su punto.</span>
+      </h2>
+      <div class="oc-brakes-grid">
+        {brakesServices.map((item, index) => (
+          <article class="oc-brakes-card">
+            <img src={item.image} alt={item.alt} width="1200" height="600" loading="lazy" decoding="async" />
+            <div class="oc-brakes-card__body">
+              <h3>
+                <a
+                  href="#reserva"
+                  data-booking-service="Frenos"
+                  data-booking-detail={`Frenos · ${item.title}`}
+                >
+                  <span class="oc-brakes-card__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{item.title}</span>
+                  <span class="oc-brakes-card__arrow" aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="oc-brakes-cta">
+        <a class="button" href="#reserva" data-booking-service="Frenos">
+          Consulta tus frenos <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <Workflow headingId="brakes-workflow-title" line1="Un proceso técnico." steps={brakesWorkflow} />
+  </ServiceWatermarkTrack>
+
+  <section
+    class="oc-services-container oc-services-section oc-brakes-brands"
+    aria-labelledby="brakes-brands-title"
+  >
+    <p class="oc-services-eyebrow">Principales marcas</p>
+    <div class="oc-brakes-brands__heading">
+      <h2 class="oc-services-display" id="brakes-brands-title">
+        Experiencia <span>con tus frenos.</span>
+      </h2>
+      <p>Confírmame tu marca y modelo para revisar el fluido, las piezas y el servicio disponible.</p>
+    </div>
+    <ul class="oc-brakes-brands__list" role="list">
+      <li><img src={withBase('images/marcas/shimano.webp')} alt="Shimano" width="400" height="140" loading="lazy" decoding="async" /></li>
+      <li><img src={withBase('images/marcas/sram.webp')} alt="SRAM" width="400" height="140" loading="lazy" decoding="async" /></li>
+      <li><img src={withBase('images/marcas/magura.webp')} alt="Magura" width="400" height="140" loading="lazy" decoding="async" /></li>
+    </ul>
+  </section>
+</ServiceLayout>

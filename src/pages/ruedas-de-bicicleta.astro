@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import ServiceSymptoms from '../components/ServiceSymptoms.astro';
+import ServiceWatermarkTrack from '../components/ServiceWatermarkTrack.astro';
+import Workflow from '../components/Workflow.astro';
+import { base, withBase } from '../lib/paths.js';
+import {
+  wheelsPage,
+  wheelsHero,
+  wheelsServices,
+  wheelsSymptoms,
+  wheelsWorkflow,
+  wheelsFaqs,
+} from '../data/ruedas';
+import '../styles/ruedas-de-bicicleta.css';
+---
+
+<ServiceLayout
+  page={wheelsPage}
+  hero={wheelsHero}
+  headingId="wheels-h1"
+  bodyClass="oc-services-page oc-wheels-page"
+  certificates={[]}
+  trustLabel="Servicio técnico especializado"
+  trustWordmark="On Cycles"
+  faqs={wheelsFaqs}
+  faqHeadingId="wheels-faq-title"
+  defaultService="Ruedas"
+>
+  <ServiceWatermarkTrack text="RUEDAS">
+    <nav class="oc-services-container oc-wheels-breadcrumb" aria-label="Ruta de navegación">
+      <ol>
+        <li><a href={base}>Inicio</a></li>
+        <li><a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a></li>
+        <li aria-current="page">Ruedas</li>
+      </ol>
+    </nav>
+
+    <ServiceSymptoms
+      headingId="wheels-symptoms-title"
+      eyebrow="Señales de desgaste"
+      title="¿Tus ruedas"
+      accent="te están avisando?"
+      symptoms={wheelsSymptoms}
+    />
+
+    <section
+      class="oc-services-container oc-services-section oc-wheels-intro"
+      aria-labelledby="wheels-intro-title"
+    >
+      <div>
+        <p class="oc-services-eyebrow">Cada giro cuenta</p>
+        <h2 class="oc-services-display" id="wheels-intro-title">
+          Ruedas precisas.
+          <br />
+          <span>Más confianza.</span>
+        </h2>
+      </div>
+      <div class="oc-wheels-intro__text">
+        <p>
+          Reviso la llanta, los radios, el buje y la cubierta para localizar el origen del
+          problema. Te explico qué necesita cada rueda antes de intervenir.
+        </p>
+        <ul class="oc-wheels-benefits" role="list">
+          <li>Diagnóstico</li>
+          <li>Precisión</li>
+          <li>Fiabilidad</li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="oc-services-container oc-services-section oc-wheels-services"
+      id="servicios-ruedas"
+      aria-labelledby="wheels-services-title"
+    >
+      <p class="oc-services-eyebrow">Cuidado para cada componente</p>
+      <h2 class="oc-services-display" id="wheels-services-title">
+        Tus ruedas. <span>Al detalle.</span>
+      </h2>
+      <div class="oc-wheels-grid">
+        {wheelsServices.map((item, index) => (
+          <article class="oc-wheels-card">
+            {typeof item.image === 'string' ? (
+              <img src={item.image} alt={item.alt} width="1536" height="1024" loading="lazy" decoding="async" />
+            ) : (
+              <Image
+                src={item.image}
+                alt={item.alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 31vw"
+                format="webp"
+                quality={85}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class="oc-wheels-card__body">
+              <h3>
+                <a
+                  href="#reserva"
+                  data-booking-service="Ruedas"
+                  data-booking-detail={`Ruedas · ${item.title}`}
+                >
+                  <span class="oc-wheels-card__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{item.title}</span>
+                  <span class="oc-wheels-card__arrow" aria-hidden="true">↗</span>
+                </a>
+              </h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="oc-wheels-cta">
+        <a class="button" href="#reserva" data-booking-service="Ruedas">
+          Consulta tus ruedas <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <Workflow headingId="wheels-workflow-title" line1="Un proceso técnico." steps={wheelsWorkflow} />
+  </ServiceWatermarkTrack>
+
+  <section
+    class="oc-services-container oc-services-section oc-wheels-brands"
+    aria-labelledby="wheels-brands-title"
+  >
+    <p class="oc-services-eyebrow">Principales sistemas</p>
+    <div class="oc-wheels-brands__heading">
+      <h2 class="oc-services-display" id="wheels-brands-title">
+        Experiencia <span>con tus ruedas.</span>
+      </h2>
+      <p>Indícame la marca y el modelo para confirmar las piezas y el servicio disponible.</p>
+    </div>
+    <ul class="oc-wheels-brands__list" role="list">
+      <li><img src={withBase('images/marcas/dt-swiss.webp')} alt="DT Swiss" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><img src={withBase('images/marcas/shimano.webp')} alt="Shimano" width="500" height="500" loading="lazy" decoding="async" /></li>
+      <li><span>Otras marcas</span></li>
+    </ul>
+  </section>
+</ServiceLayout>

@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import Workflow from '../components/Workflow.astro';
 import ServiceSymptoms from '../components/ServiceSymptoms.astro';
+import ServiceWatermarkTrack from '../components/ServiceWatermarkTrack.astro';
 import { base, withBase } from '../lib/paths.js';
 import {
   transmissionPage,
@@ -26,125 +27,126 @@ import {
   faqHeadingId="transmission-faq-title"
   defaultService="Transmisión"
 >
-  <nav class="oc-services-container oc-transmission-breadcrumb" aria-label="Ruta de navegación">
-    <ol>
-      <li>
-        <a href={base}>Inicio</a>
-      </li>
-      <li>
-        <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
-      </li>
-      <li aria-current="page">Transmisión</li>
-    </ol>
-  </nav>
+  <ServiceWatermarkTrack text="TRANSMISIÓN">
+    <nav class="oc-services-container oc-transmission-breadcrumb" aria-label="Ruta de navegación">
+      <ol>
+        <li>
+          <a href={base}>Inicio</a>
+        </li>
+        <li>
+          <a href={withBase('reparacion-bicicletas-barcelona/')}>Servicios</a>
+        </li>
+        <li aria-current="page">Transmisión</li>
+      </ol>
+    </nav>
 
-  <ServiceSymptoms
-    headingId="transmission-symptoms-title"
-    eyebrow="Señales de desgaste"
-    title="¿Tu bici te"
-    accent="está avisando?"
-    symptoms={transmissionSymptoms}
-    backgroundText="TRANSMISIÓN"
-  />
+    <ServiceSymptoms
+      headingId="transmission-symptoms-title"
+      eyebrow="Señales de desgaste"
+      title="¿Tu bici te"
+      accent="está avisando?"
+      symptoms={transmissionSymptoms}
+    />
 
-  <section
-    class="oc-services-container oc-services-section oc-transmission-intro"
-    aria-labelledby="transmission-intro-title"
-  >
-    <div>
-      <p class="oc-services-eyebrow">Cada componente cuenta</p>
-      <h2 class="oc-services-display" id="transmission-intro-title">
-        Cambios precisos.
-        <br />
-        <span>Más kilómetros.</span>
+    <section
+      class="oc-services-container oc-services-section oc-transmission-intro"
+      aria-labelledby="transmission-intro-title"
+    >
+      <div>
+        <p class="oc-services-eyebrow">Cada componente cuenta</p>
+        <h2 class="oc-services-display" id="transmission-intro-title">
+          Cambios precisos.
+          <br />
+          <span>Más kilómetros.</span>
+        </h2>
+      </div>
+      <div class="oc-transmission-intro__text">
+        <p>
+          Reviso el desgaste, encuentro el origen del problema y te explico qué necesita tu
+          transmisión antes de intervenir.
+        </p>
+        <ul class="oc-transmission-benefits" role="list">
+          <li>Diagnóstico</li>
+          <li>Precisión</li>
+          <li>Confianza</li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="oc-services-container oc-services-section oc-transmission-services"
+      id="servicios-transmision"
+      aria-labelledby="transmission-services-title"
+    >
+      <p class="oc-services-eyebrow">Cuidado para cada componente</p>
+      <h2 class="oc-services-display" id="transmission-services-title">
+        Tu transmisión. <span>Al detalle.</span>
       </h2>
-    </div>
-    <div class="oc-transmission-intro__text">
-      <p>
-        Reviso el desgaste, encuentro el origen del problema y te explico qué necesita tu
-        transmisión antes de intervenir.
-      </p>
-      <ul class="oc-transmission-benefits" role="list">
-        <li>Diagnóstico</li>
-        <li>Precisión</li>
-        <li>Confianza</li>
-      </ul>
-    </div>
-  </section>
+      <div class="oc-transmission-grid">
+        {transmissionServices.map((item, index) => (
+          <article class="oc-transmission-card">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 31vw"
+              format="webp"
+              quality={85}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="oc-transmission-card__body">
+              <h3>
+                <a
+                  href="#reserva"
+                  data-booking-service="Transmisión"
+                  data-booking-detail={`Transmisión · ${item.title}`}
+                >
+                  <span class="oc-transmission-card__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{item.title}</span>
+                  <span class="oc-transmission-card__arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+              </h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="oc-transmission-cta">
+        <a class="button" href="#reserva" data-booking-service="Transmisión">
+          Consulta tu transmisión <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
 
-  <section
-    class="oc-services-container oc-services-section oc-transmission-services"
-    id="servicios-transmision"
-    aria-labelledby="transmission-services-title"
-  >
-    <p class="oc-services-eyebrow">Cuidado para cada componente</p>
-    <h2 class="oc-services-display" id="transmission-services-title">
-      Tu transmisión. <span>Al detalle.</span>
-    </h2>
-    <div class="oc-transmission-grid">
-      {transmissionServices.map((item, index) => (
-        <article class="oc-transmission-card">
-          <Image
-            src={item.image}
-            alt={item.alt}
-            widths={[480, 800, 1200]}
-            sizes="(max-width: 700px) 92vw, (max-width: 1024px) 46vw, 31vw"
-            format="webp"
-            quality={85}
-            loading="lazy"
-            decoding="async"
-          />
-          <div class="oc-transmission-card__body">
-            <h3>
-              <a
-                href="#reserva"
-                data-booking-service="Transmisión"
-                data-booking-detail={`Transmisión · ${item.title}`}
-              >
-                <span class="oc-transmission-card__number" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span>{item.title}</span>
-                <span class="oc-transmission-card__arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-            </h3>
-            <p>{item.description}</p>
-          </div>
-        </article>
-      ))}
-    </div>
-    <div class="oc-transmission-cta">
-      <a class="button" href="#reserva" data-booking-service="Transmisión">
-        Consulta tu transmisión <span aria-hidden="true">↗</span>
-      </a>
-    </div>
-  </section>
-
-  <Workflow
-    headingId="transmission-workflow-title"
-    line1="Un proceso técnico."
-    steps={transmissionWorkflow}
-  />
+    <Workflow
+      headingId="transmission-workflow-title"
+      line1="Un proceso técnico."
+      steps={transmissionWorkflow}
+    />
+  </ServiceWatermarkTrack>
 
   <section
     class="oc-services-container oc-services-section oc-transmission-systems"
     aria-labelledby="transmission-systems-title"
   >
-    <p class="oc-services-eyebrow">Sistemas de transmisión</p>
-    <div class="oc-transmission-systems__heading">
-      <h2 class="oc-services-display" id="transmission-systems-title">
-        Experiencia <span>con tu cambio.</span>
-      </h2>
-      <p>Consulta el servicio disponible para tu marca, sistema y modelo.</p>
-    </div>
-    <ul class="oc-transmission-systems__list" role="list">
-      <li>Shimano</li>
-      <li>SRAM</li>
-      <li>Di2</li>
-      <li>AXS</li>
-    </ul>
+      <p class="oc-services-eyebrow">Sistemas de transmisión</p>
+      <div class="oc-transmission-systems__heading">
+        <h2 class="oc-services-display" id="transmission-systems-title">
+          Experiencia <span>con tu cambio.</span>
+        </h2>
+        <p>Consulta el servicio disponible para tu marca, sistema y modelo.</p>
+      </div>
+      <ul class="oc-transmission-systems__list" role="list">
+        <li>Shimano</li>
+        <li>SRAM</li>
+        <li>Di2</li>
+        <li>AXS</li>
+      </ul>
   </section>
 </ServiceLayout>
 

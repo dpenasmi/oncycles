@@ -2,6 +2,7 @@
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import Workflow from '../components/Workflow.astro';
 import ServiceSymptoms from '../components/ServiceSymptoms.astro';
+import ServiceWatermarkTrack from '../components/ServiceWatermarkTrack.astro';
 import { Image } from 'astro:assets';
 import { base, withBase } from '../lib/paths.js';
 import { siteImages } from '../data/images';
@@ -26,10 +27,7 @@ import '../styles/ebike.css';
   faqHeadingId="ebike-faq-title"
   defaultService="E-Bike"
 >
-  <div class="oc-ebike-content-track">
-    <div class="oc-ebike-content-track__watermark" aria-hidden="true">
-      <span>E-BIKE</span>
-    </div>
+  <ServiceWatermarkTrack text="E-BIKE">
     <nav class="oc-services-container oc-ebike-breadcrumb" aria-label="Ruta de navegación">
       <ol>
         <li>
@@ -135,11 +133,12 @@ import '../styles/ebike.css';
     </section>
 
     <Workflow headingId="ebike-workflow-title" line1="Un proceso técnico." steps={ebikeWorkflow} />
+  </ServiceWatermarkTrack>
 
-    <section
-      class="oc-services-container oc-services-section oc-ebike-brands"
-      aria-labelledby="ebike-brands-title"
-    >
+  <section
+    class="oc-services-container oc-services-section oc-ebike-brands"
+    aria-labelledby="ebike-brands-title"
+  >
       <p class="oc-services-eyebrow">Principales marcas</p>
       <div class="oc-ebike-brands__heading">
         <h2 class="oc-services-display" id="ebike-brands-title">
@@ -176,42 +175,11 @@ import '../styles/ebike.css';
           </li>
         ))}
       </ul>
-    </section>
-  </div>
+  </section>
 </ServiceLayout>
 
 <style>
-  .oc-ebike-content-track {
-    --ebike-watermark-size: clamp(36px, 9.5vw, 200px);
-    position: relative;
-    isolation: isolate;
-  }
-  .oc-ebike-content-track__watermark {
-    position: sticky;
-    top: 45svh;
-    height: var(--ebike-watermark-size);
-    z-index: 0;
-    pointer-events: none;
-    user-select: none;
-  }
-  .oc-ebike-content-track__watermark span {
-    position: absolute;
-    top: 0;
-    right: var(--services-gutter);
-    color: #202020;
-    font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif);
-    font-size: var(--ebike-watermark-size);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.055em;
-    white-space: nowrap;
-  }
-  :global(.oc-ebike-content-track > :not(.oc-ebike-content-track__watermark)) {
-    position: relative;
-    z-index: 1;
-  }
   .oc-ebike-breadcrumb {
-    margin-top: calc(0px - var(--ebike-watermark-size));
     padding-block: 24px 0;
   }
   .oc-ebike-breadcrumb ol {

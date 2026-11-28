@@ -1,0 +1,56 @@
+import type { ServiceDefinition } from '../types/content';
+
+/** Fuente común de servicios para navegación y formulario; las fotos se asignan en home.ts. href solo cuando exista la página. */
+export const serviceDefinitions = {
+  revisiones: {
+    id: 'revisiones',
+    title: 'Revisiones',
+    description: 'Mantenimiento para que todo vuelva a ir fino.',
+  },
+  suspensiones: {
+    id: 'suspensiones',
+    title: 'Suspensiones',
+    description: 'Revisión, mantenimiento y configuraciones.',
+    href: 'suspension-bicicleta/',
+  },
+  frenos: {
+    id: 'frenos',
+    title: 'Frenos',
+    description: 'Control y seguridad en cada salida.',
+    href: 'freno-hidraulico-bici/',
+  },
+  transmision: {
+    id: 'transmision',
+    title: 'Transmisión',
+    description: 'Precisión y rendimiento en cada cambio.',
+    href: 'transmision-bicicleta-barcelona/',
+  },
+  ruedas: {
+    id: 'ruedas',
+    title: 'Ruedas',
+    description: 'Fiabilidad, centrado y resistencia.',
+  },
+  tijas: {
+    id: 'tijas',
+    title: 'Tijas telescópicas',
+    description: 'Servicio y optimización del funcionamiento.',
+  },
+  rodamientos: {
+    id: 'rodamientos',
+    title: 'Rodamientos y dirección',
+    description: 'Suavidad y control, sin holguras.',
+  },
+  ebike: {
+    id: 'ebike',
+    href: 'ebike-barcelona/',
+    title: 'E-Bike',
+    description: 'Diagnóstico y mantenimiento especializado.',
+  },
+  setup: {
+    id: 'setup',
+    title: 'Setup y ajustes',
+    description: 'Tu bici, a tu medida.',
+  },
+} satisfies Record<string, ServiceDefinition>;
+
+export const serviceCatalog: ServiceDefinition[] = Object.values(serviceDefinitions);

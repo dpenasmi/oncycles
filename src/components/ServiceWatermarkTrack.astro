@@ -1,0 +1,49 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="oc-service-content-track">
+  <div class="oc-service-content-track__watermark" aria-hidden="true">
+    <span>{text}</span>
+  </div>
+  <div class="oc-service-content-track__content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .oc-service-content-track {
+    --service-watermark-size: clamp(36px, 9.5vw, 200px);
+    position: relative;
+    isolation: isolate;
+  }
+  .oc-service-content-track__watermark {
+    position: sticky;
+    top: 45svh;
+    height: var(--service-watermark-size);
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+  .oc-service-content-track__watermark span {
+    position: absolute;
+    top: 0;
+    right: var(--services-gutter);
+    color: #202020;
+    font-family: var(--oc-font-display, 'Archivo Black', Arial, sans-serif);
+    font-size: var(--service-watermark-size);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+  }
+  .oc-service-content-track__content {
+    position: relative;
+    z-index: 1;
+    margin-top: calc(0px - var(--service-watermark-size));
+  }
+</style>

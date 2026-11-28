@@ -17,6 +17,7 @@ export const serviceDefinitions = {
     id: 'frenos',
     title: 'Frenos',
     description: 'Control y seguridad en cada salida.',
+    href: 'freno-hidraulico-bici/',
   },
   transmision: {
     id: 'transmision',
@@ -28,6 +29,7 @@ export const serviceDefinitions = {
     id: 'ruedas',
     title: 'Ruedas',
     description: 'Fiabilidad, centrado y resistencia.',
+    href: 'ruedas-de-bicicleta/',
   },
   tijas: {
     id: 'tijas',
